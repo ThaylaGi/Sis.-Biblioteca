@@ -16,6 +16,12 @@
             background-color: #f4f4f9;
         }
 
+        header {
+            text-align: top;
+            font-size: 16px;
+            color: #666;
+        }
+
         form {
             background-color: white;
             padding: 30px;
@@ -24,11 +30,7 @@
             width: 300px;
         }
 
-        header {
-            text-align: top;
-            font-size: 16px;
-            color: #666;
-        }
+
 
         label {
             font-size: 14px;

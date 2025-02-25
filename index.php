@@ -25,8 +25,8 @@
         }
 
         header {
-            text-align: initial;
-            font-size: 24px;
+            text-align: top;
+            font-size: 16px;
             color: #666;
         }
 

@@ -24,7 +24,7 @@
             width: 300px;
         }
 
-        h1 {
+        header {
             text-align: initial;
             font-size: 24px;
             color: #666;

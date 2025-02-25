@@ -25,7 +25,7 @@
         }
 
         h1 {
-            text-align: top;
+            text-align: center;
             font-size: 24px;
             color: #666;
         }

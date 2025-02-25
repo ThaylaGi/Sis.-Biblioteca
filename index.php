@@ -8,18 +8,21 @@
         /* Estilos para centralizar o conteúdo */
         body {
             font-family: Arial, sans-serif;
-            display: flex;
             justify-content: center;
             align-items: center;
+            display: flex;
             height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
+            margin: auto;
+            background-color: #F5F5F5;
         }
 
-        header {
-            text-align: top;
-            font-size: 16px;
-            color: #666;
+        #h1 {
+            text-align: start;
+            font-size: 33px;
+            color: #333333;
+            justify-content: center;
+            align-items: center;
+            display: flex;
         }
 
         form {
@@ -28,6 +31,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 300px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-left: 10%;
+
+            
         }
 
 
@@ -51,7 +60,7 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #007BFF;
+            background-color:  #007A33;
             color: white;
             border: none;
             border-radius: 4px;
@@ -60,7 +69,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #4CAF50;
         }
     </style>
 
@@ -69,9 +78,7 @@
     </style>
 </head>
 <body>
-    <header>
-      <h1>Catalogação</h1>
-    </header>
+    <div id="h1">Catalogação</div>
       <form action="#" method="post">
         <label for="sobrenome">Sobrenome do Autor:</label>
         <input type="text" id="sobrenome" name="sobrenome" required><br><br>
@@ -81,7 +88,8 @@
 
         <label for="titulo">Título do Livro:</label>
         <input type="text" id="titulo" name="titulo" required><br><br>
-
+    </form>
+    <form action="#" method="post">
         <label for="ano">Ano de Publicação:</label>
         <input type="date" id="ano" name="ano" required><br><br>
 

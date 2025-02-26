@@ -54,9 +54,8 @@
                         </div>
                     </div>
 
-
+             
                     <div class="relative">
-
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="sobrenome" name="sobrenome"
@@ -65,8 +64,8 @@
                         </div>
                     </div>
 
-                    <div class="relative">
 
+                    <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="titulo" name="titulo"
@@ -75,8 +74,8 @@
                         </div>
                     </div>
 
+    
                     <div class="relative">
-
                         <div class="relative group">
                             <i class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="data" name="data"
@@ -86,9 +85,8 @@
                         </div>
                     </div>
 
-
+                
                     <div class="relative">
-
                         <div class="relative group">
                             <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="editora" name="editora"
@@ -97,26 +95,30 @@
                         </div>
                     </div>
 
-
+                  
                     <div class="relative">
+    <div class="relative group">
+        <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+        <input type="number" id="quantidade" name="quantidade" min="1"
+            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+            placeholder="Quantidade de livros" required>
+    </div>
+</div>
 
-                        <div class="relative group">
-                            <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                            <input type="number" id="quantidade" name="quantidade" min="1"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                                placeholder="Quantidade de livros" required>
-                        </div>
-                    </div>
+<script>
+    document.getElementById('quantidade').addEventListener('input', function (e) {
+        this.value = this.value.replace(/[^0-9]/g, ''); 
+    });
+</script>
 
-
+                  
                     <div class="relative">
-
                         <div class="relative group">
                             <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <select id="corredor" name="corredor"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
-                                <option value="" disabled selected>Selecione o corredor</option>
+                                <option value="" disabled selected>Corredor</option>
                                 <option value="A">Corredor A</option>
                                 <option value="B">Corredor B</option>
                                 <option value="C">Corredor C</option>
@@ -130,15 +132,13 @@
                         </div>
                     </div>
 
-
                     <div class="relative">
-
                         <div class="relative group">
                             <i class="fas fa-layer-group absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <select id="estante" name="estante"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
-                                <option value="" disabled selected>Selecione a estante</option>
+                                <option value="" disabled selected>Estante</option>
                                 <option value="1">Estante 1</option>
                                 <option value="2">Estante 2</option>
                                 <option value="3">Estante 3</option>
@@ -179,31 +179,30 @@
                         </div>
                     </div>
 
-
-                    <div class="relative sm:col-span-2 flex flex-col items-center">
-
-                        <div class="relative group w-full sm:max-w-xs my-2 sm:my-4">
-                            <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                            <select id="prateleira" name="prateleira"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
-                                required>
-                                <option value="" disabled selected>Selecione a prateleira</option>
-                                <option value="P1">Prateleira 1</option>
-                                <option value="P2">Prateleira 2</option>
-                                <option value="P3">Prateleira 3</option>
-                                <option value="P4">Prateleira 4</option>
-                                <option value="P5">Prateleira 5</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+              
+                    <div class="relative col-span-2 flex flex-col items-center">
+    <div class="relative group w-full sm:w-2/3 md:max-w-xs my-2 sm:my-4 mx-auto">
+        <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+        <select id="prateleira" name="prateleira"
+            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm sm:text-base"
+            required>
+            <option value="" disabled selected class="text-xs sm:text-base  "> Prateleira</option>
+            <option value="P1">Prateleira 1</option>
+            <option value="P2">Prateleira 2</option>
+            <option value="P3">Prateleira 3</option>
+            <option value="P4">Prateleira 4</option>
+            <option value="P5">Prateleira 5</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </div>
+</div>
                 </div>
 
-
+              
                 <div class="mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">

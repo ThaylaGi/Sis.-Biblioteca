@@ -15,9 +15,8 @@ class main_model extends connect
         $this->catalogo = "catalogo";
     }
 
-    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira)
+    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $genero, $subgenero)
     {
-
         $sql_check = $this->connect->prepare("SELECT * FROM $this->catalogo WHERE sobrenome_autor = :sobrenome_autor AND nome_autor = :nome_autor AND titulo_livro = :titulo_livro");
 
         $sql_check->bindValue(':sobrenome_autor', $sobrenome);
@@ -50,5 +49,18 @@ class main_model extends connect
         } else {
             return 3;
         }
+    }
+
+    public function cadastrar_subgenero($genero, $subgenero){
+
+        $sql_idgenero = $this->connect->prepare("SELECT id FROM genero WHERE generos = :generos");
+        $sql_idgenero->bindValue(':generos', $genero);
+        $sql_idgenero->execute();
+        $id_genero = $sql_idgenero->fetch(PDO::FETCH_ASSOC);
+
+        $sql_check = $this->connect->prepare("SELECT * FROM subgenero WHERE subgenero = :subgenero AND id_genero = :id_genero");
+        $sql_check->bindValue(':subgenero', $subgenero);
+        $sql_check->bindValue(':id_genero', $id_genero);
+        $sql_check->execute();
     }
 }

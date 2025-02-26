@@ -10,7 +10,6 @@ class main_model extends connect
 
     function __construct()
     {
-
         parent::__construct();
         $this->catalogo = "catalogo";
     }
@@ -25,7 +24,7 @@ class main_model extends connect
         $sql_check->execute();
 
         $livros = $sql_check->fetch(PDO::FETCH_ASSOC);
-        if (count($livros) > 0) {
+        if (!empty($livros)) {
 
             $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (NULL, :sobrenome_autor, :nome_autor, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira)");
 
@@ -62,5 +61,25 @@ class main_model extends connect
         $sql_check->bindValue(':subgenero', $subgenero);
         $sql_check->bindValue(':id_genero', $id_genero);
         $sql_check->execute();
+
+        $subgeneros = $sql_check->fetch(PDO::FETCH_ASSOC);
+        if(!empty($subgeneros)){
+
+            $sql_genero = $this->connect->prepare("INSERT INTO subgenero VALUES (NULL, :subgenero, :id_genero)");
+            $sql_genero->bindValue(':subgenero', $subgenero);
+            $sql_genero->bindValue(':id_genero', $id_genero);
+            $sql_genero->execute();
+
+            if($sql_genero){
+
+                return 1;
+            }else{
+                return 2;
+            }
+        }else{
+
+            return 3;
+        }
+
     }
 }

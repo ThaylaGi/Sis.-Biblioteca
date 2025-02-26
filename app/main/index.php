@@ -28,10 +28,10 @@
       style="background-image: url('./img/layout.png'); background-opacity: 0.3;">
 
     <div class="flex flex-col items-center">
-        <!-- Logo com responsividade ajustada -->
+       
         <img src="./img/logo1.png" class="w-[250px] h-auto xs:w-[280px] sm:w-[320px] md:w-[350px] lg:w-[400px] mt-[-150px]" alt="Logo">
 
-        <!-- Box do formulário com margem superior negativa para subir -->
+  
         <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden ">
             <div class="bg-[#007A33] p-4 sm:p-6">
                 <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
@@ -41,7 +41,7 @@
 
             <form id="bookForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                    <!-- Nome do autor -->
+                  
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <!-- Sobrenome do autor -->
+             
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    <!-- Título do livro -->
+
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-                    <!-- Data de publicação -->
+    
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
 
-                    <!-- Editora -->
+                
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
 
-                    <!-- Quantidade de livros -->
+                  
                     <div class="relative">
     <div class="relative group">
         <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -108,7 +108,7 @@
     });
 </script>
 
-                    <!-- Corredor -->
+                  
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -129,7 +129,6 @@
                         </div>
                     </div>
 
-                    <!-- Estante -->
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-layer-group absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -177,7 +176,7 @@
                         </div>
                     </div>
 
-                    <!-- Prateleira -->
+              
                     <div class="relative col-span-2 flex flex-col items-center">
     <div class="relative group w-full sm:w-2/3 md:max-w-xs my-2 sm:my-4 mx-auto">
         <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -200,7 +199,7 @@
 </div>
                 </div>
 
-                <!-- Botão de envio -->
+              
                 <div class="mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">

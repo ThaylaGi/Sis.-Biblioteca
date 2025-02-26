@@ -23,25 +23,28 @@ $select_model = new select_model();
                     'ceara-white': '#FFFFFF',
                     primary: '#4CAF50',
                     secondary: '#FFB74D',
-                    
+
                 }
             }
         }
     }
 </script>
 
-<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
+<body
+    class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
 
-    <a href="decisão.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
+    <a href="decisão.php"
+        class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
         <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
     </a>
 
     <div class="flex flex-col items-center w-full">
-        <img src="../assets/img/logo1.png" class="w-[200px] xs:w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] mt-[-40px] sm:mt-[-150px]" alt="Logo">
+        <img src="../assets/img/logo1.png"
+            class="w-[200px] xs:w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] mt-[-40px] sm:mt-[-150px]" alt="Logo">
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl px-4 sm:px-6 md:px-8">
-    
+
             <div class="w-full bg-white rounded-xl shadow-2xl overflow-hidden h-[250px]">
                 <div class="bg-[#007A33] p-4 sm:p-6">
                     <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
@@ -52,7 +55,8 @@ $select_model = new select_model();
                 <form id="genreForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
                     <div class="relative">
                         <div class="relative group">
-                            <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                            <i
+                                class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <select id="nomeGenero" name="nomeGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
@@ -76,29 +80,66 @@ $select_model = new select_model();
                                 <option value="Teatro Brasileiro">Teatro Brasileiro</option>
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
                         </div>
                     </div>
 
                     <div class="relative">
-                        <div class="relative group">
-                            <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                            <select type="text" id="nomeGenero" name="nomeGenero"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
-                                placeholder=" Subgênero" required>
-                                <?php
-                                $subgeneros = $select_model->select_subgenero($genero);
+    <div class="relative group">
+        <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+        <select type="text" id="nomesubGenero" name="nomesubGenero"
+            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
+            placeholder="Subgênero" required>
+            <option value="">Carregando subgêneros...</option>
+        </select>
+    </div>
+</div>
 
-                                foreach ($subgeneros as $subgenero) {
-                                ?>
-                                    <option value="<?= $subgenero ?>"><?= $subgenero ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
+<script>
+    // Função para carregar os subgêneros via AJAX
+    function carregarSubgeneros() {
+        // Faz a requisição ao endpoint PHP
+        //altera isso aqui em noome de jesus
+         fetch('buscar_subgeneros.php')
+            .then(response => response.json()) // Converte a resposta para JSON
+            .then(data => {
+                // Seleciona o elemento <select>
+                const select = document.getElementById("nomesubGenero");
+
+                // Limpa as opções atuais
+                select.innerHTML = '';
+
+                // Adiciona uma opção padrão
+                const optionPadrao = document.createElement("option");
+                optionPadrao.value = "";
+                optionPadrao.text = "Selecione um subgênero";
+                select.add(optionPadrao);
+
+                // Preenche o <select> com os dados retornados
+                data.forEach(subgenero => {
+                    const option = document.createElement("option");
+                    option.value = subgenero.id;
+                    option.text = subgenero.nome;
+                    select.add(option);
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao carregar subgêneros:", error);
+                const select = document.getElementById("nomesubGenero");
+                select.innerHTML = '<option value="">Erro ao carregar subgêneros</option>';
+            });
+    }
+
+    // Chama a função para carregar os subgêneros quando a página for carregada
+    document.addEventListener("DOMContentLoaded", carregarSubgeneros);
+</script>
+                  
+
                 </form>
             </div>
 
@@ -116,7 +157,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="text" id="nome" name="nome"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
                                     placeholder=" Nome " required>
@@ -126,7 +168,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="text" id="sobrenome" name="sobrenome"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
                                     placeholder=" Sobrenome " required>
@@ -136,7 +179,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="text" id="titulo" name="titulo"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                     placeholder=" Título" required>
@@ -146,7 +190,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="text" id="data" name="data"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                     placeholder="DD/MM/AAAA" required>
@@ -157,7 +202,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="text" id="editora" name="editora"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
                                     placeholder=" Editora" required>
@@ -167,7 +213,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="number" id="quantidade" name="quantidade" min="1"
                                     class="w-full pl-10 pr-3 py-2.5 text-gray-500 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                     placeholder="Qnt. de livros" required>
@@ -175,7 +222,7 @@ $select_model = new select_model();
                         </div>
 
                         <script>
-                            document.getElementById('quantidade').addEventListener('input', function(e) {
+                            document.getElementById('quantidade').addEventListener('input', function (e) {
                                 this.value = this.value.replace(/[^0-9]/g, '');
                             });
                         </script>
@@ -183,7 +230,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group group-hover:text-[#007A33]">
-                                <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400  transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400  transition-colors duration-200"></i>
                                 <select id="corredor" name="corredor"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                     required>
@@ -194,8 +242,10 @@ $select_model = new select_model();
                                     <option value="D">Corredor D</option>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </div>
                             </div>
@@ -203,7 +253,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fas fa-layer-group absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-layer-group absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <select id="estante" name="estante"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                     required>
@@ -241,8 +292,10 @@ $select_model = new select_model();
                                     <option value="31">Estante 31</option>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </div>
                             </div>
@@ -251,11 +304,13 @@ $select_model = new select_model();
 
                         <div class="relative ">
                             <div class="relative group">
-                                <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <select id="prateleira" name="prateleira"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm sm:text-base"
                                     required>
-                                    <option value="" disabled selected class="text-xs sm:text-base  "> Prateleira</option>
+                                    <option value="" disabled selected class="text-xs sm:text-base  "> Prateleira
+                                    </option>
                                     <option value="P1">Prateleira 1</option>
                                     <option value="P2">Prateleira 2</option>
                                     <option value="P3">Prateleira 3</option>
@@ -263,8 +318,10 @@ $select_model = new select_model();
                                     <option value="P5">Prateleira 5</option>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </div>
                             </div>
@@ -276,7 +333,8 @@ $select_model = new select_model();
 
                         <div class="relative">
                             <div class="relative group">
-                                <i class="fa-solid fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <i
+                                    class="fa-solid fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="text" id="edição" name="edição"
                                     class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                     placeholder=" Edição" required>
@@ -314,7 +372,7 @@ $select_model = new select_model();
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('bookForm');
             const dataInput = document.getElementById('data');
             const dataError = document.getElementById('dataError');
@@ -366,11 +424,11 @@ $select_model = new select_model();
                 }
             }
 
-            dataInput.addEventListener('input', function(e) {
+            dataInput.addEventListener('input', function (e) {
                 maskData(this);
             });
 
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 if (form.checkValidity()) {

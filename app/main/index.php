@@ -24,33 +24,30 @@
     }
 </script>
 
-<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8"
-    style="background-image: url('assets/img/layout.png'); background-opacity: 0.3;">
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8" 
+      style="background-image: url('assets/img/layout.png'); background-opacity: 0.3;">
 
-    <div class="flex flex-col items-center ">
+    <div class="flex flex-col items-center">
+       
+        <img src="assets/img/logo1.png" class="w-[250px] h-auto xs:w-[280px] sm:w-[320px] md:w-[350px] lg:w-[400px] mt-[-150px]" alt="Logo">
 
-        <img src="assets/img/logo1.png" class="w-[200px] h-[200px]" alt="Logo">
-
-
-
-        <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden my-[]">
+  
+        <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden ">
             <div class="bg-[#007A33] p-4 sm:p-6">
                 <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
                     <i class="fas fa-book mr-2"></i>Cadastro de Livros
                 </h2>
             </div>
 
-
-            <form id="bookForm" action="./controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
+            <form id="bookForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+                <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
+                  
                     <div class="relative">
-
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="nome" name="nome"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                                placeholder=" Nome do autor" required>
+                                placeholder=" Nome " required>
                         </div>
                     </div>
 
@@ -60,7 +57,7 @@
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="sobrenome" name="sobrenome"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                                placeholder=" Sobrenome do autor" required>
+                                placeholder=" Sobrenome " required>
                         </div>
                     </div>
 
@@ -213,8 +210,6 @@
             </form>
         </div>
     </div>
-    </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -278,7 +273,7 @@
 
                 if (form.checkValidity()) {
                     console.log('Formulário válido, enviando...');
-
+                    
                     alert('Formulário enviado com sucesso!');
                     form.reset();
                 }
@@ -287,4 +282,4 @@
     </script>
 </body>
 
-</html>
+</html> 

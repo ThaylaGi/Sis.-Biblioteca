@@ -10,8 +10,8 @@ if (
     isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
     isset($_POST['corredor']) && !empty($_POST['corredor']) &&
     isset($_POST['estante']) && !empty($_POST['estante']) &&
-    isset($_POST['prateleira']) && !empty($_POST['prateleira'])&&
-    isset($_POST['genero']) && !empty($_POST['genero'])&&
+    isset($_POST['prateleira']) && !empty($_POST['prateleira']) &&
+    isset($_POST['genero']) && !empty($_POST['genero']) &&
     isset($_POST['subgenero']) && !empty($_POST['subgenero'])
 ) {
 
@@ -30,8 +30,8 @@ if (
     $model = new main_model();
     $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $genero, $subgenero);
 
-    switch($result){
-         case 1:
+    switch ($result) {
+        case 1:
             header('location:../index.php?true');
             exit();
         case 2:
@@ -41,8 +41,7 @@ if (
             header('location:../index.php?ja_cadastrado');
             exit();
     }
-
-}else if(isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])){
+} else if (isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])) {
 
     $genero = $_POST['genero'];
     $subgenero = $_POST['subgenero'];
@@ -50,12 +49,19 @@ if (
     $model = new main_model();
     $result = $model->cadastrar_subgenero($genero, $subgenero);
 
-    switch($result){
+    switch ($result) {
 
-        
+        case 1:
+            header('location:../views/inserir_genero.php?true');
+        break;
+        case 2:
+            header('location:../views/inserir_genero.php?false');
+        break;
+        case 3:
+            header('location:../views/inserir_genero.php?ja_cadastrado');
+        break;
     }
-
-}else{
+} else {
 
     header('location:../index.php');
     exit();

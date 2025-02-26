@@ -11,6 +11,7 @@ $select_model = new select_model();
     <title>Formulário Biblioteca</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
 </head>
 <script>
     tailwind.config = {
@@ -22,6 +23,7 @@ $select_model = new select_model();
                     'ceara-white': '#FFFFFF',
                     primary: '#4CAF50',
                     secondary: '#FFB74D',
+                    
                 }
             }
         }
@@ -31,16 +33,15 @@ $select_model = new select_model();
 <body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
 
-    <a href="../index.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
+    <a href="decisão.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
         <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
     </a>
 
     <div class="flex flex-col items-center w-full">
         <img src="../assets/img/logo1.png" class="w-[200px] xs:w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] mt-[-40px] sm:mt-[-150px]" alt="Logo">
 
-        <!-- Grid para colocar os formulários lado a lado -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl px-4 sm:px-6 md:px-8">
-            <!-- Formulário de Gêneros -->
+    
             <div class="w-full bg-white rounded-xl shadow-2xl overflow-hidden h-[250px]">
                 <div class="bg-[#007A33] p-4 sm:p-6">
                     <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
@@ -169,7 +170,7 @@ $select_model = new select_model();
                                 <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                                 <input type="number" id="quantidade" name="quantidade" min="1"
                                     class="w-full pl-10 pr-3 py-2.5 text-gray-500 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                                    placeholder="Quantidade de livros" required>
+                                    placeholder="Qnt. de livros" required>
                             </div>
                         </div>
 

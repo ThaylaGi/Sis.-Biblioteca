@@ -32,10 +32,14 @@ if (
             exit();
         case 2:
             header('location:../index.php?false');
+            exit();
+        case 3:
+            header('location:../index.php?ja_cadastrado');
+            exit();
     }
 
 }else{
 
-    header('location:../');
+    header('location:../index.php');
     exit();
 }

@@ -10,7 +10,9 @@ if (
     isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
     isset($_POST['corredor']) && !empty($_POST['corredor']) &&
     isset($_POST['estante']) && !empty($_POST['estante']) &&
-    isset($_POST['prateleira']) && !empty($_POST['prateleira'])
+    isset($_POST['prateleira']) && !empty($_POST['prateleira'])&&
+    isset($_POST['genero']) && !empty($_POST['genero'])&&
+    isset($_POST['subgenero']) && !empty($_POST['subgenero'])
 ) {
 
     $nome = $_POST['nome'];
@@ -22,9 +24,11 @@ if (
     $corredor = $_POST['corredor'];
     $estante = $_POST['estante'];
     $prateleira = $_POST['prateleira'];
+    $genero = $_POST['genero'];
+    $subgenero = $_POST['subgenero'];
 
     $model = new main_model();
-    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira);
+    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $genero, $subgenero);
 
     switch($result){
          case 1:
@@ -36,6 +40,19 @@ if (
         case 3:
             header('location:../index.php?ja_cadastrado');
             exit();
+    }
+
+}else if(isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])){
+
+    $genero = $_POST['genero'];
+    $subgenero = $_POST['subgenero'];
+
+    $model = new main_model();
+    $result = $model->cadastrar_subgenero($genero, $subgenero);
+
+    switch($result){
+
+        
     }
 
 }else{

@@ -24,14 +24,14 @@
     }
 </script>
 
-<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8" 
-      style="background-image: url('assets/img/layout.png'); background-opacity: 0.3;">
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8"
+    style="background-image: url('assets/img/layout.png'); background-opacity: 0.3;">
 
     <div class="flex flex-col items-center">
-       
+
         <img src="assets/img/logo1.png" class="w-[250px] h-auto xs:w-[280px] sm:w-[320px] md:w-[350px] lg:w-[400px] mt-[-150px]" alt="Logo">
 
-  
+
         <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden ">
             <div class="bg-[#007A33] p-4 sm:p-6">
                 <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
@@ -41,7 +41,7 @@
 
             <form id="bookForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                  
+
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-             
+
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-    
+
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
 
-                
+
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -92,23 +92,23 @@
                         </div>
                     </div>
 
-                  
+
                     <div class="relative">
-    <div class="relative group">
-        <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-        <input type="number" id="quantidade" name="quantidade" min="1"
-            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-            placeholder="Quantidade de livros" required>
-    </div>
-</div>
+                        <div class="relative group">
+                            <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                            <input type="number" id="quantidade" name="quantidade" min="1"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                placeholder="Quantidade de livros" required>
+                        </div>
+                    </div>
 
-<script>
-    document.getElementById('quantidade').addEventListener('input', function (e) {
-        this.value = this.value.replace(/[^0-9]/g, ''); 
-    });
-</script>
+                    <script>
+                        document.getElementById('quantidade').addEventListener('input', function(e) {
+                            this.value = this.value.replace(/[^0-9]/g, '');
+                        });
+                    </script>
 
-                  
+
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -176,30 +176,43 @@
                         </div>
                     </div>
 
-              
-                    <div class="relative col-span-2 flex flex-col items-center">
-    <div class="relative group w-full sm:w-2/3 md:max-w-xs my-2 sm:my-4 mx-auto">
-        <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-        <select id="prateleira" name="prateleira"
-            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm sm:text-base"
-            required>
-            <option value="" disabled selected class="text-xs sm:text-base  "> Prateleira</option>
-            <option value="P1">Prateleira 1</option>
-            <option value="P2">Prateleira 2</option>
-            <option value="P3">Prateleira 3</option>
-            <option value="P4">Prateleira 4</option>
-            <option value="P5">Prateleira 5</option>
-        </select>
-        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-        </div>
-    </div>
-</div>
+
+                    <div class="relative ">
+                        <div class="relative group">
+                            <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                            <select id="prateleira" name="prateleira"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm sm:text-base"
+                                required>
+                                <option value="" disabled selected class="text-xs sm:text-base  "> Prateleira</option>
+                                <option value="P1">Prateleira 1</option>
+                                <option value="P2">Prateleira 2</option>
+                                <option value="P3">Prateleira 3</option>
+                                <option value="P4">Prateleira 4</option>
+                                <option value="P5">Prateleira 5</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    
+                    <div class="relative">
+                            <div class="relative group">
+                                <i class="fa-solid fa-book absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                                <input type="text" id="editora" name="editora"
+                                    class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                    placeholder=" Gênero" required>
+                            </div>
+                        </div>
                 </div>
 
-              
+
                 <div class="mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
@@ -273,7 +286,7 @@
 
                 if (form.checkValidity()) {
                     console.log('Formulário válido, enviando...');
-                    
+
                     alert('Formulário enviado com sucesso!');
                     form.reset();
                 }
@@ -282,4 +295,4 @@
     </script>
 </body>
 
-</html> 
+</html>

@@ -6,6 +6,7 @@
         <title>Formulário Biblioteca</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
         <style>
             .card-hover {
                 transition: transform 0.2s ease-in-out;

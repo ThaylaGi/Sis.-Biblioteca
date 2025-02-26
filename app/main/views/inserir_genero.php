@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Gêneros Bibliográficos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'ceara-green': '#008C45',
+                    'ceara-orange': '#FFA500',
+                    'ceara-white': '#FFFFFF',
+                    primary: '#4CAF50',
+                    secondary: '#FFB74D',
+                }
+            }
+        }
+    }
+</script>
+
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
+    style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
+
+    <a href="../index.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
+        <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
+    </a>
+
+    <div class="flex flex-col items-center">
+        <img src="../assets/img/logo1.png" class="w-[250px] h-auto xs:w-[280px] sm:w-[320px] md:w-[350px] lg:w-[400px] mt-[-150px]" alt="Logo">
+
+        <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden ">
+            <div class="bg-[#007A33] p-4 sm:p-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
+                    <i class="fas fa-book-open mr-2"></i>Cadastro de Subgêneros Bibliográficos
+                </h2>
+            </div>
+
+            <form id="genreForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+                <div class="relative">
+                    <div class="relative group">
+                        <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                        <select id="nomeGenero" name="nomeGenero"
+                            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
+                            required>
+                            <option value="" disabled selected>Gênero</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Conto">Conto</option>
+                            <option value="Crônica">Crônica</option>
+                            <option value="Novela">Novela</option>
+                            <option value="Ensaio">Ensaio</option>
+                            <option value="HQ">Histórias em Quadrinhos</option>
+                            <option value="Fábulas">Fábulas</option>
+                            <option value="Sermões">Sermões</option>
+                            <option value="Poesia">Poesia</option>
+                            <option value="Memórias">Memórias</option>
+                            <option value="Infantojuvenil">Infantojuvenil</option>
+                            <option value="Arte Brasileira">Arte Brasileira</option>
+                            <option value="Arte Estrangeira">Arte Estrangeira</option>
+                            <option value="Teatro Brasileiro">Teatro Brasileiro</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative group">
+                        <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                        <input type="text" id="subgenero" name="subgenero"
+                            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
+                            placeholder="Digite o Subgênero" required>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 mt-4">
+                    <input type="checkbox" id="naoExisteSubgenero" class="hidden peer " />
+                    <label for="naoExisteSubgenero" class="w-5 h-5 border-2 border-gray-300 rounded-md flex items-center justify-center peer-checked:bg-[#007A33] peer-checked:border-[#007A33] cursor-pointer transition-colors  duration-200">
+                        <i class="fas fa-check text-black text-sm opacity-0 peer-checked:opacity-100"></i>
+                    </label>
+                    <label for="naoExisteSubgenero" class="text-gray-700 text-sm cursor-pointer text-gray-500 select-none">Não existe subgênero</label>
+                </div>
+
+
+                <div class="mt-4 sm:mt-6">
+                    <button type="submit"
+                        class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Cadastrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .card-hover {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('genreForm');
+            const subgeneroInput = document.getElementById('subgenero');
+            const checkbox = document.getElementById('naoExisteSubgenero');
+
+            // Função para habilitar/desabilitar o campo de subgênero
+            checkbox.addEventListener('change', function() {
+                subgeneroInput.disabled = this.checked;
+                subgeneroInput.required = !this.checked;
+
+                if (this.checked) {
+                    subgeneroInput.value = 'Sem Subgênero'; // Define um valor padrão
+                } else {
+                    subgeneroInput.value = ''; // Limpa o campo
+                }
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (form.checkValidity()) {
+                    const genero = document.getElementById('nomeGenero').value;
+                    const subgenero = subgeneroInput.value;
+
+                    console.log('Gênero:', genero);
+                    console.log('Subgênero:', subgenero);
+
+                    alert('Gênero cadastrado com sucesso!');
+                    form.reset();
+                    checkbox.checked = false;
+                    subgeneroInput.disabled = false;
+                    subgeneroInput.required = true;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

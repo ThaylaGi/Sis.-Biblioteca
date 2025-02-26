@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- Mantive o head original -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Biblioteca</title>
@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <script>
+    // Configuração do Tailwind mantida
     tailwind.config = {
         theme: {
             extend: {
@@ -24,30 +25,81 @@
     }
 </script>
 
-<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8"
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
 
+    <a href="../index.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
+        <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
+    </a>
+
     <div class="flex flex-col items-center">
-
         <img src="../assets/img/logo1.png" class="w-[250px] h-auto xs:w-[280px] sm:w-[320px] md:w-[350px] lg:w-[400px] mt-[-150px]" alt="Logo">
+        
+        <!-- Grid para colocar os formulários lado a lado -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+            <!-- Formulário de Gêneros -->
+            <div class="w-full h-[250px] bg-white rounded-xl shadow-2xl overflow-hidden mx-[-50px]">
+                <div class="bg-[#007A33] p-4 sm:p-6">
+                    <h2 class="text-xl sm:text-2xl font-bold  text-white text-center">
+                        <i class="fas fa-book-open mr-2"></i>Gêneros Bibliográficos
+                    </h2>
+                </div>
 
+                <form id="genreForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+                  
+                    <div class="relative">
+                        <div class="relative group">
+                            <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                            <select id="nomeGenero" name="nomeGenero"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
+                                required>
+                                <option value="" disabled selected>Gênero</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Conto">Conto</option>
+                                <option value="Crônica">Crônica</option>
+                                <option value="Novela">Novela</option>
+                                <option value="Ensaio">Ensaio</option>
+                                <option value="HQ">Histórias em Quadrinhos</option>
+                                <option value="Fábulas">Fábulas</option>
+                                <option value="Sermões">Sermões</option>
+                                <option value="Poesia">Poesia</option>
+                                <option value="Memórias">Memórias</option>
+                                <option value="Infantojuvenil">Infantojuvenil</option>
+                                <option value="Arte Brasileira">Arte Brasileira</option>
+                                <option value="Arte Estrangeira">Arte Estrangeira</option>
+                                <option value="Teatro Brasileiro">Teatro Brasileiro</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden ">
-            <div class="bg-[#007A33] p-4 sm:p-6">
-                <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
-                    <i class="fas fa-book mr-2"></i>Cadastro de Livros
-                </h2>
+                    <div class="relative">
+                        <div class="relative group">
+                            <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                            <input type="text" id="nomeGenero" name="nomeGenero"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
+                                placeholder=" Subgênero" required>
+                        </div>
+                    </div>
+
+                  
+                </form>
             </div>
 
-            <form id="bookForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
-                <div class="relative">
-                    <div class="relative group">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2  transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                        <input type="text" id="pesquisa" name="pesquisa"
-                            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-center rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                            placeholder="Insira o Gênero " required>
-                    </div>
+          
+            <div class="w-[600px] bg-white rounded-xl shadow-2xl overflow-hidden mx-[50px]">
+                <div class="bg-[#007A33] p-4 sm:p-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
+                        <i class="fas fa-book mr-2"></i>Cadastro de Livros
+                    </h2>
                 </div>
+
+                <form id="bookForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+              
 
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
 
@@ -55,7 +107,7 @@
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="nome" name="nome"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
                                 placeholder=" Nome " required>
                         </div>
                     </div>
@@ -65,7 +117,7 @@
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="sobrenome" name="sobrenome"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
                                 placeholder=" Sobrenome " required>
                         </div>
                     </div>
@@ -75,7 +127,7 @@
                         <div class="relative group">
                             <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="titulo" name="titulo"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                 placeholder=" Título" required>
                         </div>
                     </div>
@@ -85,7 +137,7 @@
                         <div class="relative group">
                             <i class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="data" name="data"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                 placeholder="DD/MM/AAAA" required>
                             <span id="dataError" class="text-red-500 text-xs hidden">Data inválida</span>
                         </div>
@@ -96,7 +148,7 @@
                         <div class="relative group">
                             <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="editora" name="editora"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
                                 placeholder=" Editora" required>
                         </div>
                     </div>
@@ -106,7 +158,7 @@
                         <div class="relative group">
                             <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="number" id="quantidade" name="quantidade" min="1"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2.5 text-gray-500 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                 placeholder="Quantidade de livros" required>
                         </div>
                     </div>
@@ -119,8 +171,8 @@
 
 
                     <div class="relative">
-                        <div class="relative group">
-                            <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                        <div class="relative group group-hover:text-[#007A33]">
+                            <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400  transition-colors duration-200"></i>
                             <select id="corredor" name="corredor"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
@@ -223,11 +275,11 @@
 
 
                 <div class="mt-4 sm:mt-6">
-                    <button type="submit"
-                        class="w-full bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                        <i class="fas fa-paper-plane mr-2"></i>
-                        Enviar
-                    </button>
+                        <button type="submit"
+                            class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center ">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Enviar
+                        </button>
                 </div>
                 <?php if (isset($_GET['true'])) { ?>
                     <p>C</p>
@@ -235,6 +287,15 @@
             </form>
         </div>
     </div>
+
+    <style>
+           .card-hover {
+            transition: transform 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+        }
+    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

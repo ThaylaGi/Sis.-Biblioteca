@@ -1,3 +1,7 @@
+<?php
+require_once('../models/select_model.php');
+$select_model = new select_model();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +55,9 @@
                             <select id="nomeGenero" name="nomeGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
+                                <?php
+
+                                ?>
                                 <option value="" disabled selected>Gênero</option>
                                 <option value="Romance">Romance</option>
                                 <option value="Conto">Conto</option>
@@ -78,9 +85,17 @@
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                            <input type="text" id="nomeGenero" name="nomeGenero"
+                            <select type="text" id="nomeGenero" name="nomeGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
                                 placeholder=" Subgênero" required>
+                                <?php
+                                $subgeneros = $select_model->select_subgenero($genero);
+
+                                foreach ($subgeneros as $subgenero) {
+                                ?>
+                                    <option value="<?= $subgenero ?>"><?= $subgenero ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -273,18 +288,18 @@
                     <?php if (isset($_GET['true'])) { ?>
                         <p>C</p>
                     <?php } ?>
-            
 
-            <div class="mt-4 sm:mt-6">
-                <button type="submit"
-                    class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
-                    <i class="fas fa-paper-plane mr-2"></i>
-                    Enviar
-                </button>
+
+                    <div class="mt-4 sm:mt-6">
+                        <button type="submit"
+                            class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Enviar
+                        </button>
+                    </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
     </div>
 
     <style>

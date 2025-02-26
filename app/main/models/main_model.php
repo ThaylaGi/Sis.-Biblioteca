@@ -24,9 +24,9 @@ class main_model extends connect
         $sql_check->execute();
 
         $livros = $sql_check->fetch(PDO::FETCH_ASSOC);
-        if (!empty($livros)) {
+        if (empty($livros)) {
 
-            $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (NULL, :sobrenome_autor, :nome_autor, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira)");
+            $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (NULL, :sobrenome_autor, :nome_autor, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero)");
 
             $cadastro_livro->bindValue(':sobrenome_autor', $sobrenome);
             $cadastro_livro->bindValue(':nome_autor', $nome);
@@ -37,6 +37,8 @@ class main_model extends connect
             $cadastro_livro->bindValue(':corredor', $corredor);
             $cadastro_livro->bindValue(':estante', $estante);
             $cadastro_livro->bindValue(':prateleira', $prateleira);
+            $cadastro_livro->bindValue(':genero', $genero);
+            $cadastro_livro->bindValue(':subgenero', $subgenero);
 
             $cadastro_livro->execute();
 
@@ -59,15 +61,15 @@ class main_model extends connect
 
         $sql_check = $this->connect->prepare("SELECT * FROM subgenero WHERE subgenero = :subgenero AND id_genero = :id_genero");
         $sql_check->bindValue(':subgenero', $subgenero);
-        $sql_check->bindValue(':id_genero', $id_genero);
+        $sql_check->bindValue(':id_genero', $id_genero['id']);
         $sql_check->execute();
 
         $subgeneros = $sql_check->fetch(PDO::FETCH_ASSOC);
-        if(!empty($subgeneros)){
+        if(empty($subgeneros)){
 
             $sql_genero = $this->connect->prepare("INSERT INTO subgenero VALUES (NULL, :subgenero, :id_genero)");
             $sql_genero->bindValue(':subgenero', $subgenero);
-            $sql_genero->bindValue(':id_genero', $id_genero);
+            $sql_genero->bindValue(':id_genero', $id_genero['id']);
             $sql_genero->execute();
 
             if($sql_genero){

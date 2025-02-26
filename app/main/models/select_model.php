@@ -1,0 +1,26 @@
+<?php 
+
+require_once('../config/connect.php');
+
+class select_model extends connect{
+
+    private $catalogo;
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->catalogo = "catalogo";
+    }
+
+    public function select_subgenero($genero){
+
+        $sql_idgenero = $this->connect->query("SELECT id FROM genero WHERE generos = '$genero'");
+        $id_generos = $sql_idgenero->fetch(PDO::FETCH_ASSOC);
+        $id_genero = $id_generos['id'];
+        $select_subgenero = $this->connect->query("SELECT subgenero FROM subgenero WHERE id_genero = '$id_genero'");
+        $nome_subgenero = $select_subgenero->fetch(PDO::FETCH_ASSOC);
+
+        return $nome_subgenero;
+    }
+}
+?>

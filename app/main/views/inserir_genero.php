@@ -41,11 +41,11 @@
                 </h2>
             </div>
 
-            <form id="genreForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+            <form id="genreForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                 <div class="relative">
                     <div class="relative group">
                         <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                        <select id="nomeGenero" name="nomeGenero"
+                        <select id="nomeGenero" name="genero"
                             class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                             required>
                             <option value="" disabled selected>Gênero</option>
@@ -81,15 +81,6 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-2 mt-4">
-                    <input type="checkbox" id="naoExisteSubgenero" class="hidden peer " />
-                    <label for="naoExisteSubgenero" class="w-5 h-5 border-2 border-gray-300 rounded-md flex items-center justify-center peer-checked:bg-[#007A33] peer-checked:border-[#007A33] cursor-pointer transition-colors  duration-200">
-                        <i class="fas fa-check text-black text-sm opacity-0 peer-checked:opacity-100"></i>
-                    </label>
-                    <label for="naoExisteSubgenero" class="text-gray-700 text-sm cursor-pointer text-gray-500 select-none">Não existe subgênero</label>
-                </div>
-
-
                 <div class="mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
@@ -97,6 +88,15 @@
                         Cadastrar
                     </button>
                 </div>
+                <?php if (isset($_GET['true'])) { ?>
+                    <p>Genero cadastrado com sucesso!</p>
+                <?php } ?>
+                <?php if (isset($_GET['false'])) { ?>
+                    <p>Erro ao cadastrar!</p>
+                <?php } ?>
+                <?php if (isset($_GET['ja_cadastrado'])) { ?>
+                    <p>Genero já cadastrado!</p>
+                <?php } ?>
             </form>
         </div>
     </div>
@@ -129,23 +129,6 @@
                 }
             });
 
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                if (form.checkValidity()) {
-                    const genero = document.getElementById('nomeGenero').value;
-                    const subgenero = subgeneroInput.value;
-
-                    console.log('Gênero:', genero);
-                    console.log('Subgênero:', subgenero);
-
-                    alert('Gênero cadastrado com sucesso!');
-                    form.reset();
-                    checkbox.checked = false;
-                    subgeneroInput.disabled = false;
-                    subgeneroInput.required = true;
-                }
-            });
         });
     </script>
 </body>

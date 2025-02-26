@@ -27,7 +27,7 @@
 <body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
 
-    <a href="../index.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
+    <a href="decisão.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
         <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
     </a>
 
@@ -81,15 +81,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-2 mt-4">
-                    <input type="checkbox" id="naoExisteSubgenero" class="hidden peer " />
-                    <label for="naoExisteSubgenero" class="w-5 h-5 border-2 border-gray-300 rounded-md flex items-center justify-center peer-checked:bg-[#007A33] peer-checked:border-[#007A33] cursor-pointer transition-colors  duration-200">
-                        <i class="fas fa-check text-black text-sm opacity-0 peer-checked:opacity-100"></i>
-                    </label>
-                    <label for="naoExisteSubgenero" class="text-gray-700 text-sm cursor-pointer text-gray-500 select-none">Não existe subgênero</label>
-                </div>
-
-
+            
                 <div class="mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">

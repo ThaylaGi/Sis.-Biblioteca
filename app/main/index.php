@@ -207,6 +207,9 @@
                         Enviar
                     </button>
                 </div>
+                <?php if(isset($_GET['true'])){?>
+                    <p>C</p>
+                <?php }?>
             </form>
         </div>
     </div>

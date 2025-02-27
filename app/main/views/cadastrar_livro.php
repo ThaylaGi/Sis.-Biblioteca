@@ -52,7 +52,7 @@ $select_model = new select_model();
                     </h2>
                 </div>
 
-                <form id="genreForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+                <div id="genreForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                     <div class="relative">
                         <div class="relative group">
                             <i
@@ -60,9 +60,6 @@ $select_model = new select_model();
                             <select id="nomeGenero" name="nomeGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
-                                <?php
-
-                                ?>
                                 <option value="" disabled selected>Gênero</option>
                                 <option value="Romance">Romance</option>
                                 <option value="Conto">Conto</option>
@@ -90,57 +87,88 @@ $select_model = new select_model();
                     </div>
 
                     <div class="relative">
-    <div class="relative group">
-        <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-        <select type="text" id="nomesubGenero" name="nomesubGenero"
-            class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
-            placeholder="Subgênero" required>
-            <option value="">Carregando subgêneros...</option>
-        </select>
-    </div>
-</div>
+                        <div class="relative group">
+                            <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
+                            <select type="text" id="nomesubGenero" name="nomesubGenero"
+                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
+                                placeholder="Subgênero" required>
+                                <?php 
+                                $subgeneros = $select_model->select_subgenero($generos);
 
-<script>
-    // Função para carregar os subgêneros via AJAX
-    function carregarSubgeneros() {
-        // Faz a requisição ao endpoint PHP
-        //altera isso aqui em noome de jesus
-         fetch('buscar_subgeneros.php')
-            .then(response => response.json()) // Converte a resposta para JSON
-            .then(data => {
-                // Seleciona o elemento <select>
-                const select = document.getElementById("nomesubGenero");
+                                foreach($subgeneros as $subgenero){
+                                ?>
+                                <option value=""><?=$subgenero['subgenero']?></option>
+                                <?php }?>
+                            </select>
+                        </div>
+                    </div>
 
-                // Limpa as opções atuais
-                select.innerHTML = '';
+                    <script>
+                        $(document).ready(function() {
+                            // Quando o valor do select mudar
+                            $('#genero').change(function() {
+                                var generoId = $(this).val(); // Pega o valor selecionado
 
-                // Adiciona uma opção padrão
-                const optionPadrao = document.createElement("option");
-                optionPadrao.value = "";
-                optionPadrao.text = "Selecione um subgênero";
-                select.add(optionPadrao);
+                                if (generoId) {
+                                    // Faz uma requisição AJAX para o servidor
+                                    $.ajax({
+                                        url: 'buscar_subgeneros.php', // Arquivo PHP que retorna os subgêneros
+                                        type: 'POST',
+                                        data: {
+                                            genero_id: generoId
+                                        }, // Envia o ID do gênero
+                                        success: function(response) {
+                                            // Atualiza a div#subgeneros com a resposta do servidor
+                                            $('#subgeneros').html(response);
+                                        },
+                                        error: function() {
+                                            $('#subgeneros').html('<p>Erro ao carregar subgêneros.</p>');
+                                        }
+                                    });
+                                } else {
+                                    $('#subgeneros').html(''); // Limpa a área de subgêneros se nenhum gênero for selecionado
+                                }
+                            });
+                        });
+                        // Função para carregar os subgêneros via AJAX
+                        /*function carregarSubgeneros() {
+                            // Faz a requisição ao endpoint PHP
+                            //altera isso aqui em noome de jesus
+                            fetch('buscar_subgeneros.php')
+                                .then(response => response.json()) // Converte a resposta para JSON
+                                .then(data => {
+                                    // Seleciona o elemento <select>
+                                    const select = document.getElementById("nomesubGenero");
 
-                // Preenche o <select> com os dados retornados
-                data.forEach(subgenero => {
-                    const option = document.createElement("option");
-                    option.value = subgenero.id;
-                    option.text = subgenero.nome;
-                    select.add(option);
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao carregar subgêneros:", error);
-                const select = document.getElementById("nomesubGenero");
-                select.innerHTML = '<option value="">Erro ao carregar subgêneros</option>';
-            });
-    }
+                                    // Limpa as opções atuais
+                                    select.innerHTML = '';
 
-    // Chama a função para carregar os subgêneros quando a página for carregada
-    document.addEventListener("DOMContentLoaded", carregarSubgeneros);
-</script>
-                  
+                                    // Adiciona uma opção padrão
+                                    const optionPadrao = document.createElement("option");
+                                    optionPadrao.value = "";
+                                    optionPadrao.text = "Selecione um subgênero";
+                                    select.add(optionPadrao);
 
-                </form>
+                                    // Preenche o <select> com os dados retornados
+                                    data.forEach(subgenero => {
+                                        const option = document.createElement("option");
+                                        option.value = subgenero.id;
+                                        option.text = subgenero.nome;
+                                        select.add(option);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error("Erro ao carregar subgêneros:", error);
+                                    const select = document.getElementById("nomesubGenero");
+                                    select.innerHTML = '<option value="">Erro ao carregar subgêneros</option>';
+                                });
+                        }
+
+                        // Chama a função para carregar os subgêneros quando a página for carregada
+                        document.addEventListener("DOMContentLoaded", carregarSubgeneros);*/
+                    </script>
+
+                </div>
             </div>
 
             <!-- Formulário de Cadastro de Livros -->
@@ -222,7 +250,7 @@ $select_model = new select_model();
                         </div>
 
                         <script>
-                            document.getElementById('quantidade').addEventListener('input', function (e) {
+                            document.getElementById('quantidade').addEventListener('input', function(e) {
                                 this.value = this.value.replace(/[^0-9]/g, '');
                             });
                         </script>
@@ -372,7 +400,7 @@ $select_model = new select_model();
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('bookForm');
             const dataInput = document.getElementById('data');
             const dataError = document.getElementById('dataError');
@@ -424,11 +452,11 @@ $select_model = new select_model();
                 }
             }
 
-            dataInput.addEventListener('input', function (e) {
+            dataInput.addEventListener('input', function(e) {
                 maskData(this);
             });
 
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
 
                 if (form.checkValidity()) {

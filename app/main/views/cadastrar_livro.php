@@ -402,8 +402,8 @@
                             }
                         } else {
                             dataError.classList.add('hidden');
-                            input.classList.remove('border-red-500');
-                            input.setCustomValidity('');
+                            this.classList.remove('border-red-500');
+                            this.setCustomValidity('');
                         }
                     }
 

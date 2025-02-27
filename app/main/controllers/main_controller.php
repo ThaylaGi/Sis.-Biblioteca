@@ -58,8 +58,26 @@ if (
             header('location:../views/inserir_genero.php?ja_cadastrado');
             break;
     }
-} /*else {
+} else if (isset($_POST['novo_genero']) && !empty($_POST['novo_genero'])) {
+
+    $novo_genero = $_POST['novo_genero'];
+    $model = new main_model();
+    $result = $model->cadastrar_genero($novo_genero);
+
+    switch ($result) {
+
+        case 1:
+            header('location:../views/cadastrar_genero.php?true');
+            break;
+        case 2:
+            header('location:../views/cadastrar_genero.php?false');
+            break;
+        case 3:
+            header('location:../views/cadastrar_genero.php?ja_cadastrado');
+            break;
+    }
+} else {
 
     header('location:../index.php');
     exit();
-}*/
+}

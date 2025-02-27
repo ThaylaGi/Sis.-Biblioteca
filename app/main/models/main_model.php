@@ -89,4 +89,29 @@ class main_model extends connect
             return 3;
         }
     }
+
+    public function cadastrar_genero($nome_genero){
+
+        $sql_check = $this->connect->prepare("SELECT * FROM genero WHERE  generos = :genero");
+        $sql_check->bindValue(':genero', $nome_genero);
+        $sql_check->execute();
+
+        $generos = $sql_check->fetch(PDO::FETCH_ASSOC);
+        if (empty($generos)) {
+
+            $sql_genero = $this->connect->prepare("INSERT INTO genero VALUES (NULL, :novo_genero)");
+            $sql_genero->bindValue(':novo_genero', $nome_genero);
+            $sql_genero->execute();
+
+            if ($sql_genero) {
+
+                return 1;
+            } else {
+                return 2;
+            }
+        } else {
+
+            return 3;
+        }
+    }
 }

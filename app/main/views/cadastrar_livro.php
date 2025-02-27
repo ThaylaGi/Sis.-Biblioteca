@@ -92,46 +92,39 @@ $select_model = new select_model();
                             <select type="text" id="nomesubGenero" name="nomesubGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
                                 placeholder="Subgênero" required>
-                                <?php 
-                                $subgeneros = $select_model->select_subgenero($generos);
-
-                                foreach($subgeneros as $subgenero){
-                                ?>
-                                <option value=""><?=$subgenero['subgenero']?></option>
-                                <?php }?>
+                                <option value="">Carregando subgêneros...</option>
                             </select>
                         </div>
                     </div>
 
                     <script>
-                        $(document).ready(function() {
-                            // Quando o valor do select mudar
-                            $('#genero').change(function() {
-                                var generoId = $(this).val(); // Pega o valor selecionado
+                        /*
+                          $(document).ready(function() {
+            // Quando o valor do select mudar
+            $('#genero').change(function() {
+                var generoId = $(this).val(); // Pega o valor selecionado
 
-                                if (generoId) {
-                                    // Faz uma requisição AJAX para o servidor
-                                    $.ajax({
-                                        url: 'buscar_subgeneros.php', // Arquivo PHP que retorna os subgêneros
-                                        type: 'POST',
-                                        data: {
-                                            genero_id: generoId
-                                        }, // Envia o ID do gênero
-                                        success: function(response) {
-                                            // Atualiza a div#subgeneros com a resposta do servidor
-                                            $('#subgeneros').html(response);
-                                        },
-                                        error: function() {
-                                            $('#subgeneros').html('<p>Erro ao carregar subgêneros.</p>');
-                                        }
-                                    });
-                                } else {
-                                    $('#subgeneros').html(''); // Limpa a área de subgêneros se nenhum gênero for selecionado
-                                }
-                            });
-                        });
+                if (generoId) {
+                    // Faz uma requisição AJAX para o servidor
+                    $.ajax({
+                        url: 'buscar_subgeneros.php', // Arquivo PHP que retorna os subgêneros
+                        type: 'POST',
+                        data: { genero_id: generoId }, // Envia o ID do gênero
+                        success: function(response) {
+                            // Atualiza a div#subgeneros com a resposta do servidor
+                            $('#subgeneros').html(response);
+                        },
+                        error: function() {
+                            $('#subgeneros').html('<p>Erro ao carregar subgêneros.</p>');
+                        }
+                    });
+                } else {
+                    $('#subgeneros').html(''); // Limpa a área de subgêneros se nenhum gênero for selecionado
+                }
+            });
+        }); */
                         // Função para carregar os subgêneros via AJAX
-                        /*function carregarSubgeneros() {
+                        function carregarSubgeneros() {
                             // Faz a requisição ao endpoint PHP
                             //altera isso aqui em noome de jesus
                             fetch('buscar_subgeneros.php')
@@ -165,7 +158,7 @@ $select_model = new select_model();
                         }
 
                         // Chama a função para carregar os subgêneros quando a página for carregada
-                        document.addEventListener("DOMContentLoaded", carregarSubgeneros);*/
+                        document.addEventListener("DOMContentLoaded", carregarSubgeneros);
                     </script>
 
                 </div>

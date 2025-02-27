@@ -70,9 +70,7 @@
                     <a href="#features" class="hover:text-ceara-orange transition-colors">
                         <i class="fas fa-tools mr-2"></i>Recursos
                     </a>
-                    <a href="#manual" class="hover:text-ceara-orange transition-colors">
-                        <i class="fas fa-book-open mr-2"></i>Manual
-                    </a>
+               
                     <a href="#footer" class="hover:text-ceara-orange transition-colors">
                         <i class="fas fa-info-circle mr-2"></i>Sobre
                     </a>
@@ -95,9 +93,7 @@
                     <a href="#footer" class="hover:text-ceara-orange transition-colors px-4 py-2">
                         <i class="fas fa-info-circle mr-2"></i>Sobre
                     </a>
-                    <a href="#manual" class="hover:text-ceara-orange transition-colors px-4 py-2">
-                        <i class="fas fa-book-open mr-2"></i>Manual
-                    </a>
+             
                     <a href="#features" class="hover:text-ceara-orange transition-colors px-4 py-2">
                         <i class="fas fa-tools mr-2"></i>Recursos
                     </a>
@@ -118,9 +114,9 @@
                     style="font-family: 'Poppins', sans-serif;">
                     Organize livros, gerencie empréstimos e simplifique a administração da sua biblioteca.
                 </p>
-                <a href="./views/decisão.php"
+                <a href=""
                     class="inline-block bg-ceara-green px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-opacity-90 transition-all transform hover:scale-105 text-ceara-white">
-                    Começar Agora
+                   Manual do usuário 
                 </a>
             </div>
         </div>
@@ -128,7 +124,7 @@
 
     <!-- Features Section -->
     <section id="features" class="py-16 md:py-20 bg-ceara-white/50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 ">
             <h3 class="text-2xl md:text-3xl font-bold text-center mb-12 text-ceara-green">Recursos Principais</h3>
 
             <!-- Cards Container -->
@@ -137,13 +133,16 @@
                     <!-- Card 1: Gerenciamento de Livros -->
                     <div class="card-hover group min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center">
                         <div class="bg-ceara-white p-6 rounded-lg h-full shadow-lg">
-                            <div class="flex flex-col items-center text-center">
+                            <a href="./views/decisão.php">
+                            <div class="flex flex-col items-center text-center ">
+                                
                                 <div class="bg-ceara-green/10 p-4 rounded-full mb-4 group-hover:bg-ceara-green/20 transition-all">
                                     <i class="fas fa-book text-ceara-green text-3xl"></i>
                                 </div>
-                                <h4 class="text-xl font-semibold mb-2">Gerenciamento de Livros</h4>
+                                <h4 class="text-xl font-semibold mb-2">Gerenciamento de Cadastros</h4>
                                 <p class="text-gray-600">Organize e gerencie seu acervo de livros de forma eficiente.</p>
                             </div>
+                            </a>
                         </div>
                     </div>
 
@@ -154,7 +153,7 @@
                                 <div class="bg-ceara-green/10 p-4 rounded-full mb-4 group-hover:bg-ceara-green/20 transition-all">
                                     <i class="fas fa-users text-ceara-green text-3xl"></i>
                                 </div>
-                                <h4 class="text-xl font-semibold mb-2">Controle de Empréstimos</h4>
+                                <h4 class="text-xl font-semibold mb-2">Gerenciamento de Empréstimos</h4>
                                 <p class="text-gray-600">Gerencie empréstimos e devoluções de livros.</p>
                             </div>
                         </div>
@@ -177,102 +176,8 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="manual" class="py-12 md:py-20 bg-gradient-to-b from-ceara-white/50 to-ceara-white/30">
-    <div class="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-ceara-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl border border-gray-100">
-            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center text-ceara-green relative">
-                Manual do Sistema
-            </h3>
 
-            <div class="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-inner">
-                <ol class="space-y-8 md:space-y-10 text-gray-700">
-                    <!-- Inicialização -->
-                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
-                                <i class="fas fa-plug text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <strong class="font-semibold text-lg sm:text-xl">1. Inicialização:</strong>
-                        </div>
-                        <p class="ml-10 sm:ml-12 text-base sm:text-lg">Clique em <span class="bg-ceara-green text-white px-3 py-1.5 rounded-full text-sm font-medium inline-block">Começar agora</span></p>
-                    </li>
-
-                    <!-- Seleção de Ação -->
-                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
-                                <i class="fas fa-tasks text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <strong class="font-semibold text-lg sm:text-xl">2. Seleção de Ação:</strong>
-                        </div>
-                        <div class="ml-10 sm:ml-12">
-                            <p class="mb-4 text-base sm:text-lg">Escolha entre:</p>
-                            <ul class="space-y-3 pl-4">
-                                <li class="flex items-center space-x-3">
-                                    <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-ceara-green rounded-full flex-shrink-0"></span>
-                                    <span class="font-medium text-base sm:text-lg">Cadastrar Gênero</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-ceara-green rounded-full flex-shrink-0"></span>
-                                    <span class="font-medium text-base sm:text-lg">Cadastrar Livro</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <!-- Cadastrar Gênero -->
-                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
-                                <i class="fas fa-tag text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <strong class="font-semibold text-lg sm:text-xl">3. Cadastrar Gênero:</strong>
-                        </div>
-                        <ol class="ml-10 sm:ml-12 space-y-3">
-                            <li class="flex items-center space-x-3 text-base sm:text-lg">
-                                <span class="text-ceara-green font-bold flex-shrink-0">1.</span>
-                                <span>Selecione o gênero principal</span>
-                            </li>
-                            <li class="flex items-center space-x-3 text-base sm:text-lg">
-                                <span class="text-ceara-green font-bold flex-shrink-0">2.</span>
-                                <span>Insira o subgênero (opcional - deixe em branco se não houver)</span>
-                            </li>
-                            <li class="flex items-center space-x-3 text-base sm:text-lg">
-                                <span class="text-ceara-green font-bold flex-shrink-0">3.</span>
-                                <span>Clique em <span class="bg-ceara-green text-white px-3 py-1.5 rounded-full text-sm font-medium inline-block">Cadastrar</span></span>
-                            </li>
-                        </ol>
-                    </li>
-
-                    <!-- Cadastrar Livro -->
-                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
-                                <i class="fas fa-book-open text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <strong class="font-semibold text-lg sm:text-xl">4. Cadastrar Livro:</strong>
-                        </div>
-                        <ol class="ml-10 sm:ml-12 space-y-3">
-                            <li class="flex items-center space-x-3 text-base sm:text-lg">
-                                <span class="text-ceara-green font-bold flex-shrink-0">1.</span>
-                                <span>Selecione o gênero e subgênero (se existir)</span>
-                            </li>
-                            <li class="flex items-center space-x-3 text-base sm:text-lg">
-                                <span class="text-ceara-green font-bold flex-shrink-0">2.</span>
-                                <span>Preencha todos os dados do livro</span>
-                            </li>
-                            <li class="flex items-center space-x-3 text-base sm:text-lg">
-                                <span class="text-ceara-green font-bold flex-shrink-0">3.</span>
-                                <span>Clique em <span class="bg-ceara-green text-white px-3 py-1.5 rounded-full text-sm font-medium inline-block">Enviar</span></span>
-                            </li>
-                        </ol>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</section>
+    
 
 
 

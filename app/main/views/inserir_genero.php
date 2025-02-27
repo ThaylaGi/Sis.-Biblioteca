@@ -93,13 +93,13 @@
 
                 <div class="mt-2 space-y-2">
                 <?php if (isset($_GET['true'])) { ?>
-                    <p class="text-green-600 bg-green-100 border border-green-300 rounded-md p-2 text-center font-medium text-sm sm:text-base"> Genero cadastrado com sucesso!</p>
+                    <p class="text-green-600 bg-green-100 border border-green-300 rounded-md p-2 text-center font-medium text-sm sm:text-base"> Gênero cadastrado com sucesso!</p>
                 <?php } ?>
                 <?php if (isset($_GET['false'])) { ?>
                     <p class="text-red-600 bg-red-100 border border-red-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Erro ao cadastrar!</p>
                 <?php } ?>
                 <?php if (isset($_GET['ja_cadastrado'])) { ?>
-                    <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Genero já cadastrado!</p>
+                    <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Gênero já cadastrado!</p>
                 <?php } ?>
                 </div>
             </form>

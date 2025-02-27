@@ -178,75 +178,101 @@
     </section>
 
     <!-- About Section -->
-    <section id="manual" class="py-20 bg-ceara-white/50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="bg-ceara-white rounded-xl p-8 lg:p-12 shadow-lg">
-                <h3 class="text-3xl font-bold mb-8 text-center text-ceara-green">Manual do Sistema</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section id="manual" class="py-12 md:py-20 bg-gradient-to-b from-ceara-white/50 to-ceara-white/30">
+    <div class="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-ceara-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl border border-gray-100">
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center text-ceara-green relative">
+                Manual do Sistema
+            </h3>
 
-                    <div class="flex justify-center">
-                        <img src="https://i.postimg.cc/Zqh5yxqF/d5d74f48-13df-4fc8-864b-d9cae42b29d2.jpg"
-                            alt="Interface do Sistema"
-                            class="w-64 h-64 md:w-80 md:h-80" />
-                    </div>
-
-
-                    <div class="space-y-6">
-                        <div class="bg-gray-50 p-6 rounded-lg">
-                            <ol class="space-y-6 text-gray-600">
-                                <li class="space-y-2">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-plug text-ceara-green text-xl"></i>
-                                        <strong class="font-semibold">1. Inicialização:</strong>
-                                    </div>
-                                    <p class="ml-8">Clique em <span class="bg-ceara-green text-white px-2 py-1 rounded">Começar agora</span> </p>
-                                </li>
-
-                                <li class="space-y-2">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-tasks text-ceara-green text-xl"></i>
-                                        <strong class="font-semibold">2. Seleção de Ação:</strong>
-                                    </div>
-                                    <p class="ml-8">Escolha entre:</p>
-                                    <ul class="ml-12 space-y-3">
-                                        <li>• <span class="font-medium">Cadastrar Gênero</span></li>
-                                        <li>• <span class="font-medium">Cadastrar Livro</span></li>
-                                    </ul>
-                                </li>
-
-                                <li class="space-y-2">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-tag text-ceara-green text-xl"></i>
-                                        <strong class="font-semibold">Cadastrar Gênero:</strong>
-                                    </div>
-                                    <ol class="ml-8 list-decimal space-y-2">
-                                        <li>Selecione o gênero principal</li>
-                                        <li>Insira o subgênero desejado</li>
-                                        <li>Clique em <span class="bg-ceara-green text-white px-2 py-1 rounded text-sm">Cadastrar</span></li>
-                                    </ol>
-                                </li>
-
-                                <li class="space-y-2">
-                                    <div class="flex items-center space-x-2">
-                                        <i class="fas fa-book-open text-ceara-green text-xl"></i>
-                                        <strong class="font-semibold">Cadastrar Livro:</strong>
-                                    </div>
-                                    <ol class="ml-8 list-decimal space-y-2">
-                                        <li>Selecione o gênero e subgênero correspondentes</li>
-                                        <li>Preencha todos os dados do livro</li>
-                                        <li>Clique em <span class="bg-ceara-green text-white px-2 py-1 rounded text-sm">Enviar</span></li>
-                                    </ol>
-                                </li>
-                            </ol>
+            <div class="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-inner">
+                <ol class="space-y-8 md:space-y-10 text-gray-700">
+                    <!-- Inicialização -->
+                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
+                                <i class="fas fa-plug text-white text-lg sm:text-xl"></i>
+                            </div>
+                            <strong class="font-semibold text-lg sm:text-xl">1. Inicialização:</strong>
                         </div>
-                    </div>
-                </div>
+                        <p class="ml-10 sm:ml-12 text-base sm:text-lg">Clique em <span class="bg-ceara-green text-white px-3 py-1.5 rounded-full text-sm font-medium inline-block">Começar agora</span></p>
+                    </li>
+
+                    <!-- Seleção de Ação -->
+                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
+                                <i class="fas fa-tasks text-white text-lg sm:text-xl"></i>
+                            </div>
+                            <strong class="font-semibold text-lg sm:text-xl">2. Seleção de Ação:</strong>
+                        </div>
+                        <div class="ml-10 sm:ml-12">
+                            <p class="mb-4 text-base sm:text-lg">Escolha entre:</p>
+                            <ul class="space-y-3 pl-4">
+                                <li class="flex items-center space-x-3">
+                                    <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-ceara-green rounded-full flex-shrink-0"></span>
+                                    <span class="font-medium text-base sm:text-lg">Cadastrar Gênero</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-ceara-green rounded-full flex-shrink-0"></span>
+                                    <span class="font-medium text-base sm:text-lg">Cadastrar Livro</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Cadastrar Gênero -->
+                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
+                                <i class="fas fa-tag text-white text-lg sm:text-xl"></i>
+                            </div>
+                            <strong class="font-semibold text-lg sm:text-xl">3. Cadastrar Gênero:</strong>
+                        </div>
+                        <ol class="ml-10 sm:ml-12 space-y-3">
+                            <li class="flex items-center space-x-3 text-base sm:text-lg">
+                                <span class="text-ceara-green font-bold flex-shrink-0">1.</span>
+                                <span>Selecione o gênero principal</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-base sm:text-lg">
+                                <span class="text-ceara-green font-bold flex-shrink-0">2.</span>
+                                <span>Insira o subgênero (opcional - deixe em branco se não houver)</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-base sm:text-lg">
+                                <span class="text-ceara-green font-bold flex-shrink-0">3.</span>
+                                <span>Clique em <span class="bg-ceara-green text-white px-3 py-1.5 rounded-full text-sm font-medium inline-block">Cadastrar</span></span>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <!-- Cadastrar Livro -->
+                    <li class="transform hover:translate-x-2 transition-transform duration-200 ease-out">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-ceara-green rounded-full p-2 sm:p-3 flex-shrink-0">
+                                <i class="fas fa-book-open text-white text-lg sm:text-xl"></i>
+                            </div>
+                            <strong class="font-semibold text-lg sm:text-xl">4. Cadastrar Livro:</strong>
+                        </div>
+                        <ol class="ml-10 sm:ml-12 space-y-3">
+                            <li class="flex items-center space-x-3 text-base sm:text-lg">
+                                <span class="text-ceara-green font-bold flex-shrink-0">1.</span>
+                                <span>Selecione o gênero e subgênero (se existir)</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-base sm:text-lg">
+                                <span class="text-ceara-green font-bold flex-shrink-0">2.</span>
+                                <span>Preencha todos os dados do livro</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-base sm:text-lg">
+                                <span class="text-ceara-green font-bold flex-shrink-0">3.</span>
+                                <span>Clique em <span class="bg-ceara-green text-white px-3 py-1.5 rounded-full text-sm font-medium inline-block">Enviar</span></span>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
             </div>
         </div>
-    </section>
-
-
-    </section>
+    </div>
+</section>
 
 
 

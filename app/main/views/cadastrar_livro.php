@@ -49,7 +49,7 @@ $select_model = new select_model();
                 </h2>
             </div>
 
-            <div id="bookForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
+            <form id="bookForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                 <div class="relative">
                     <div class="relative group">
                         <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
@@ -256,9 +256,9 @@ $select_model = new select_model();
                         Enviar
                     </button>
                 </div>
-            </div>
+                </>
+            </form>
         </div>
-    </div>
 
     <style>
         .card-hover {
@@ -323,11 +323,69 @@ $select_model = new select_model();
                 }
             }
 
-            dataInput.addEventListener('input', function(e) {
-                maskData(this);
+            .card-hover:hover {
+                transform: translateY(-2px);
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('bookForm');
+                const dataInput = document.getElementById('data');
+                const dataError = document.getElementById('dataError');
+
+                function maskData(input) {
+                    let value = input.value.replace(/\D/g, '');
+                    value = value.slice(0, 8);
+
+                    let formattedValue = '';
+                    if (value.length >= 6) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4)}`;
+                    } else if (value.length >= 4) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(2)}`;
+                    } else if (value.length >= 2) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(2)}`;
+                    } else {
+                        formattedValue = value;
+                    }
+
+                    if (value.length === 0) {
+                        formattedValue = '';
+                    }
+
+                    input.value = formattedValue;
+
+                    if (formattedValue.length === 10) {
+                        const [day, month, year] = formattedValue.split('/').map(Number);
+                        const date = new Date(year, month - 1, day);
+                        const today = new Date();
+
+                        if (
+                            date.getFullYear() !== year ||
+                            date.getMonth() + 1 !== month ||
+                            date.getDate() !== day ||
+                            date > today
+                        ) {
+                            dataError.classList.remove('hidden');
+                            input.classList.add('border-red-500');
+                            input.setCustomValidity('Data inválida');
+                        } else {
+                            dataError.classList.add('hidden');
+                            input.classList.remove('border-red-500');
+                            input.setCustomValidity('');
+                        }
+                    } else {
+                        dataError.classList.add('hidden');
+                        this.classList.remove('border-red-500');
+                        this.setCustomValidity('');
+                    }
+                }
+
+                dataInput.addEventListener('input', function(e) {
+                    maskData(this);
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

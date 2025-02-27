@@ -52,7 +52,7 @@ $select_model = new select_model();
                     </h2>
                 </div>
 
-                <div id="genreForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
+                <div id="generoForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                     <div class="relative">
                         <div class="relative group">
                             <i
@@ -92,12 +92,58 @@ $select_model = new select_model();
                             <select type="text" id="nomesubGenero" name="nomesubGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
                                 placeholder="Subgênero" required>
-                                <option value="">Carregando subgêneros...</option>
+                                <?php
+                                $select_model->select_subgenero($genero)
+                                ?>
+                                <option value="<?=$dadoPHP?>"><?=$dadoPHP?></option>
                             </select>
                         </div>
                     </div>
 
                     <script>
+                        const selectElement = document.getElementById('nomeGenero')
+                        const valorSelecionadoElement = document.getElementById('valorSelecionado');
+
+                        selectElement.addEventListener('change', function() {
+                            // Obtém o valor da opção selecionada
+                            const valorSelecionado = selectElement.value;
+
+                        });
+                        // JavaScript
+                        // Variável JavaScript que será enviada para o PHP
+                        const meuDado = valorSelecionado;
+
+                        // Enviar o dado para o PHP automaticamente (quando a página carrega)
+                        fetch(window.location.href, { // Envia para o mesmo arquivo
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                body: 'dadoPHP=' + encodeURIComponent(meuDado),
+                            })
+                            .then(response => response.text())
+                            .then(data => {
+                                // Exibe a resposta do PHP na página
+                                document.getElementById('resposta').textContent = data;
+                            });
+                        <?php
+                        // Início do PHP
+                        $dadoPHP = ""; // Variável PHP que receberá o valor do JavaScript
+
+                        // Verifica se a requisição POST foi feita
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dadoPHP'])) {
+                            // Recebe o valor enviado pelo JavaScript
+                            $dadoPHP = $_POST['dadoPHP'];
+
+                            // Processa o valor (aqui você pode fazer o que quiser com o dado)
+                            $dadoPHP = "PHP recebeu: " . $dadoPHP;
+
+                            // Retorna a resposta para o JavaScript
+                            echo $dadoPHP;
+                            exit; // Termina a execução do PHP
+                        }
+                        ?>
+
                         /*
                           $(document).ready(function() {
             // Quando o valor do select mudar
@@ -124,7 +170,7 @@ $select_model = new select_model();
             });
         }); */
                         // Função para carregar os subgêneros via AJAX
-                        function carregarSubgeneros() {
+                        /*function carregarSubgeneros() {
                             // Faz a requisição ao endpoint PHP
                             //altera isso aqui em noome de jesus
                             fetch('buscar_subgeneros.php')
@@ -158,7 +204,7 @@ $select_model = new select_model();
                         }
 
                         // Chama a função para carregar os subgêneros quando a página for carregada
-                        document.addEventListener("DOMContentLoaded", carregarSubgeneros);
+                        document.addEventListener("DOMContentLoaded", carregarSubgeneros);*/
                     </script>
 
                 </div>

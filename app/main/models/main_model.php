@@ -14,7 +14,7 @@ class main_model extends connect
         $this->catalogo = "catalogo";
     }
 
-    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $genero, $subgenero)
+    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $subgenero)
     {
         $sql_check = $this->connect->prepare("SELECT * FROM $this->catalogo WHERE titulo_livro = :titulo_livro");
 
@@ -24,14 +24,14 @@ class main_model extends connect
         $livros = $sql_check->fetch(PDO::FETCH_ASSOC);
         if (empty($livros)) {
 
-            $sql_idgenero = $this->connect->query("SELECT id FROM genero WHERE generos = '$genero'");
-            $id_genero = $sql_idgenero->fetch(PDO::FETCH_ASSOC);
-
             $sql_idsubgenero = $this->connect->query("SELECT id FROM subgenero WHERE subgenero = '$subgenero'");
             $id_subgenero = $sql_idsubgenero->fetch(PDO::FETCH_ASSOC);
 
+            $sql_idgenero = $this->connect->query("SELECT id_genero FROM subgenero WHERE subgenero = '$subgenero'");
+            $id_genero= $sql_idgenero->fetch(PDO::FETCH_ASSOC);
 
-            $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (DEFAULT, :sobrenome_autor, :nome_autor, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero)");
+
+            $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :sobrenome_autor, :nome_autor, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero)");
 
             $cadastro_livro->bindValue(':sobrenome_autor', $sobrenome);
             $cadastro_livro->bindValue(':nome_autor', $nome);
@@ -42,7 +42,7 @@ class main_model extends connect
             $cadastro_livro->bindValue(':corredor', $corredor);
             $cadastro_livro->bindValue(':estante', $estante);
             $cadastro_livro->bindValue(':prateleira', $prateleira);
-            $cadastro_livro->bindValue(':genero', $id_genero['id']);
+            $cadastro_livro->bindValue(':genero', $id_genero['id_genero']);
             $cadastro_livro->bindValue(':subgenero', $id_subgenero['id']);
 
             $cadastro_livro->execute();

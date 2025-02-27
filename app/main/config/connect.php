@@ -1,7 +1,7 @@
 <?php
 
 define('HOST', 'localhost');
-define('DATABASE', 'sist.biblioteca');
+define('DATABASE', 'sist_biblioteca');
 define('USER', 'root');
 define('PASSWORD', '');
 

@@ -18,9 +18,17 @@ class select_model extends connect{
         $id_generos = $sql_idgenero->fetch(PDO::FETCH_ASSOC);
         $id_genero = $id_generos['id'];
         $select_subgenero = $this->connect->query("SELECT subgenero FROM subgenero WHERE id_genero = '$id_genero'");
-        $nome_subgenero = $select_subgenero->fetch(PDO::FETCH_ASSOC);
+        $nome_subgenero = $select_subgenero->fetchAll(PDO::FETCH_ASSOC);
 
         return $nome_subgenero;
+    }
+
+    public function select_genero(){
+        $sql_genero = $this->connect->query("SELECT generos FROM genero");
+        $generos = $sql_genero->fetchAll(PDO::FETCH_ASSOC);
+
+        return $generos;
+
     }
 }
 ?>

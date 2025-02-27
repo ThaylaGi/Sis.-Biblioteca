@@ -1,6 +1,7 @@
 <?php
 require_once('../models/select_model.php');
 $select_model = new select_model();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@ $select_model = new select_model();
                     </h2>
                 </div>
 
-                <div id="generoForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
+                <form id="generoForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                     <div class="relative">
                         <div class="relative group">
                             <i
@@ -61,20 +62,12 @@ $select_model = new select_model();
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
                                 <option value="" disabled selected>Gênero</option>
-                                <option value="Romance">Romance</option>
-                                <option value="Conto">Conto</option>
-                                <option value="Crônica">Crônica</option>
-                                <option value="Novela">Novela</option>
-                                <option value="Ensaio">Ensaio</option>
-                                <option value="HQ">Histórias em Quadrinhos</option>
-                                <option value="Fábulas">Fábulas</option>
-                                <option value="Sermões">Sermões</option>
-                                <option value="Poesia">Poesia</option>
-                                <option value="Memórias">Memórias</option>
-                                <option value="Infantojuvenil">Infantojuvenil</option>
-                                <option value="Arte Brasileira">Arte Brasileira</option>
-                                <option value="Arte Estrangeira">Arte Estrangeira</option>
-                                <option value="Teatro Brasileiro">Teatro Brasileiro</option>
+                                <?php
+                                $generos = $select_model->select_genero();
+                                foreach ($generos as $genero) {
+                                ?>
+                                    <option value="<?= $genero['generos'] ?>"><?= $genero['generos'] ?></option>
+                                <?php } ?>
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
@@ -92,122 +85,45 @@ $select_model = new select_model();
                             <select type="text" id="nomesubGenero" name="nomesubGenero"
                                 class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
                                 placeholder="Subgênero" required>
+
+                                <option value="" disabled selected>Subgenero</option>
                                 <?php
-                                $select_model->select_subgenero($genero)
+                                $generos = $select_model->select_genero();
+
+                                foreach ($generos as $genero) {
+                                    $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
+
                                 ?>
-                                <option value="<?=$dadoPHP?>"><?=$dadoPHP?></option>
+                                    <optgroup label="<?= $genero['generos'] ?>">
+                                    <?php foreach ($subgeneros as $subgenero) {
+                                    ?>
+
+                                        <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?></option>
+                                    <?php } ?>
+                                    </optgroup>
+                                <?php } ?>
+
+
+
                             </select>
+
                         </div>
+
                     </div>
-
                     <script>
-                        const selectElement = document.getElementById('nomeGenero')
-                        const valorSelecionadoElement = document.getElementById('valorSelecionado');
+                        /*// Aguarda o DOM ser carregado
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const selectElement = document.getElementById('nomeGenero');
+                            const valorSelecionadoElement = document.getElementById('valorSelect');
 
-                        selectElement.addEventListener('change', function() {
-                            // Obtém o valor da opção selecionada
-                            const valorSelecionado = selectElement.value;
+                            selectElement.addEventListener('change', function() {
+                                const valorSelecionado = selectElement.value;;
 
-                        });
-                        // JavaScript
-                        // Variável JavaScript que será enviada para o PHP
-                        const meuDado = valorSelecionado;
-
-                        // Enviar o dado para o PHP automaticamente (quando a página carrega)
-                        fetch(window.location.href, { // Envia para o mesmo arquivo
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                body: 'dadoPHP=' + encodeURIComponent(meuDado),
-                            })
-                            .then(response => response.text())
-                            .then(data => {
-                                // Exibe a resposta do PHP na página
-                                document.getElementById('resposta').textContent = data;
                             });
-                        <?php
-                        // Início do PHP
-                        $dadoPHP = ""; // Variável PHP que receberá o valor do JavaScript
-
-                        // Verifica se a requisição POST foi feita
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['dadoPHP'])) {
-                            // Recebe o valor enviado pelo JavaScript
-                            $dadoPHP = $_POST['dadoPHP'];
-
-                            // Processa o valor (aqui você pode fazer o que quiser com o dado)
-                            $dadoPHP = "PHP recebeu: " . $dadoPHP;
-
-                            // Retorna a resposta para o JavaScript
-                            echo $dadoPHP;
-                            exit; // Termina a execução do PHP
-                        }
-                        ?>
-
-                        /*
-                          $(document).ready(function() {
-            // Quando o valor do select mudar
-            $('#genero').change(function() {
-                var generoId = $(this).val(); // Pega o valor selecionado
-
-                if (generoId) {
-                    // Faz uma requisição AJAX para o servidor
-                    $.ajax({
-                        url: 'buscar_subgeneros.php', // Arquivo PHP que retorna os subgêneros
-                        type: 'POST',
-                        data: { genero_id: generoId }, // Envia o ID do gênero
-                        success: function(response) {
-                            // Atualiza a div#subgeneros com a resposta do servidor
-                            $('#subgeneros').html(response);
-                        },
-                        error: function() {
-                            $('#subgeneros').html('<p>Erro ao carregar subgêneros.</p>');
-                        }
-                    });
-                } else {
-                    $('#subgeneros').html(''); // Limpa a área de subgêneros se nenhum gênero for selecionado
-                }
-            });
-        }); */
-                        // Função para carregar os subgêneros via AJAX
-                        /*function carregarSubgeneros() {
-                            // Faz a requisição ao endpoint PHP
-                            //altera isso aqui em noome de jesus
-                            fetch('buscar_subgeneros.php')
-                                .then(response => response.json()) // Converte a resposta para JSON
-                                .then(data => {
-                                    // Seleciona o elemento <select>
-                                    const select = document.getElementById("nomesubGenero");
-
-                                    // Limpa as opções atuais
-                                    select.innerHTML = '';
-
-                                    // Adiciona uma opção padrão
-                                    const optionPadrao = document.createElement("option");
-                                    optionPadrao.value = "";
-                                    optionPadrao.text = "Selecione um subgênero";
-                                    select.add(optionPadrao);
-
-                                    // Preenche o <select> com os dados retornados
-                                    data.forEach(subgenero => {
-                                        const option = document.createElement("option");
-                                        option.value = subgenero.id;
-                                        option.text = subgenero.nome;
-                                        select.add(option);
-                                    });
-                                })
-                                .catch(error => {
-                                    console.error("Erro ao carregar subgêneros:", error);
-                                    const select = document.getElementById("nomesubGenero");
-                                    select.innerHTML = '<option value="">Erro ao carregar subgêneros</option>';
-                                });
-                        }
-
-                        // Chama a função para carregar os subgêneros quando a página for carregada
-                        document.addEventListener("DOMContentLoaded", carregarSubgeneros);*/
+                        });*/
                     </script>
 
-                </div>
+                    </>
             </div>
 
             <!-- Formulário de Cadastro de Livros -->
@@ -218,7 +134,7 @@ $select_model = new select_model();
                     </h2>
                 </div>
 
-                <form id="bookForm" action="#" method="post" class="p-4 sm:p-6 space-y-4">
+                <div id="bookForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
 
 
@@ -393,11 +309,7 @@ $select_model = new select_model();
                                 </div>
                             </div>
 
-
-
                         </div>
-
-
                         <div class="relative">
                             <div class="relative group">
                                 <i
@@ -409,10 +321,14 @@ $select_model = new select_model();
                         </div>
                     </div>
 
-
-
                     <?php if (isset($_GET['true'])) { ?>
-                        <p>C</p>
+                        <p>Livro cadastrado com sucesso!</p>
+                    <?php } ?>
+                    <?php if (isset($_GET['false'])) { ?>
+                        <p>ERRO cadastrar livro!</p>
+                    <?php } ?>
+                    <?php if (isset($_GET['ja_cadastrado'])) { ?>
+                        <p>Livro já cadastrado!</p>
                     <?php } ?>
 
 
@@ -423,90 +339,81 @@ $select_model = new select_model();
                             Enviar
                         </button>
                     </div>
-                </form>
+                    </>
+                </div>
             </div>
         </div>
-    </div>
 
-    <style>
-        .card-hover {
-            transition: transform 0.2s ease-in-out;
-        }
+        <style>
+            .card-hover {
+                transition: transform 0.2s ease-in-out;
+            }
 
-        .card-hover:hover {
-            transform: translateY(-2px);
-        }
-    </style>
+            .card-hover:hover {
+                transform: translateY(-2px);
+            }
+        </style>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('bookForm');
-            const dataInput = document.getElementById('data');
-            const dataError = document.getElementById('dataError');
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('bookForm');
+                const dataInput = document.getElementById('data');
+                const dataError = document.getElementById('dataError');
 
-            function maskData(input) {
-                let value = input.value.replace(/\D/g, '');
-                value = value.slice(0, 8);
+                function maskData(input) {
+                    let value = input.value.replace(/\D/g, '');
+                    value = value.slice(0, 8);
 
-                let formattedValue = '';
-                if (value.length >= 6) {
-                    formattedValue = `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4)}`;
-                } else if (value.length >= 4) {
-                    formattedValue = `${value.slice(0, 2)}/${value.slice(2)}`;
-                } else if (value.length >= 2) {
-                    formattedValue = `${value.slice(0, 2)}/${value.slice(2)}`;
-                } else {
-                    formattedValue = value;
-                }
+                    let formattedValue = '';
+                    if (value.length >= 6) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(2, 4)}/${value.slice(4)}`;
+                    } else if (value.length >= 4) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(2)}`;
+                    } else if (value.length >= 2) {
+                        formattedValue = `${value.slice(0, 2)}/${value.slice(2)}`;
+                    } else {
+                        formattedValue = value;
+                    }
 
-                if (value.length === 0) {
-                    formattedValue = '';
-                }
+                    if (value.length === 0) {
+                        formattedValue = '';
+                    }
 
-                input.value = formattedValue;
+                    input.value = formattedValue;
 
-                if (formattedValue.length === 10) {
-                    const [day, month, year] = formattedValue.split('/').map(Number);
-                    const date = new Date(year, month - 1, day);
-                    const today = new Date();
+                    if (formattedValue.length === 10) {
+                        const [day, month, year] = formattedValue.split('/').map(Number);
+                        const date = new Date(year, month - 1, day);
+                        const today = new Date();
 
-                    if (
-                        date.getFullYear() !== year ||
-                        date.getMonth() + 1 !== month ||
-                        date.getDate() !== day ||
-                        date > today
-                    ) {
-                        dataError.classList.remove('hidden');
-                        input.classList.add('border-red-500');
-                        input.setCustomValidity('Data inválida');
+                        if (
+                            date.getFullYear() !== year ||
+                            date.getMonth() + 1 !== month ||
+                            date.getDate() !== day ||
+                            date > today
+                        ) {
+                            dataError.classList.remove('hidden');
+                            input.classList.add('border-red-500');
+                            input.setCustomValidity('Data inválida');
+                        } else {
+                            dataError.classList.add('hidden');
+                            input.classList.remove('border-red-500');
+                            input.setCustomValidity('');
+                        }
                     } else {
                         dataError.classList.add('hidden');
                         input.classList.remove('border-red-500');
                         input.setCustomValidity('');
                     }
-                } else {
-                    dataError.classList.add('hidden');
-                    input.classList.remove('border-red-500');
-                    input.setCustomValidity('');
                 }
-            }
 
-            dataInput.addEventListener('input', function(e) {
-                maskData(this);
+                dataInput.addEventListener('input', function(e) {
+                    maskData(this);
+                });
+
+
             });
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                if (form.checkValidity()) {
-                    console.log('Formulário válido, enviando...');
-
-                    alert('Formulário enviado com sucesso!');
-                    form.reset();
-                }
-            });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

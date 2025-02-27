@@ -12,9 +12,6 @@ $select_model = new select_model();
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../assets/img/icon.png" type="image/x-icon">
-
-
-
 </head>
 <script>
     tailwind.config = {
@@ -32,8 +29,7 @@ $select_model = new select_model();
     }
 </script>
 
-<body
-    class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
 
     <a href="decisão.php"
@@ -41,14 +37,14 @@ $select_model = new select_model();
         <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
     </a>
 
-    <div class="flex flex-col items-center w-full max-w-[400px]">
+    <div class="flex flex-col items-center w-full max-w-[400px] sm:max-w-[600px] md:max-w-[700px] mt-8">
         <img src="../assets/img/logo1.png"
-            class="w-[200px] xs:w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] mt-[-40px] sm:mt-[-150px]" alt="Logo">
+            class="w-[150px] xs:w-[200px] sm:w-[250px] md:w-[300px] lg:w-[350px] mb-4" alt="Logo">
 
         <!-- Formulário de Cadastro de Livros -->
-        <div class="w-[600px] bg-white rounded-xl shadow-2xl overflow-hidden">
+        <div class="w-full bg-white rounded-xl shadow-2xl overflow-hidden">
             <div class="bg-[#007A33] p-4 sm:p-6">
-                <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
+                <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-white text-center">
                     <i class="fas fa-book mr-2"></i>Cadastro de Livros
                 </h2>
             </div>
@@ -80,16 +76,14 @@ $select_model = new select_model();
                         </div>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-2 sm:grid-cols-2 gap-4">
-
-
-
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="nome" name="nome"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
-                                placeholder=" Nome " required>
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
+                                placeholder="Nome" required>
                         </div>
                     </div>
 
@@ -97,8 +91,8 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="sobrenome" name="sobrenome"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
-                                placeholder=" Sobrenome " required>
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
+                                placeholder="Sobrenome" required>
                         </div>
                     </div>
 
@@ -106,8 +100,8 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="titulo" name="titulo"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                                placeholder=" Título" required>
+                                class="w-full pl-10 pr-3 py-2 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                placeholder="Título" required>
                         </div>
                     </div>
 
@@ -115,7 +109,7 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fas fa-calendar absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="data" name="data"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2 border-2 text-gray-500 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                 placeholder="DD/MM/AAAA" required>
                             <span id="dataError" class="text-red-500 text-xs hidden">Data inválida</span>
                         </div>
@@ -125,8 +119,8 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fas fa-building absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="editora" name="editora"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
-                                placeholder=" Editora" required>
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 text-gray-500 transition-all duration-200 shadow-sm"
+                                placeholder="Editora" required>
                         </div>
                     </div>
 
@@ -134,22 +128,16 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fas fa-hashtag absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="number" id="quantidade" name="quantidade" min="1"
-                                class="w-full pl-10 pr-3 py-2.5 text-gray-500 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
+                                class="w-full pl-10 pr-3 py-2 text-gray-500 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
                                 placeholder="Qnt. de livros" required>
                         </div>
                     </div>
 
-                    <script>
-                        document.getElementById('quantidade').addEventListener('input', function(e) {
-                            this.value = this.value.replace(/[^0-9]/g, '');
-                        });
-                    </script>
-
                     <div class="relative">
-                        <div class="relative group group-hover:text-[#007A33]">
-                            <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors duration-200"></i>
+                        <div class="relative group">
+                            <i class="fas fa-route absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <select id="corredor" name="corredor"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
                                 <option value="" disabled selected>Corredor</option>
                                 <option value="A">Corredor A</option>
@@ -169,7 +157,7 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fas fa-layer-group absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <select id="estante" name="estante"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm dropdown-down"
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
                                 <option value="" disabled selected>Estante</option>
                                 <option value="1">Estante 1</option>
@@ -212,25 +200,13 @@ $select_model = new select_model();
                         </div>
                     </div>
 
-                    <style>
-                        .dropdown-down {
-                            direction: ltr;
-                            /* Garante a direção padrão */
-                        }
-
-                        .dropdown-down:focus+* {
-                            top: 100%;
-                            /* Força o dropdown a abrir para baixo */
-                        }
-                    </style>
-
                     <div class="relative">
                         <div class="relative group">
                             <i class="fas fa-bookmark absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <select id="prateleira" name="prateleira"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm text-sm sm:text-base"
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                                 required>
-                                <option value="" disabled selected class="text-xs sm:text-base"> Prateleira</option>
+                                <option value="" disabled selected>Prateleira</option>
                                 <option value="P1">Prateleira 1</option>
                                 <option value="P2">Prateleira 2</option>
                                 <option value="P3">Prateleira 3</option>
@@ -249,33 +225,33 @@ $select_model = new select_model();
                         <div class="relative group">
                             <i class="fa-solid fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
                             <input type="text" id="edição" name="edição"
-                                class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm"
-                                placeholder=" Edição" required>
+                                class="w-full pl-10 pr-3 py-2 border-2 border-gray-200 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none hover:border-gray-300 transition-all duration-200 shadow-sm text-gray-500"
+                                placeholder="Edição" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-2 space-y-2">
                     <?php if (isset($_GET['true'])) { ?>
-                        <p class="text-green-600 bg-green-100 border border-green-300 rounded-md p-3 text-center font-medium">
+                        <p class="text-green-600 bg-green-100 border border-green-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">
                             Livro cadastrado com sucesso!
                         </p>
                     <?php } ?>
                     <?php if (isset($_GET['false'])) { ?>
-                        <p class="text-red-600 bg-red-100 border border-red-300 rounded-md p-3 text-center font-medium">
+                        <p class="text-red-600 bg-red-100 border border-red-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">
                             ERRO ao cadastrar livro!
                         </p>
                     <?php } ?>
                     <?php if (isset($_GET['ja_cadastrado'])) { ?>
-                        <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-3 text-center font-medium">
+                        <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">
                             Livro já cadastrado!
                         </p>
                     <?php } ?>
                 </div>
 
-                <div class="mt-4 sm:mt-6">
+                <div class="mt-4">
                     <button type="submit"
-                        class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
+                        class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center text-sm sm:text-base">
                         <i class="fas fa-paper-plane mr-2"></i>
                         Enviar
                     </button>
@@ -342,8 +318,8 @@ $select_model = new select_model();
                     }
                 } else {
                     dataError.classList.add('hidden');
-                    this.classList.remove('border-red-500');
-                    this.setCustomValidity('');
+                    input.classList.remove('border-red-500');
+                    input.setCustomValidity('');
                 }
             }
 

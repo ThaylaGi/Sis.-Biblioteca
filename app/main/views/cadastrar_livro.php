@@ -271,7 +271,7 @@ $select_model = new select_model();
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded'), function() {
             const form = document.getElementById('bookForm');
             const dataInput = document.getElementById('data');
             const dataError = document.getElementById('dataError');
@@ -322,7 +322,10 @@ $select_model = new select_model();
                     input.setCustomValidity('');
                 }
             }
-
+       
+        }
+    </script>
+<style>
             .card-hover:hover {
                 transform: translateY(-2px);
             }

@@ -54,19 +54,21 @@
                     <i class="fas fa-chevron-right opacity-70"></i>
                 </a>
                 
-                <a href="inserir_genero.php" 
+               
+                <a href="cadastrar_genero.php" 
                 class="card-hover block w-full bg-[#FFA500] hover:bg-orange-400 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between shadow-md hover:shadow-lg">
                     <span class="flex items-center">
                         <i class="fas fa-tags mr-4 text-2xl"></i>
-                        <span class="text-lg">Cadastrar Subgênero </span>
+                        <span class="text-lg">Cadastrar Gênero Literário </span>
                     </span>
                     <i class="fas fa-chevron-right opacity-70"></i>
                 </a>
-                <a href="cadastrar_genero.php" 
+                
+                <a href="inserir_genero.php" 
                 class="card-hover block w-full bg-[#FF6347]  text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between shadow-md hover:shadow-lg">
                     <span class="flex items-center">
                         <i class="fas fa-tags mr-4 text-2xl"></i>
-                        <span class="text-lg">Cadastrar Gênero Literário </span>
+                        <span class="text-lg">Cadastrar Subgênero </span>
                     </span>
                     <i class="fas fa-chevron-right opacity-70"></i>
                 </a>

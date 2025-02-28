@@ -38,7 +38,7 @@
         <div class="w-full max-w-xl h-full bg-white rounded-xl shadow-2xl overflow-hidden ">
             <div class="bg-[#007A33] p-4 sm:p-6">
                 <h2 class="text-xl sm:text-2xl font-bold text-white text-center">
-                    <i class="fas fa-book-open mr-2"></i>Cadastro de Subgêneros Bibliográficos
+                    <i class="fas fa-book-open mr-2"></i>Cadastro de Gêneros Bibliográficos
                 </h2>
             </div>
 

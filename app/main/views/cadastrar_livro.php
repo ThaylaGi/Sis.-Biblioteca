@@ -35,7 +35,7 @@ $select_model = new select_model();
 
             <form id="bookForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Box 1: Informações do Livro -->
+                
                     <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
                         <h3
                             class="text-lg font-semibold text-[#007A33] mb-3 border-b border-gray-200 pb-2 sticky top-0 bg-gray-50 z-10">
@@ -116,7 +116,7 @@ $select_model = new select_model();
                                     placeholder="Edição" required>
                             </div>
 
-                            <!-- Checkboxes Estrangeiro e Ficção -->
+                           
                             <div class="flex items-center space-x-6">
                                 <label class="flex items-center space-x-2 text-gray-700 cursor-pointer">
                                     <input type="checkbox" name="estrangeiro" value="1"
@@ -132,7 +132,7 @@ $select_model = new select_model();
                         </div>
                     </div>
 
-                    <!-- Box 2: Localização e Estoque -->
+                
                     <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
                         <h3 class="text-lg font-semibold text-[#007A33] mb-4 border-b border-gray-200 pb-2">
                             Localização e Estoque
@@ -219,7 +219,7 @@ $select_model = new select_model();
                     </div>
                 </div>
 
-                <!-- Mensagens de Status -->
+       
                 <div class="mt-6 space-y-2">
                     <?php if (isset($_GET['true'])): ?>
                         <p
@@ -243,7 +243,7 @@ $select_model = new select_model();
                     <?php endif; ?>
                 </div>
 
-                <!-- Botão de Envio -->
+                
                 <div class="mt-6">
                     <button type="submit"
                         class="w-full bg-[#FFA500] hover:bg-[#FF8C00] text-white font-medium py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] flex items-center justify-center text-base shadow-md">
@@ -261,7 +261,6 @@ $select_model = new select_model();
             const addAuthorBtn = document.getElementById('addAuthor');
             let authorCount = 1;
 
-            // Função para adicionar novos campos de autor
             function addAuthor() {
                 authorCount++;
                 const newAuthorRow = document.createElement('div');
@@ -284,7 +283,7 @@ $select_model = new select_model();
                 `;
                 authorFields.appendChild(newAuthorRow);
 
-                // Adicionar evento de remoção ao novo botão
+             
                 newAuthorRow.querySelector('.remove-author').addEventListener('click', function () {
                     newAuthorRow.remove();
                     authorCount--;
@@ -292,7 +291,7 @@ $select_model = new select_model();
                 });
             }
 
-            // Função para atualizar os índices após remoção
+         
             function updateAuthorIndices() {
                 const rows = authorFields.querySelectorAll('.author-row');
                 rows.forEach((row, index) => {
@@ -305,10 +304,9 @@ $select_model = new select_model();
                 });
             }
 
-            // Inicializar o evento do botão de adicionar
             addAuthorBtn.addEventListener('click', addAuthor);
 
-            // Validação de data
+           
             const dataInput = document.getElementById('data');
             const dataError = document.getElementById('dataError');
 

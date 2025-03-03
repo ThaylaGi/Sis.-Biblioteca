@@ -103,15 +103,14 @@
             const subgeneroInput = document.getElementById('subgenero');
             const checkbox = document.getElementById('naoExisteSubgenero');
 
-            // Função para habilitar/desabilitar o campo de subgênero
             checkbox.addEventListener('change', function() {
                 subgeneroInput.disabled = this.checked;
                 subgeneroInput.required = !this.checked;
 
                 if (this.checked) {
-                    subgeneroInput.value = 'Sem Subgênero'; // Define um valor padrão
+                    subgeneroInput.value = 'Sem Subgênero'; 
                 } else {
-                    subgeneroInput.value = ''; // Limpa o campo
+                    subgeneroInput.value = ''; 
                 }
             });
 

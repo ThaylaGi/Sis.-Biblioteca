@@ -41,6 +41,10 @@ $select_model = new select_model();
                         </h3>
                         <div class="space-y-3 max-h-[300px] overflow-y-auto pr-2">
                             <div class="relative">
+                                <p><input type="checkbox" name="estrangeiro" id="" value="1">
+                                    Estrangeiro</p><br>
+                                <p><input type="checkbox" name="ficcao" id="" value="1">
+                                    Ficcao</p>
                                 <div class="relative group">
                                     <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33]"></i>
                                     <select id="nomesubGenero" name="nomesubGenero"
@@ -152,9 +156,9 @@ $select_model = new select_model();
                                     class="w-full pl-10 pr-8 py-2 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer"
                                     required>
                                     <option value="" disabled selected>Estante</option>
-                                    <?php for ($i = 1; $i <= 31; $i++): ?>
+                                    <?php for ($i = 1; $i <= 32; $i++) { ?>
                                         <option value="<?= $i ?>">Estante <?= $i ?></option>
-                                    <?php endfor; ?>
+                                    <?php } ?>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,13 +194,13 @@ $select_model = new select_model();
                             Livro cadastrado com sucesso!
                         </p>
                     <?php endif; ?>
-                    
+
                     <?php if (isset($_GET['false'])) : ?>
                         <p class="text-red-600 bg-red-100 border border-red-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">
                             ERRO ao cadastrar livro!
                         </p>
                     <?php endif; ?>
-                    
+
                     <?php if (isset($_GET['ja_cadastrado'])) : ?>
                         <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">
                             Livro já cadastrado!
@@ -293,7 +297,7 @@ $select_model = new select_model();
             dataInput.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.slice(0, 8);
-                
+
                 if (value.length >= 5) {
                     value = value.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
                 } else if (value.length >= 3) {
@@ -305,9 +309,9 @@ $select_model = new select_model();
                     const [day, month, year] = value.split('/').map(Number);
                     const date = new Date(year, month - 1, day);
                     const isValid = date.getFullYear() === year &&
-                                  date.getMonth() === month - 1 &&
-                                  date.getDate() === day &&
-                                  date <= new Date();
+                        date.getMonth() === month - 1 &&
+                        date.getDate() === day &&
+                        date <= new Date();
 
                     if (!isValid) {
                         dataError.classList.remove('hidden');
@@ -322,4 +326,5 @@ $select_model = new select_model();
     </script>
 
 </body>
+
 </html>

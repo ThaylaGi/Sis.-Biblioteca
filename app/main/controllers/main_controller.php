@@ -1,18 +1,17 @@
 <?php
 require_once('../models/main_model.php');
 if (
+    isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) &&
     isset($_POST['nome']) && !empty($_POST['nome']) &&
     isset($_POST['sobrenome']) && !empty($_POST['sobrenome']) &&
     isset($_POST['titulo']) && !empty($_POST['titulo']) &&
-    isset($_POST['data']) && !empty($_POST['data']) &&
     isset($_POST['editora']) && !empty($_POST['editora']) &&
-    isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
+    isset($_POST['data']) && !empty($_POST['data']) &&
     isset($_POST['corredor']) && !empty($_POST['corredor']) &&
+    isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
     isset($_POST['estante']) && !empty($_POST['estante']) &&
-    isset($_POST['prateleira']) && !empty($_POST['prateleira']) &&
-    isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero'])
+    isset($_POST['prateleira']) && !empty($_POST['prateleira'])
 ) {
-
     $nome = $_POST['nome'];
     $sobrenome = $_POST['sobrenome'];
     $titulo = $_POST['titulo'];
@@ -23,9 +22,11 @@ if (
     $estante = $_POST['estante'];
     $prateleira = $_POST['prateleira'];
     $subgenero = $_POST['nomesubGenero'];
+    $estrangeiro = $_POST['estrangeiro'] ?? 0;
+    $ficcao = $_POST['ficcao'] ?? 0;
 
     $model = new main_model();
-    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $subgenero);
+    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $subgenero, $estrangeiro, $ficcao);
 
     switch ($result) {
         case 1:
@@ -76,8 +77,8 @@ if (
             header('location:../views/cadastrar_genero.php?ja_cadastrado');
             break;
     }
-} else {
+} /*else {
 
     header('location:../index.php');
     exit();
-}
+}*/

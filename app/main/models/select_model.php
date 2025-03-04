@@ -47,22 +47,4 @@ class select_model extends connect
 
         return $nome_sobrenome;
     }
-
-    public function select_genero_subgenero($id_genero)
-    {
-        $sql_genero_livro = $this->connect->query("SELECT * FROM genero WHERE id = '$id_genero'");
-        $array_genero = $sql_genero_livro->fetchAll(PDO::FETCH_ASSOC);
-        $dados = [];
-        foreach ($array_genero as $genero) {
-            $id_genero = $genero['id'];
-            $genero = $genero['generos'];
-
-            $sql_subgenero_livro = $this->connect->query("SELECT subgenero FROM subgenero WHERE id_genero = '$id_genero'");
-            $array_subgenero = $sql_subgenero_livro->fetch(PDO::FETCH_ASSOC);
-            $subgenero = $array_subgenero['subgenero'];
-            array_push($dados, $genero);
-            array_push($dados, $subgenero);
-        }
-        return $dados;
-    }
 }

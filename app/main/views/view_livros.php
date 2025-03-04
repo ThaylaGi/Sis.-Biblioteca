@@ -85,7 +85,6 @@ $select_model = new select_model();
 
             foreach ($livros as $dados) {
                 $autores = $select_model->select_autores($dados['id']);
-                $generos = $select_model->select_genero_subgenero($dados['id']);
 
             ?>
                 <tr>
@@ -98,8 +97,8 @@ $select_model = new select_model();
                     <td><?= $dados['corredor'] ?></td>
                     <td><?= $dados['estantes'] ?></td>
                     <td><?= $dados['prateleiras'] ?></td>
-                    <td><?= $dados[0] ?></td>
-                    <td><?= $dados[1] == NULL ? "Sem subgenero" : $dados[1] ?></td>
+                    <td><?= $dados['id_genero'] ?></td>
+                    <td><?= $dados['id_subgenero'] == NULL ? "Sem subgenero" : $dados['id_subgenero'] ?></td>
                     <td class="<?= $dados['ficcao'] == 1 ? 'sim' : 'nao' ?>"><?= $dados['ficcao'] == 1 ? 'Sim' : 'Não' ?></td>
                     <td class="<?= $dados['estrangeiro'] == 1 ? 'sim' : 'nao' ?>"><?= $dados['estrangeiro'] == 1 ? 'Sim' : 'Não' ?></td>
                     <td><?= $dados['quantidade'] ?></td>

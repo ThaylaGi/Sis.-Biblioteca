@@ -1,7 +1,8 @@
 <?php
 require_once('../models/main_model.php');
 if (
-    isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) &&
+    (isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) || 
+    isset($_POST['nomeGenero']) && !empty($_POST['nomeGenero'])) &&
     isset($_POST['nome']) && !empty($_POST['nome']) &&
     isset($_POST['sobrenome']) && !empty($_POST['sobrenome']) &&
     isset($_POST['titulo']) && !empty($_POST['titulo']) &&
@@ -21,12 +22,13 @@ if (
     $corredor = $_POST['corredor'];
     $estante = $_POST['estante'];
     $prateleira = $_POST['prateleira'];
-    $subgenero = $_POST['nomesubGenero'];
+    $genero = $_POST['nomeGenero'] ?? 0;
+    $subgenero = $_POST['nomesubGenero'] ?? 0;
     $estrangeiro = $_POST['estrangeiro'] ?? 0;
     $ficcao = $_POST['ficcao'] ?? 0;
 
     $model = new main_model();
-    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $subgenero, $estrangeiro, $ficcao);
+    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $subgenero, $genero, $estrangeiro, $ficcao);
 
     switch ($result) {
         case 1:

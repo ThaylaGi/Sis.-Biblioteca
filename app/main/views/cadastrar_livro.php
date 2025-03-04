@@ -35,25 +35,37 @@ $select_model = new select_model();
 
             <form id="bookForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                     <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
                         <h3
                             class="text-lg font-semibold text-[#007A33] mb-3 border-b border-gray-200 pb-2 sticky top-0 bg-gray-50 z-10">
                             Informações do Livro
                         </h3>
                         <div class="space-y-3 max-h-[300px] overflow-y-auto pr-2">
+                            <select id="nomeGenero" name="nomeGenero"
+                                class="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:border-[#007A33] focus:ring-1 focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-400 text-gray-600 placeholder-gray-500 transition-all duration-200 cursor-pointer"
+                                >
+                                <option value="" disabled selected class="text-gray-500">Gênero</option>
+                                <?php
+                                $generos = $select_model->select_genero();
+                                foreach ($generos as $genero) {
+                                ?>
+                                    <option value="<?= $genero['generos'] ?>"><?= $genero['generos'] ?></option>
+                                <?php } ?>
+                            </select>
                             <div class="relative group">
+
                                 <i
                                     class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33]"></i>
                                 <select id="nomesubGenero" name="nomesubGenero"
                                     class="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:border-[#007A33] focus:ring-1 focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-400 text-gray-600 placeholder-gray-500 transition-all duration-200 cursor-pointer"
-                                    required>
+                                    >
                                     <option value="" disabled selected class="text-gray-500">Subgênero</option>
                                     <?php
                                     $generos = $select_model->select_genero();
                                     foreach ($generos as $genero) {
                                         $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
-                                        ?>
+                                    ?>
                                         <optgroup label="<?= $genero['generos'] ?>">
                                             <?php foreach ($subgeneros as $subgenero) { ?>
                                                 <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?>
@@ -116,7 +128,7 @@ $select_model = new select_model();
                                     placeholder="Edição" required>
                             </div>
 
-                           
+
                             <div class="flex items-center space-x-6">
                                 <label class="flex items-center space-x-2 text-gray-700 cursor-pointer">
                                     <input type="checkbox" name="estrangeiro" value="1"
@@ -132,7 +144,7 @@ $select_model = new select_model();
                         </div>
                     </div>
 
-                
+
                     <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
                         <h3 class="text-lg font-semibold text-[#007A33] mb-4 border-b border-gray-200 pb-2">
                             Localização e Estoque
@@ -219,7 +231,7 @@ $select_model = new select_model();
                     </div>
                 </div>
 
-       
+
                 <div class="mt-6 space-y-2">
                     <?php if (isset($_GET['true'])): ?>
                         <p
@@ -243,7 +255,7 @@ $select_model = new select_model();
                     <?php endif; ?>
                 </div>
 
-                
+
                 <div class="mt-6">
                     <button type="submit"
                         class="w-full bg-[#FFA500] hover:bg-[#FF8C00] text-white font-medium py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] flex items-center justify-center text-base shadow-md">
@@ -256,7 +268,7 @@ $select_model = new select_model();
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const authorFields = document.getElementById('authorFields');
             const addAuthorBtn = document.getElementById('addAuthor');
             let authorCount = 1;
@@ -283,15 +295,15 @@ $select_model = new select_model();
                 `;
                 authorFields.appendChild(newAuthorRow);
 
-             
-                newAuthorRow.querySelector('.remove-author').addEventListener('click', function () {
+
+                newAuthorRow.querySelector('.remove-author').addEventListener('click', function() {
                     newAuthorRow.remove();
                     authorCount--;
                     updateAuthorIndices();
                 });
             }
 
-         
+
             function updateAuthorIndices() {
                 const rows = authorFields.querySelectorAll('.author-row');
                 rows.forEach((row, index) => {
@@ -306,11 +318,11 @@ $select_model = new select_model();
 
             addAuthorBtn.addEventListener('click', addAuthor);
 
-           
+
             const dataInput = document.getElementById('data');
             const dataError = document.getElementById('dataError');
 
-            dataInput.addEventListener('input', function (e) {
+            dataInput.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.slice(0, 8);
 

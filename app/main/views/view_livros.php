@@ -11,18 +11,28 @@ $select_model = new select_model();
     <title>Lista de Livros</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
             margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
             padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            margin: 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         th,
@@ -30,6 +40,7 @@ $select_model = new select_model();
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            color: #333;
         }
 
         th {
@@ -39,11 +50,11 @@ $select_model = new select_model();
         }
 
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: rgba(0, 123, 255, 0.1);
         }
 
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: rgba(0, 0, 0, 0.05);
         }
 
         .sim {
@@ -54,6 +65,14 @@ $select_model = new select_model();
         .nao {
             color: red;
             font-weight: bold;
+        }
+
+        .capa-livro {
+            width: 50px;
+            height: 75px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -69,6 +88,7 @@ $select_model = new select_model();
                 <th>Sobrenome Autor</th>
                 <th>Data de Cadastro</th>
                 <th>Editora</th>
+                <th>Edição</th>
                 <th>Corredor</th>
                 <th>Estante</th>
                 <th>Prateleira</th>
@@ -85,7 +105,6 @@ $select_model = new select_model();
 
             foreach ($livros as $dados) {
                 $autores = $select_model->select_autores($dados['id']);
-
             ?>
                 <tr>
                     <td><?= $dados['id'] ?></td>
@@ -94,6 +113,7 @@ $select_model = new select_model();
                     <td><?= $autores['sobrenome_autor'] ?></td>
                     <td><?= $dados['ano_publicacao'] ?></td>
                     <td><?= $dados['editora'] ?></td>
+                    <td><?= $dados['edicao'] ?></td>
                     <td><?= $dados['corredor'] ?></td>
                     <td><?= $dados['estantes'] ?></td>
                     <td><?= $dados['prateleiras'] ?></td>

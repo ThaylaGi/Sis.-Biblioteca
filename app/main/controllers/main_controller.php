@@ -1,12 +1,14 @@
 <?php
 require_once('../models/main_model.php');
+print_r($_POST);
 if (
-    (isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) || 
-    isset($_POST['nomeGenero']) && !empty($_POST['nomeGenero'])) &&
+    (isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) ||
+        isset($_POST['nomeGenero']) && !empty($_POST['nomeGenero'])) &&
     isset($_POST['nome']) && !empty($_POST['nome']) &&
     isset($_POST['sobrenome']) && !empty($_POST['sobrenome']) &&
     isset($_POST['titulo']) && !empty($_POST['titulo']) &&
     isset($_POST['editora']) && !empty($_POST['editora']) &&
+    isset($_POST['edicao']) && !empty($_POST['edicao']) &&
     isset($_POST['data']) && !empty($_POST['data']) &&
     isset($_POST['corredor']) && !empty($_POST['corredor']) &&
     isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
@@ -18,6 +20,7 @@ if (
     $titulo = $_POST['titulo'];
     $data = $_POST['data'];
     $editora = $_POST['editora'];
+    $edicao = $_POST['edicao'];
     $quantidade = $_POST['quantidade'];
     $corredor = $_POST['corredor'];
     $estante = $_POST['estante'];
@@ -28,7 +31,7 @@ if (
     $ficcao = $_POST['ficcao'] ?? 0;
 
     $model = new main_model();
-    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $quantidade, $corredor, $estante, $prateleira, $subgenero, $genero, $estrangeiro, $ficcao);
+    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $genero, $estrangeiro, $ficcao);
 
     switch ($result) {
         case 1:
@@ -39,6 +42,9 @@ if (
             exit();
         case 3:
             header('location:../views/cadastrar_livro.php?ja_cadastrado');
+            exit();
+        default:
+            header('location:../index.php');
             exit();
     }
 } else if (isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])) {
@@ -60,6 +66,9 @@ if (
         case 3:
             header('location:../views/inserir_genero.php?ja_cadastrado');
             break;
+        default:
+            header('location:../index.php');
+            exit();
     }
 } else if (isset($_POST['novo_genero']) && !empty($_POST['novo_genero'])) {
 
@@ -78,9 +87,12 @@ if (
         case 3:
             header('location:../views/cadastrar_genero.php?ja_cadastrado');
             break;
+        default:
+            header('location:../index.php');
+            exit();
     }
-} /*else {
+} else {
 
     header('location:../index.php');
     exit();
-}*/
+}

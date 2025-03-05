@@ -34,9 +34,11 @@ $select_model = new select_model();
             background-color: #007A33 !important;
             border-color: #007A33 !important;
         }
+
         input[type="checkbox"]:checked:focus {
             --tw-ring-color: rgba(0, 122, 51, 0.2);
         }
+
         .tab-button.active {
             color: #007A33 !important;
             border-bottom: 2px solid #007A33 !important;
@@ -186,7 +188,29 @@ $select_model = new select_model();
                             </label>
                         </div>
                     </div>
+                    <?php if (isset($_GET['true'])): ?>
+                        <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md"
+                            role="alert">
+                            <i class="fas fa-check-circle text-xl mr-3"></i>
+                            <span class="text-sm font-medium">Livro cadastrado com sucesso!</span>
+                        </div>
+                    <?php endif; ?>
 
+                    <?php if (isset($_GET['false'])): ?>
+                        <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md"
+                            role="alert">
+                            <i class="fas fa-exclamation-circle text-xl mr-3"></i>
+                            <span class="text-sm font-medium">ERRO ao cadastrar livro!</span>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_GET['ja_cadastrado'])): ?>
+                        <div class="flex items-center p-4 mb-4 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50 rounded-md"
+                            role="alert">
+                            <i class="fas fa-exclamation-triangle text-xl mr-3"></i>
+                            <span class="text-sm font-medium">Livro já cadastrado!</span>
+                        </div>
+                    <?php endif; ?>
                     <div class="mt-8">
                         <button type="button" id="nextButton"
                             class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
@@ -270,30 +294,6 @@ $select_model = new select_model();
                             <i class="fas fa-arrow-left mr-3"></i>
                             Voltar
                         </button>
-
-                        <?php if (isset($_GET['true'])): ?>
-                            <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md"
-                                role="alert">
-                                <i class="fas fa-check-circle text-xl mr-3"></i>
-                                <span class="text-sm font-medium">Livro cadastrado com sucesso!</span>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if (isset($_GET['false'])): ?>
-                            <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md"
-                                role="alert">
-                                <i class="fas fa-exclamation-circle text-xl mr-3"></i>
-                                <span class="text-sm font-medium">ERRO ao cadastrar livro!</span>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if (isset($_GET['ja_cadastrado'])): ?>
-                            <div class="flex items-center p-4 mb-4 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50 rounded-md"
-                                role="alert">
-                                <i class="fas fa-exclamation-triangle text-xl mr-3"></i>
-                                <span class="text-sm font-medium">Livro já cadastrado!</span>
-                            </div>
-                        <?php endif; ?>
 
                         <button type="submit"
                             class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
@@ -517,4 +517,5 @@ $select_model = new select_model();
         });
     </script>
 </body>
+
 </html>

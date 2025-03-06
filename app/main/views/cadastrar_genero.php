@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    // Verifica se algum dos parâmetros está presente
+    if (isset($_GET['true']) || isset($_GET['erro']) || isset($_GET['ja_cadastrado'])) {
+        // Redireciona após 3 segundos
+        echo '<meta http-equiv="refresh" content="3; url=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/decisão.php">';
+    }
+    ?>
     <title>Cadastro de Gêneros Bibliográficos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -45,7 +52,7 @@
             <form id="genreForm" action="../controllers/main_controller.php" method="post" class="p-4 sm:p-6 space-y-4">
                 <div class="relative">
                     <div class="relative group">
-                       
+
                         <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -63,7 +70,7 @@
                     </div>
                 </div>
 
-            
+
                 <div class="mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full card-hover bg-[#FFA500] hover:bg-[#FFB74D] text-white font-medium py-2.5 sm:py-3 px-4 rounded-lg transition duration-300 ease-in-out flex items-center justify-center">
@@ -73,15 +80,15 @@
                 </div>
 
                 <div class="mt-2 space-y-2">
-                <?php if (isset($_GET['true'])) { ?>
-                    <p class="text-green-600 bg-green-100 border border-green-300 rounded-md p-2 text-center font-medium text-sm sm:text-base"> Gênero cadastrado com sucesso!</p>
-                <?php } ?>
-                <?php if (isset($_GET['false'])) { ?>
-                    <p class="text-red-600 bg-red-100 border border-red-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Erro ao cadastrar!</p>
-                <?php } ?>
-                <?php if (isset($_GET['ja_cadastrado'])) { ?>
-                    <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Gênero já cadastrado!</p>
-                <?php } ?>
+                    <?php if (isset($_GET['true'])) { ?>
+                        <p class="text-green-600 bg-green-100 border border-green-300 rounded-md p-2 text-center font-medium text-sm sm:text-base"> Gênero cadastrado com sucesso!</p>
+                    <?php } ?>
+                    <?php if (isset($_GET['false'])) { ?>
+                        <p class="text-red-600 bg-red-100 border border-red-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Erro ao cadastrar!</p>
+                    <?php } ?>
+                    <?php if (isset($_GET['ja_cadastrado'])) { ?>
+                        <p class="text-yellow-600 bg-yellow-100 border border-yellow-300 rounded-md p-2 text-center font-medium text-sm sm:text-base">Gênero já cadastrado!</p>
+                    <?php } ?>
                 </div>
             </form>
         </div>
@@ -108,9 +115,9 @@
                 subgeneroInput.required = !this.checked;
 
                 if (this.checked) {
-                    subgeneroInput.value = 'Sem Subgênero'; 
+                    subgeneroInput.value = 'Sem Subgênero';
                 } else {
-                    subgeneroInput.value = ''; 
+                    subgeneroInput.value = '';
                 }
             });
 

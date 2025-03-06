@@ -53,7 +53,7 @@
                 <i class="fas fa-chevron-right opacity-70"></i>
             </a>
             
-            <a href="inserir_genero.php" 
+            <a href="cadastrar_subgenero.php" 
             class="card-hover block w-full bg-[#FF6347] hover:bg-red-500 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between shadow-md hover:shadow-lg">
                 <span class="flex items-center">
                     <i class="fas fa-tags mr-4 text-2xl"></i>

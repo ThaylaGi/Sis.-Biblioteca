@@ -8,6 +8,13 @@ $select_model = new select_model();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    // Verifica se algum dos parâmetros está presente
+    if (isset($_GET['true']) || isset($_GET['erro']) || isset($_GET['ja_cadastrado'])) {
+        // Redireciona após 3 segundos
+        echo '<meta http-equiv="refresh" content="3; url=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/decisão.php">';
+    }
+    ?>
     <title>Cadastro de Gêneros Bibliográficos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -50,7 +57,7 @@ $select_model = new select_model();
                 <div class="relative">
                     <div class="relative group">
                         <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                        <select id="nomeGenero" name="nomesubgenero"
+                        <select id="nomeGenero" name="genero"
                             class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                             required>
                             <option value="" disabled selected>Gênero</option>
@@ -58,7 +65,7 @@ $select_model = new select_model();
                             $generos = $select_model->select_genero();
                             foreach ($generos as $genero) {
                             ?>
-                                <option value="<?=$genero['generos']?>"><?=$genero['generos']?></option>
+                                <option value="<?= $genero['generos'] ?>"><?= $genero['generos'] ?></option>
                             <?php } ?>
 
                         </select>

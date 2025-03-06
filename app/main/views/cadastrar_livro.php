@@ -9,6 +9,13 @@ $select_model = new select_model();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <?php
+    // Verifica se algum dos parâmetros está presente
+    if (isset($_GET['true']) || isset($_GET['erro']) || isset($_GET['ja_cadastrado'])) {
+        // Redireciona após 3 segundos
+        echo '<meta http-equiv="refresh" content="3; url=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/decisão.php">';
+    }
+    ?>
     <title>Formulário Biblioteca</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -83,13 +90,13 @@ $select_model = new select_model();
             transform: translateY(-1px);
         }
 
-        .radio-option input:checked + span {
+        .radio-option input:checked+span {
             color: #007A33;
             font-weight: 600;
         }
 
         /* Garantir que todos os campos tenham o mesmo alinhamento */
-        .space-y-6 > div {
+        .space-y-6>div {
             margin-left: 0;
             padding-left: 0;
         }
@@ -437,13 +444,13 @@ $select_model = new select_model();
 
                 if (!literatura) {
                     isValid = false;
-                    document.querySelectorAll('input[name="literatura"]').forEach(radio => 
+                    document.querySelectorAll('input[name="literatura"]').forEach(radio =>
                         radio.closest('label').classList.add('border-red-500')
                     );
                 }
                 if (!ficcao) {
                     isValid = false;
-                    document.querySelectorAll('input[name="ficcao"]').forEach(radio => 
+                    document.querySelectorAll('input[name="ficcao"]').forEach(radio =>
                         radio.closest('label').classList.add('border-red-500')
                     );
                 }

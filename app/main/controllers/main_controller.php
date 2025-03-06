@@ -1,5 +1,6 @@
 <?php
 require_once('../models/main_model.php');
+print_r($_POST);
 if (
     isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero'])&&
     isset($_POST['nome']) && !empty($_POST['nome']) &&
@@ -46,8 +47,8 @@ if (
     }
 } else if (isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])) {
 
-    $genero = $_POST['genero'];
-    $subgenero = $_POST['subgenero'];
+    echo $genero = $_POST['genero'];
+    echo $subgenero = $_POST['subgenero'];
 
     $model = new main_model();
     $result = $model->cadastrar_subgenero($genero, $subgenero);
@@ -55,13 +56,13 @@ if (
     switch ($result) {
 
         case 1:
-            header('location:../views/inserir_genero.php?true');
+            header('location:../views/cadastrar_subgenero.php?true');
             break;
         case 2:
-            header('location:../views/inserir_genero.php?false');
+            header('location:../views/cadastrar_subgenero.php?false');
             break;
         case 3:
-            header('location:../views/inserir_genero.php?ja_cadastrado');
+            header('location:../views/cadastrar_subgenero.php?ja_cadastrado');
             break;
         default:
             header('location:../index.php');
@@ -88,8 +89,8 @@ if (
             header('location:../index.php');
             exit();
     }
-} else {
+} /*else {
 
     header('location:../index.php');
     exit();
-}
+}*/

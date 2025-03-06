@@ -180,11 +180,17 @@ $select_model = new select_model();
                                     <option value="" disabled selected>Selecione o Subgênero</option>
                                     <?php
                                     $generos = $select_model->select_genero();
+
                                     foreach ($generos as $genero) {
                                         $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
                                     ?>
-                                        <optgroup label="<?= htmlspecialchars($genero['generos']) ?>">
-                                            <option value="<?= htmlspecialchars($genero['generos']) ?>"><?= htmlspecialchars($genero['generos']) ?></option>
+                                        <optgroup label="<?= $genero['generos'] ?>"></optgroup>
+                                        <?php
+                                        foreach ($subgeneros as $subgenero) {
+                                        ?>
+
+                                            <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?></option>
+                                        <?php } ?>
                                         </optgroup>
                                     <?php } ?>
                                 </select>

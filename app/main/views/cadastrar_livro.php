@@ -8,7 +8,7 @@ $select_model = new select_model();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+  
 
     <title>Formulário Biblioteca</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -252,7 +252,7 @@ $select_model = new select_model();
                             <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
                             <input type="text" id="edicao" name="edicao"
                                 class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                placeholder="Número da edição" required>
+                                placeholder="Número da edição">
                         </div>
                     </div>
 

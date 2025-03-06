@@ -82,6 +82,26 @@ $select_model = new select_model();
                 <div id="book-info" class="tab-content space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="relative group" id="generoContainer">
+                        <div class="flex items-center space-x-6 pt-2">
+                            <label for="">Literatura:</label>
+                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                <input type="radio" name="estrangeiro" value="1"
+                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
+                                <span>Brasileiro</span>
+                                <input type="radio" name="estrangeiro" value="1"
+                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
+                                <span>Estrangeiro</span>
+                            </label>
+                            <label for=""></label>
+                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                <input type="radio" name="ficcao" value="1"
+                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
+                                <span>Ficção</span>
+                                <input type="radio" name="ficcao" value="1"
+                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
+                                <span>Não Ficção</span>
+                            </label>
+                        </div>
                             <label for="nomeGenero" class="block text-sm font-medium text-gray-700 mb-1">Gênero</label>
                             <div class="relative">
                                 <select id="nomeGenero" name="nomeGenero"
@@ -175,18 +195,7 @@ $select_model = new select_model();
                                 placeholder="Número da edição" required>
                         </div>
 
-                        <div class="flex items-center space-x-6 pt-2">
-                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                <input type="checkbox" name="estrangeiro" value="1"
-                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
-                                <span>Estrangeiro</span>
-                            </label>
-                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                <input type="checkbox" name="ficcao" value="1"
-                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
-                                <span>Ficção</span>
-                            </label>
-                        </div>
+                        
                     </div>
                     <?php if (isset($_GET['true'])): ?>
                         <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md"

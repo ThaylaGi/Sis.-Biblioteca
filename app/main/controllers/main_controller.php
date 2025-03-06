@@ -91,8 +91,8 @@ if (
             header('location:../index.php');
             exit();
     }
-} else {
+} /*else {
 
     header('location:../index.php');
     exit();
-}
+}*/

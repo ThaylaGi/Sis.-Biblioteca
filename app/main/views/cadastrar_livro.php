@@ -95,9 +95,8 @@ $select_model = new select_model();
 <body class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 lg:p-12 select-none"
     style="background-image: url('../assets/img/layout.png'); background-size: cover; background-attachment: fixed;">
 
-    <a href="decisão.php"
-        class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300 backdrop-blur-sm p-3 rounded-full bg-white/80 shadow-md">
-        <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange transition-colors"></i>
+    <a href="decisão.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
+        <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
     </a>
 
     <div class="max-w-4xl mx-auto">
@@ -298,7 +297,7 @@ $select_model = new select_model();
 
                 <div id="location" class="tab-content space-y-6 hidden">
                     <div>
-                        <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de Aquisição</label>
+                        <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de entrada</label>
                         <input type="text" id="data" name="data"
                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
                             placeholder="DD/MM/AAAA" required>

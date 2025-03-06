@@ -1,6 +1,8 @@
 <?php
 require_once('../models/main_model.php');
+echo "<pre>";
 print_r($_POST);
+echo "</pre>";
 if (
     (isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) ||
         isset($_POST['nomeGenero']) && !empty($_POST['nomeGenero'])) &&
@@ -27,7 +29,7 @@ if (
     $prateleira = $_POST['prateleira'];
     $genero = $_POST['nomeGenero'] ?? 0;
     $subgenero = $_POST['nomesubGenero'] ?? 0;
-    $literatura = $_POST['estrangeiro'] ?? 0;
+    $literatura = $_POST['estrangeiro'] == 0 ? "Brasileira":"Estrangeira";
     $ficcao = $_POST['ficcao'] ?? 0;
 
     /*$model = new main_model();

@@ -8,7 +8,6 @@ $select_model = new select_model();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
 
     <title>Formulário Biblioteca</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -71,6 +70,11 @@ $select_model = new select_model();
         }
 
         .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border: none;
+            background: none;
             transition: all 0.2s ease-in-out;
         }
 
@@ -79,9 +83,20 @@ $select_model = new select_model();
             transform: translateY(-1px);
         }
 
-        .radio-option input:checked+span {
+        .radio-option input:checked + span {
             color: #007A33;
             font-weight: 600;
+        }
+
+        /* Garantir que todos os campos tenham o mesmo alinhamento */
+        .space-y-6 > div {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        #subgeneroContainer select {
+            width: 100%;
+            margin-left: 0;
         }
     </style>
 </head>
@@ -119,172 +134,139 @@ $select_model = new select_model();
                 <div id="validationMessage" class="hidden"></div>
 
                 <div id="book-info" class="tab-content space-y-6">
-                    <div class="grid grid-cols-1 gap-6">
-                        <div class="relative group  p-5 rounded-lg ">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-
-                            </h3>
-                            <div class="space-y-6">
-                                <!-- Origem e Tipo -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Literatura</label>
-                                        <div class="flex space-x-4">
-                                            <label class="radio-option flex items-center space-x-2 text-gray-600 cursor-pointer bg-white border border-gray-200 rounded-md px-4 py-2">
-                                                <input type="radio" name="literatura" value="Brasileira"
-                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
-                                                <span class="text-sm">Brasileira</span>
-                                            </label>
-                                            <label class="radio-option flex items-center space-x-2 text-gray-600 cursor-pointer bg-white border border-gray-200 rounded-md px-4 py-2">
-                                                <input type="radio" name="literatura" value="Estrangeira"
-                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
-                                                <span class="text-sm">Estrangeira</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Tipo</label>
-                                        <div class="flex space-x-4">
-                                            <label class="radio-option flex items-center space-x-2 text-gray-600 cursor-pointer bg-white border border-gray-200 rounded-md px-4 py-2">
-                                                <input type="radio" name="ficcao" value="1"
-                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
-                                                <span class="text-sm">Ficção</span>
-                                            </label>
-                                            <label class="radio-option flex items-center space-x-2 text-gray-600 cursor-pointer bg-white border border-gray-200 rounded-md px-4 py-2">
-                                                <input type="radio" name="ficcao" value="0"
-                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
-                                                <span class="text-sm">Não Ficção</span>
-                                            </label>
-                                        </div>
-                                    </div>
+                    <div class="space-y-6">
+                        <!-- Origem e Tipo -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Literatura</label>
+                                <div class="flex flex-col space-y-2">
+                                    <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                        <input type="radio" name="literatura" value="Brasileira" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green" required>
+                                        <span class="text-sm">Brasileira</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                        <input type="radio" name="literatura" value="Estrangeira" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                        <span class="text-sm">Estrangeira</span>
+                                    </label>
                                 </div>
-                                <!-- Gênero e Subgênero -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
-                            
-                                    <div id="subgeneroContainer">
-                                        <label for="nomesubGenero" class="block text-sm font-medium text-gray-700 mb-1">Subgênero</label>
-                                        <div class="relative">
-                                            <select id="nomesubGenero" name="nomesubGenero"
-                                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
-                                                <option value="" disabled selected>Selecione o Subgênero</option>
-                                                <?php
-                                                $generos =$select_model->select_genero();
-                                                foreach ($generos as $genero) {
-                                                    $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
-                                                ?>
-                                                    <optgroup label="<?= $genero['generos']?>">
-                                                        <option value="<?= $genero['generos']?>"><?= $genero['generos']?></option>
-
-                                                    </optgroup>
-                                                <?php }?>
-                                                ?>
-                                            </select>
-                                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                                <i class="fas fa-chevron-down text-gray-400"></i>
-                                            </div>
-                                        </div>
-                                        <button type="button" id="revertSubgenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
-                                            <i class="fas fa-undo mr-1"></i> Reverter e mostrar Gênero
-                                        </button>
-                                    </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Tipo</label>
+                                <div class="flex flex-col space-y-2">
+                                    <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                        <input type="radio" name="ficcao" value="1" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green" required>
+                                        <span class="text-sm">Ficção</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                        <input type="radio" name="ficcao" value="0" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                        <span class="text-sm">Não Ficção</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div id="authorFields" class="space-y-4">
-                        <label class="block text-sm font-medium text-gray-700">Autores</label>
-                        <div class="author-row space-y-4" data-index="1">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex-grow">
-                                    <input type="text" id="nome1" name="nome[]"
-                                        class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                        placeholder="Nome do Autor" required>
+                        <!-- Subgênero -->
+                        <div class="space-y-2">
+                            <label for="nomesubGenero" class="block text-sm font-medium text-gray-700">Subgênero</label>
+                            <div class="relative">
+                                <select id="nomesubGenero" name="nomesubGenero" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
+                                    <option value="" disabled selected>Selecione o Subgênero</option>
+                                    <?php
+                                    $generos = $select_model->select_genero();
+                                    foreach ($generos as $genero) {
+                                        $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
+                                    ?>
+                                        <optgroup label="<?= htmlspecialchars($genero['generos']) ?>">
+                                            <option value="<?= htmlspecialchars($genero['generos']) ?>"><?= htmlspecialchars($genero['generos']) ?></option>
+                                        </optgroup>
+                                    <?php } ?>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-400"></i>
                                 </div>
-                                <div class="flex-grow">
-                                    <input type="text" id="sobrenome1" name="sobrenome[]"
-                                        class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                        placeholder="Sobrenome" required>
+                            </div>
+                            <button type="button" id="revertSubgenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
+                                <i class="fas fa-undo mr-1"></i> Reverter e mostrar Gênero
+                            </button>
+                        </div>
+
+                        <!-- Autores -->
+                        <div id="authorFields" class="space-y-4">
+                            <label class="block text-sm font-medium text-gray-700">Autores</label>
+                            <div class="author-row space-y-4" data-index="1">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-grow">
+                                        <input type="text" id="nome1" name="nome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Nome do Autor" required>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <input type="text" id="sobrenome1" name="sobrenome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Sobrenome" required>
+                                    </div>
+                                    <button type="button" id="addAuthor" class="text-ceara-green p-2 rounded-full transition-colors duration-200">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
                                 </div>
-                                <button type="button" id="addAuthor"
-                                    class="text-ceara-green p-2 rounded-full transition-colors duration-200">
-                                    <i class="fas fa-plus"></i>
-                                </button>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="space-y-4">
-                        <div>
-                            <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
-                            <input type="text" id="titulo" name="titulo"
-                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                placeholder="Título do livro" required>
+                        <!-- Título, Editora e Edição -->
+                        <div class="space-y-4">
+                            <div>
+                                <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                                <input type="text" id="titulo" name="titulo" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Título do livro" required>
+                            </div>
+
+                            <div>
+                                <label for="editora" class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
+                                <input type="text" id="editora" name="editora" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Nome da editora" required>
+                            </div>
+
+                            <div>
+                                <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
+                                <input type="text" id="edicao" name="edicao" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Número da edição">
+                            </div>
                         </div>
 
-                        <div>
-                            <label for="editora" class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
-                            <input type="text" id="editora" name="editora"
-                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                placeholder="Nome da editora" required>
-                        </div>
+                        <?php if (isset($_GET['true'])): ?>
+                            <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md" role="alert">
+                                <i class="fas fa-check-circle text-xl mr-3"></i>
+                                <span class="text-sm font-medium">Livro cadastrado com sucesso!</span>
+                            </div>
+                        <?php endif; ?>
 
-                        <div>
-                            <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
-                            <input type="text" id="edicao" name="edicao"
-                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                placeholder="Número da edição">
-                        </div>
-                    </div>
+                        <?php if (isset($_GET['false'])): ?>
+                            <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md" role="alert">
+                                <i class="fas fa-exclamation-circle text-xl mr-3"></i>
+                                <span class="text-sm font-medium">ERRO ao cadastrar livro!</span>
+                            </div>
+                        <?php endif; ?>
 
-                    <?php if (isset($_GET['true'])): ?>
-                        <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md"
-                            role="alert">
-                            <i class="fas fa-check-circle text-xl mr-3"></i>
-                            <span class="text-sm font-medium">Livro cadastrado com sucesso!</span>
-                        </div>
-                    <?php endif; ?>
+                        <?php if (isset($_GET['ja_cadastrado'])): ?>
+                            <div class="flex items-center p-4 mb-4 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50 rounded-md" role="alert">
+                                <i class="fas fa-exclamation-triangle text-xl mr-3"></i>
+                                <span class="text-sm font-medium">Livro já cadastrado!</span>
+                            </div>
+                        <?php endif; ?>
 
-                    <?php if (isset($_GET['false'])): ?>
-                        <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md"
-                            role="alert">
-                            <i class="fas fa-exclamation-circle text-xl mr-3"></i>
-                            <span class="text-sm font-medium">ERRO ao cadastrar livro!</span>
+                        <div class="mt-8">
+                            <button type="button" id="nextButton" class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                                <i class="fas fa-arrow-right mr-3"></i>
+                                Avançar
+                            </button>
                         </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_GET['ja_cadastrado'])): ?>
-                        <div class="flex items-center p-4 mb-4 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50 rounded-md"
-                            role="alert">
-                            <i class="fas fa-exclamation-triangle text-xl mr-3"></i>
-                            <span class="text-sm font-medium">Livro já cadastrado!</span>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="mt-8">
-                        <button type="button" id="nextButton"
-                            class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
-                            <i class="fas fa-arrow-right mr-3"></i>
-                            Avançar
-                        </button>
                     </div>
                 </div>
 
                 <div id="location" class="tab-content space-y-6 hidden">
                     <div>
                         <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de entrada</label>
-                        <input type="text" id="data" name="data"
-                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                            placeholder="DD/MM/AAAA" required>
+                        <input type="text" id="data" name="data" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="DD/MM/AAAA" required>
                         <span id="dataError" class="text-red-500 text-xs hidden mt-1">Data inválida</span>
                     </div>
 
                     <div>
                         <label for="corredor" class="block text-sm font-medium text-gray-700 mb-1">Corredor</label>
                         <div class="relative">
-                            <select id="corredor" name="corredor"
-                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
-                                required>
+                            <select id="corredor" name="corredor" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
                                 <option value="" disabled selected>Selecione o Corredor</option>
                                 <option value="A">Corredor A</option>
                                 <option value="B">Corredor B</option>
@@ -299,17 +281,13 @@ $select_model = new select_model();
 
                     <div>
                         <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
-                        <input type="number" id="quantidade" name="quantidade" min="1"
-                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                            placeholder="Quantidade de livros" required>
+                        <input type="number" id="quantidade" name="quantidade" min="1" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Quantidade de livros" required>
                     </div>
 
                     <div>
                         <label for="estante" class="block text-sm font-medium text-gray-700 mb-1">Estante</label>
                         <div class="relative">
-                            <select id="estante" name="estante"
-                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
-                                required>
+                            <select id="estante" name="estante" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
                                 <option value="" disabled selected>Selecione a Estante</option>
                                 <?php for ($i = 1; $i <= 32; $i++) { ?>
                                     <option value="<?= $i ?>">Estante <?= $i ?></option>
@@ -324,9 +302,7 @@ $select_model = new select_model();
                     <div>
                         <label for="prateleira" class="block text-sm font-medium text-gray-700 mb-1">Prateleira</label>
                         <div class="relative">
-                            <select id="prateleira" name="prateleira"
-                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
-                                required>
+                            <select id="prateleira" name="prateleira" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
                                 <option value="" disabled selected>Selecione a Prateleira</option>
                                 <?php for ($i = 1; $i <= 5; $i++): ?>
                                     <option value="P<?= $i ?>">Prateleira <?= $i ?></option>
@@ -339,14 +315,12 @@ $select_model = new select_model();
                     </div>
 
                     <div class="mt-8 space-y-4">
-                        <button type="button" id="backButton"
-                            class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                        <button type="button" id="backButton" class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-arrow-left mr-3"></i>
                             Voltar
                         </button>
 
-                        <button type="submit"
-                            class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                        <button type="submit" class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-paper-plane mr-3"></i>
                             Cadastrar Livro
                         </button>
@@ -371,14 +345,10 @@ $select_model = new select_model();
                 newAuthorRow.innerHTML = `
                     <div class="flex items-center space-x-4">
                         <div class="flex-grow">
-                            <input type="text" id="nome${authorCount}" name="nome[]"
-                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                placeholder="Nome do Autor" required>
+                            <input type="text" id="nome${authorCount}" name="nome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Nome do Autor" required>
                         </div>
                         <div class="flex-grow">
-                            <input type="text" id="sobrenome${authorCount}" name="sobrenome[]"
-                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                placeholder="Sobrenome" required>
+                            <input type="text" id="sobrenome${authorCount}" name="sobrenome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Sobrenome" required>
                         </div>
                         <button type="button" class="remove-author text-red-500 p-2 rounded-full transition-colors duration-200">
                             <i class="fas fa-minus"></i>
@@ -410,48 +380,6 @@ $select_model = new select_model();
             addAuthorBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 addAuthor();
-            });
-
-            // Gênero e Subgênero
-            const generoSelect = document.getElementById('nomeGenero');
-            const subgeneroSelect = document.getElementById('nomesubGenero');
-            const generoSelectContainer = document.getElementById('generoSelectContainer');
-            const subgeneroContainer = document.getElementById('subgeneroContainer');
-            const revertGeneroBtn = document.getElementById('revertGenero');
-            const revertSubgeneroBtn = document.getElementById('revertSubgenero');
-
-            generoSelect.addEventListener('change', function() {
-                if (generoSelect.value !== "") {
-                    subgeneroContainer.style.display = 'none';
-                    subgeneroSelect.value = "";
-                    revertGeneroBtn.classList.remove('hidden');
-                } else {
-                    subgeneroContainer.style.display = 'block';
-                    revertGeneroBtn.classList.add('hidden');
-                }
-            });
-
-            subgeneroSelect.addEventListener('change', function() {
-                if (subgeneroSelect.value !== "") {
-                    generoSelectContainer.style.display = 'none';
-                    generoSelect.value = "";
-                    revertSubgeneroBtn.classList.remove('hidden');
-                } else {
-                    generoSelectContainer.style.display = 'block';
-                    revertSubgeneroBtn.classList.add('hidden');
-                }
-            });
-
-            revertGeneroBtn.addEventListener('click', function() {
-                subgeneroContainer.style.display = 'block';
-                revertGeneroBtn.classList.add('hidden');
-                generoSelect.value = "";
-            });
-
-            revertSubgeneroBtn.addEventListener('click', function() {
-                generoSelectContainer.style.display = 'block';
-                revertSubgeneroBtn.classList.add('hidden');
-                subgeneroSelect.value = "";
             });
 
             // Tabs functionality
@@ -493,11 +421,45 @@ $select_model = new select_model();
 
             nextButton.addEventListener('click', function() {
                 const requiredFields = document.querySelectorAll('#book-info [required]');
+                const literatura = document.querySelector('input[name="literatura"]:checked');
+                const ficcao = document.querySelector('input[name="ficcao"]:checked');
+                const subgenero = document.getElementById('nomesubGenero');
                 let isValid = true;
 
                 requiredFields.forEach(field => {
-                    if (!field.value) {
+                    if (!field.value.trim()) {
                         isValid = false;
+                        field.classList.add('border-red-500');
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+
+                if (!literatura) {
+                    isValid = false;
+                    document.querySelectorAll('input[name="literatura"]').forEach(radio => 
+                        radio.closest('label').classList.add('border-red-500')
+                    );
+                }
+                if (!ficcao) {
+                    isValid = false;
+                    document.querySelectorAll('input[name="ficcao"]').forEach(radio => 
+                        radio.closest('label').classList.add('border-red-500')
+                    );
+                }
+
+                const authorNames = document.querySelectorAll('input[name="nome[]"]');
+                const authorSurnames = document.querySelectorAll('input[name="sobrenome[]"]');
+                authorNames.forEach(name => {
+                    if (!name.value.trim()) {
+                        isValid = false;
+                        name.classList.add('border-red-500');
+                    }
+                });
+                authorSurnames.forEach(surname => {
+                    if (!surname.value.trim()) {
+                        isValid = false;
+                        surname.classList.add('border-red-500');
                     }
                 });
 

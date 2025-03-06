@@ -50,7 +50,7 @@ $select_model = new select_model();
                 <div class="relative">
                     <div class="relative group">
                         <i class="fas fa-book-open absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-[#007A33] transition-colors duration-200"></i>
-                        <select id="nomeGenero" name="genero"
+                        <select id="nomeGenero" name="nomesubgenero"
                             class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-200 text-gray-400 rounded-lg focus:border-[#007A33] focus:ring focus:ring-[#007A33]/20 focus:outline-none appearance-none bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer shadow-sm"
                             required>
                             <option value="" disabled selected>Gênero</option>

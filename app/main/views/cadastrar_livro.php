@@ -157,8 +157,8 @@ $select_model = new select_model();
                                     </div>
                                 </div>
                                 <!-- Gênero e Subgênero -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div id="generoSelectContainer">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
+                                    <div id="generoSelectContainer" >
                                         <label for="nomeGenero" class="block text-sm font-medium text-gray-700 mb-1">Gênero</label>
                                         <div class="relative">
                                             <select id="nomeGenero" name="nomeGenero"

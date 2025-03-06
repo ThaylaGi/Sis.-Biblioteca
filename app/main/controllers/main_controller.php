@@ -1,8 +1,5 @@
 <?php
 require_once('../models/main_model.php');
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
 if (
     (isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) ||
         isset($_POST['nomeGenero']) && !empty($_POST['nomeGenero'])) &&
@@ -93,8 +90,8 @@ if (
             header('location:../index.php');
             exit();
     }
-} /*else {
+} else {
 
     header('location:../index.php');
     exit();
-}*/
+}

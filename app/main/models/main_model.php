@@ -14,11 +14,10 @@ class main_model extends connect
         $this->catalogo = "catalogo";
     }
 
-    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $genero, $estrangeiro, $ficcao)
+    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $genero, $literatura, $ficcao)
     {
-        $sql_check = $this->connect->prepare("SELECT * FROM catalogo WHERE titulo_livro = :titulo AND ano_publicacao = :ano_publicacao AND editora = :editora AND edicao = :edicao");
+        $sql_check = $this->connect->prepare("SELECT * FROM catalogo WHERE titulo_livro = :titulo AND editora = :editora AND edicao = :edicao");
         $sql_check->bindValue(':titulo', $titulo);
-        $sql_check->bindValue(':ano_publicacao', $data);
         $sql_check->bindValue(':editora', $editora);
         $sql_check->bindValue(':edicao', $edicao);
         $sql_check->execute();
@@ -32,7 +31,7 @@ class main_model extends connect
                 $sql_idgenero = $this->connect->query("SELECT id_genero FROM subgenero WHERE subgenero = '$subgenero'");
                 $id_genero = $sql_idgenero->fetch(PDO::FETCH_ASSOC);
 
-                $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :edicao, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero, :ficcao, :estrangeiro)");
+                $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :edicao, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero, :ficcao, :literatura)");
 
                 $cadastro_livro->bindValue(':titulo_livro', $titulo);
                 $cadastro_livro->bindValue(':ano_publicacao', $data);
@@ -45,14 +44,12 @@ class main_model extends connect
                 $cadastro_livro->bindValue(':genero', $id_genero['id_genero']);
                 $cadastro_livro->bindValue(':subgenero', $id_subgenero['id']);
                 $cadastro_livro->bindValue(':ficcao', $ficcao);
-                $cadastro_livro->bindValue(':estrangeiro', $estrangeiro);
+                $cadastro_livro->bindValue(':literatura', $literatura);
 
                 $cadastro_livro->execute();
 
-
-                $sql_id_livro = $this->connect->prepare("SELECT id FROM catalogo WHERE titulo_livro = :titulo AND ano_publicacao = :ano_publicacao AND editora = :editora AND edicao = :edicao");
+                $sql_id_livro = $this->connect->prepare("SELECT id FROM catalogo WHERE titulo_livro = :titulo AND editora = :editora AND edicao = :edicao");
                 $sql_id_livro->bindValue(':titulo', $titulo);
-                $sql_id_livro->bindValue(':ano_publicacao', $data);
                 $sql_id_livro->bindValue(':editora', $editora);
                 $sql_id_livro->bindValue(':edicao', $edicao);
                 $sql_id_livro->execute();
@@ -80,7 +77,7 @@ class main_model extends connect
                 $sql_id_genero = $this->connect->query("SELECT id FROM genero WHERE generos = '$genero'");
                 $id_genero = $sql_id_genero->fetch(PDO::FETCH_ASSOC);
 
-                $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira, :genero, NULL, :ficcao, :estrangeiro)");
+                $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira, :genero, NULL, :ficcao, :literatura)");
 
                 $cadastro_livro->bindValue(':titulo_livro', $titulo);
                 $cadastro_livro->bindValue(':ano_publicacao', $data);
@@ -91,7 +88,7 @@ class main_model extends connect
                 $cadastro_livro->bindValue(':prateleira', $prateleira);
                 $cadastro_livro->bindValue(':genero', $id_genero['id']);
                 $cadastro_livro->bindValue(':ficcao', $ficcao);
-                $cadastro_livro->bindValue(':estrangeiro', $estrangeiro);
+                $cadastro_livro->bindValue(':literatura', $literatura);
 
                 $cadastro_livro->execute();
 

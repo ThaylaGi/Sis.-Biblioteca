@@ -30,18 +30,56 @@ $select_model = new select_model();
         }
     </script>
     <style>
-        input[type="checkbox"]:checked {
+        input[type="checkbox"]:checked,
+        input[type="radio"]:checked {
             background-color: #007A33 !important;
             border-color: #007A33 !important;
         }
 
-        input[type="checkbox"]:checked:focus {
+        input[type="checkbox"]:checked:focus,
+        input[type="radio"]:checked:focus {
             --tw-ring-color: rgba(0, 122, 51, 0.2);
+        }
+
+        input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input[type="radio"]:checked {
+            border-color: #007A33;
+            background-color: #007A33;
+            box-shadow: inset 0 0 0 4px #fff;
+        }
+
+        input[type="radio"]:focus {
+            box-shadow: 0 0 0 3px rgba(0, 122, 51, 0.2);
         }
 
         .tab-button.active {
             color: #007A33 !important;
             border-bottom: 2px solid #007A33 !important;
+        }
+
+        .radio-option {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .radio-option:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-1px);
+        }
+
+        .radio-option input:checked + span {
+            color: #007A33;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -81,72 +119,94 @@ $select_model = new select_model();
 
                 <div id="book-info" class="tab-content space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="relative group" id="generoContainer">
-                        <div class="flex items-center space-x-6 pt-2">
-                            <label for="">Literatura:</label>
-                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                <input type="radio" name="estrangeiro" value="1"
-                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
-                                <span>Brasileiro</span>
-                                <input type="radio" name="estrangeiro" value="1"
-                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
-                                <span>Estrangeiro</span>
-                            </label>
-                            <label for=""></label>
-                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                <input type="radio" name="ficcao" value="1"
-                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
-                                <span>Ficção</span>
-                                <input type="radio" name="ficcao" value="1"
-                                    class="h-5 w-5 text-ceara-green border-gray-300 rounded focus:ring-ceara-green accent-ceara-green">
-                                <span>Não Ficção</span>
-                            </label>
-                        </div>
-                            <label for="nomeGenero" class="block text-sm font-medium text-gray-700 mb-1">Gênero</label>
-                            <div class="relative">
-                                <select id="nomeGenero" name="nomeGenero"
-                                    class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer">
-                                    <option value="" disabled selected>Selecione o Gênero</option>
-                                    <?php
-                                    $generos = $select_model->select_genero();
-                                    foreach ($generos as $genero) {
-                                        echo "<option value='{$genero['generos']}'>{$genero['generos']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                        <div class="relative group">
+                            <div class="p-5 rounded-lg">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                  
+                                </h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Origem</label>
+                                        <div class="flex space-x-4">
+                                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                                <input type="radio" name="1" value="1"
+                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                                <span class="text-sm">Brasileiro</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                                <input type="radio" name="0" value="0"
+                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                                <span class="text-sm">Estrangeiro</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Tipo</label>
+                                        <div class="flex space-x-4">
+                                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                                <input type="radio" name="ficcao" value="1"
+                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                                <span class="text-sm">Ficção</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                                <input type="radio" name="ficcao" value="0"
+                                                    class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                                <span class="text-sm">Não Ficção</span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="button" id="revertGenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
-                                <i class="fas fa-undo mr-1"></i> Reverter e mostrar Subgênero
-                            </button>
                         </div>
 
-                        <div class="relative group" id="subgeneroContainer">
-                            <label for="nomesubGenero" class="block text-sm font-medium text-gray-700 mb-1">Subgênero</label>
-                            <div class="relative">
-                                <select id="nomesubGenero" name="nomesubGenero"
-                                    class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer">
-                                    <option value="" disabled selected>Selecione o Subgênero</option>
-                                    <?php
-                                    foreach ($generos as $genero) {
-                                        $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
-                                        echo "<optgroup label='{$genero['generos']}'>";
-                                        foreach ($subgeneros as $subgenero) {
-                                            echo "<option value='{$subgenero['subgenero']}'>{$subgenero['subgenero']}</option>";
+                        <div class="grid grid-cols-2 gap-4">
+                            <div id="generoSelectContainer">
+                                <label for="nomeGenero" class="block text-sm font-medium text-gray-700 mb-1">Gênero</label>
+                                <div class="relative">
+                                    <select id="nomeGenero" name="nomeGenero"
+                                        class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer">
+                                        <option value="" disabled selected>Selecione o Gênero</option>
+                                        <?php
+                                        $generos = $select_model->select_genero();
+                                        foreach ($generos as $genero) {
+                                            echo "<option value='{$genero['generos']}'>{$genero['generos']}</option>";
                                         }
-                                        echo "</optgroup>";
-                                    }
-                                    ?>
-                                </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                        ?>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                    </div>
                                 </div>
+                                <button type="button" id="revertGenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
+                                    <i class="fas fa-undo mr-1"></i> Reverter e mostrar Subgênero
+                                </button>
                             </div>
-                            <button type="button" id="revertSubgenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
-                                <i class="fas fa-undo mr-1"></i> Reverter e mostrar Gênero
-                            </button>
+
+                            <div id="subgeneroContainer">
+                                <label for="nomesubGenero" class="block text-sm font-medium text-gray-700 mb-1">Subgênero</label>
+                                <div class="relative">
+                                    <select id="nomesubGenero" name="nomesubGenero"
+                                        class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer">
+                                        <option value="" disabled selected>Selecione o Subgênero</option>
+                                        <?php
+                                        foreach ($generos as $genero) {
+                                            $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
+                                            echo "<optgroup label='{$genero['generos']}'>";
+                                            foreach ($subgeneros as $subgenero) {
+                                                echo "<option value='{$subgenero['subgenero']}'>{$subgenero['subgenero']}</option>";
+                                            }
+                                            echo "</optgroup>";
+                                        }
+                                        ?>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <button type="button" id="revertSubgenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
+                                    <i class="fas fa-undo mr-1"></i> Reverter e mostrar Gênero
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -172,7 +232,6 @@ $select_model = new select_model();
                         </div>
                     </div>
 
-                    <!-- ... (Restante do HTML mantido) ... -->
                     <div class="space-y-4">
                         <div>
                             <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
@@ -194,9 +253,8 @@ $select_model = new select_model();
                                 class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
                                 placeholder="Número da edição" required>
                         </div>
-
-                        
                     </div>
+
                     <?php if (isset($_GET['true'])): ?>
                         <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md"
                             role="alert">
@@ -220,6 +278,7 @@ $select_model = new select_model();
                             <span class="text-sm font-medium">Livro já cadastrado!</span>
                         </div>
                     <?php endif; ?>
+
                     <div class="mt-8">
                         <button type="button" id="nextButton"
                             class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
@@ -374,7 +433,7 @@ $select_model = new select_model();
             // Gênero e Subgênero
             const generoSelect = document.getElementById('nomeGenero');
             const subgeneroSelect = document.getElementById('nomesubGenero');
-            const generoContainer = document.getElementById('generoContainer');
+            const generoSelectContainer = document.getElementById('generoSelectContainer');
             const subgeneroContainer = document.getElementById('subgeneroContainer');
             const revertGeneroBtn = document.getElementById('revertGenero');
             const revertSubgeneroBtn = document.getElementById('revertSubgenero');
@@ -392,11 +451,11 @@ $select_model = new select_model();
 
             subgeneroSelect.addEventListener('change', function() {
                 if (subgeneroSelect.value !== "") {
-                    generoContainer.style.display = 'none';
+                    generoSelectContainer.style.display = 'none';
                     generoSelect.value = "";
                     revertSubgeneroBtn.classList.remove('hidden');
                 } else {
-                    generoContainer.style.display = 'block';
+                    generoSelectContainer.style.display = 'block';
                     revertSubgeneroBtn.classList.add('hidden');
                 }
             });
@@ -404,13 +463,13 @@ $select_model = new select_model();
             revertGeneroBtn.addEventListener('click', function() {
                 subgeneroContainer.style.display = 'block';
                 revertGeneroBtn.classList.add('hidden');
-                generoSelect.value = ""; // Limpa o gênero ao reverter
+                generoSelect.value = "";
             });
 
             revertSubgeneroBtn.addEventListener('click', function() {
-                generoContainer.style.display = 'block';
+                generoSelectContainer.style.display = 'block';
                 revertSubgeneroBtn.classList.add('hidden');
-                subgeneroSelect.value = ""; // Limpa o subgênero ao reverter
+                subgeneroSelect.value = "";
             });
 
             // Tabs functionality
@@ -528,3 +587,4 @@ $select_model = new select_model();
 </body>
 
 </html>
+

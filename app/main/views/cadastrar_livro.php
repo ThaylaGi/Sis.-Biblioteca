@@ -8,13 +8,7 @@ $select_model = new select_model();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php
-    // Verifica se algum dos parâmetros está presente
-    if (isset($_GET['true']) || isset($_GET['erro']) || isset($_GET['ja_cadastrado'])) {
-        // Redireciona após 3 segundos
-        echo '<meta http-equiv="refresh" content="3; url=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/cadastrar_livro.php">';
-    }
-    ?>
+   
 
     <title>Formulário Biblioteca</title>
     <script src="https://cdn.tailwindcss.com"></script>

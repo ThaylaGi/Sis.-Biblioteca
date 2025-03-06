@@ -77,11 +77,12 @@ class main_model extends connect
                 $sql_id_genero = $this->connect->query("SELECT id FROM genero WHERE generos = '$genero'");
                 $id_genero = $sql_id_genero->fetch(PDO::FETCH_ASSOC);
 
-                $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :quantidade, :corredor, :estante, :prateleira, :genero, NULL, :ficcao, :literatura)");
+                $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (NULL, :titulo_livro, :ano_publicacao, :editora, :edicao, :quantidade, :corredor, :estante, :prateleira, :genero, NULL, :ficcao, :literatura)");
 
                 $cadastro_livro->bindValue(':titulo_livro', $titulo);
                 $cadastro_livro->bindValue(':ano_publicacao', $data);
                 $cadastro_livro->bindValue(':editora', $editora);
+                $cadastro_livro->bindValue(':edicao', $edicao);
                 $cadastro_livro->bindValue(':quantidade', $quantidade);
                 $cadastro_livro->bindValue(':corredor', $corredor);
                 $cadastro_livro->bindValue(':estante', $estante);

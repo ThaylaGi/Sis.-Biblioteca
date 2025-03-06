@@ -129,14 +129,14 @@ $select_model = new select_model();
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Origem</label>
                                         <div class="flex space-x-4">
                                             <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                                <input type="radio" name="1" value="1"
+                                                <input type="radio" name="literatura" value="Brasileira"
                                                     class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
-                                                <span class="text-sm">Brasileiro</span>
+                                                <span class="text-sm">Brasileira</span>
                                             </label>
                                             <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                                <input type="radio" name="0" value="0"
+                                                <input type="radio" name="literatura" value="Estrangeira"
                                                     class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
-                                                <span class="text-sm">Estrangeiro</span>
+                                                <span class="text-sm">Estrangeira</span>
                                             </label>
                                         </div>
                                     </div>

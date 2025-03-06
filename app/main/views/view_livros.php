@@ -120,7 +120,7 @@ $select_model = new select_model();
                     <td><?= $dados['id_genero'] ?></td>
                     <td><?= $dados['id_subgenero'] == NULL ? "Sem subgenero" : $dados['id_subgenero'] ?></td>
                     <td class="<?= $dados['ficcao'] == 1 ? 'sim' : 'nao' ?>"><?= $dados['ficcao'] == 1 ? 'Sim' : 'Não' ?></td>
-                    <td class="<?= $dados['estrangeiro'] == 1 ? 'sim ' : 'nao' ?>"><?= $dados['estrangeiro'] == 1 ? 'Estrageria' : 'Brasileira' ?></td>
+                    <td class="<?= $dados['literatura'] ?>"><?= $dados['literatura']?></td>
                     <td><?= $dados['quantidade'] ?></td>
                 </tr>
             <?php } ?>

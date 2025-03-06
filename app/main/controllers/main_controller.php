@@ -29,10 +29,10 @@ if (
     $prateleira = $_POST['prateleira'];
     $genero = $_POST['nomeGenero'] ?? 0;
     $subgenero = $_POST['nomesubGenero'] ?? 0;
-    $literatura = $_POST['estrangeiro'] == 0 ? "Brasileira":"Estrangeira";
+    $literatura = $_POST['literatura'] == 0 ? "Brasileira":"Estrangeira";
     $ficcao = $_POST['ficcao'] ?? 0;
 
-    /*$model = new main_model();
+    $model = new main_model();
     $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $genero, $literatura, $ficcao);
 
     switch ($result) {
@@ -48,7 +48,7 @@ if (
         default:
             header('location:../index.php');
             exit();
-    }*/
+    }
 } else if (isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])) {
 
     $genero = $_POST['genero'];

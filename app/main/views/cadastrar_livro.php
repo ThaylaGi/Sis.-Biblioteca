@@ -8,6 +8,14 @@ $select_model = new select_model();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    // Verifica se algum dos parâmetros está presente
+    if (isset($_GET['true']) || isset($_GET['erro']) || isset($_GET['ja_cadastrado'])) {
+        // Redireciona após 3 segundos
+        echo '<meta http-equiv="refresh" content="3; url=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/cadastrar_livro.php">';
+    }
+    ?>
+
     <title>Formulário Biblioteca</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -77,7 +85,7 @@ $select_model = new select_model();
             transform: translateY(-1px);
         }
 
-        .radio-option input:checked + span {
+        .radio-option input:checked+span {
             color: #007A33;
             font-weight: 600;
         }
@@ -121,7 +129,7 @@ $select_model = new select_model();
                     <div class="grid grid-cols-1 gap-6">
                         <div class="relative group  p-5 rounded-lg ">
                             <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                         
+
                             </h3>
                             <div class="space-y-6">
                                 <!-- Origem e Tipo -->

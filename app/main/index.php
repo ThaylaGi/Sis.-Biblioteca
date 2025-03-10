@@ -65,7 +65,7 @@
                         Biblioteca</h1>
                 </div>
 
-           
+
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#features" class="hover:text-ceara-orange transition-colors">
                         <i class="fas fa-tools mr-2"></i>Recursos
@@ -77,7 +77,7 @@
 
                 </div>
 
-               
+
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-800 p-2">
                         <i class="fas fa-bars text-xl"></i>
@@ -122,11 +122,11 @@
         <div class="max-w-7xl mx-auto px-4 ">
             <h3 class="text-2xl md:text-3xl font-bold text-center mb-12 text-ceara-green">Recursos Principais</h3>
 
- 
+
             <div class="relative">
                 <div
                     class="cards-container flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar">
-             
+
                     <div class="card-hover group min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center">
                         <div class="bg-ceara-white p-6 rounded-lg h-full shadow-lg">
                             <a href="./views/decisão.php">
@@ -158,7 +158,7 @@
                         </div>
                     </div>
 
-            
+
                     <div class="card-hover group min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center">
                         <div class="bg-ceara-white p-6 rounded-lg h-full shadow-lg">
                             <div class="flex flex-col items-center text-center">
@@ -176,16 +176,10 @@
         </div>
     </section>
 
-
-
-
-
-
-
     <footer id="footer" class="bg-ceara-white py-12">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    
+
                 <div class="flex flex-col items-center md:items-start space-y-4">
                     <h1 class="text-3xl font-bold gradient-text" style="font-family: 'Anton', serif;">
                         Biblioteca
@@ -197,7 +191,7 @@
 
             </div>
 
-   
+
             <div class="border-t border-gray-200 mt-8 pt-6">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-600 text-sm">&copy; 2025 Sistema Biblioteca. Todos os direitos reservados.</p>

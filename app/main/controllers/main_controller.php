@@ -25,7 +25,7 @@ if (
     $estante = $_POST['estante'];
     $prateleira = $_POST['prateleira'];
     $subgenero = $_POST['nomesubGenero'];
-    $literatura = $_POST['literatura'] == 0 ? "Brasileira":"Estrangeira";
+    $literatura = $_POST['literatura'];
     $ficcao = $_POST['ficcao'] ?? 0;
 
     $model = new main_model();

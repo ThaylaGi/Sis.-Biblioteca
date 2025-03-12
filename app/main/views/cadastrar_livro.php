@@ -111,8 +111,11 @@ $select_model = new select_model();
 <body class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 lg:p-12 select-none"
     style="background-image: url('../assets/img/layout.png'); background-size: cover; background-attachment: fixed;">
 
-    <a href="decisão.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
-        <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
+
+    <a href="decisão.php"
+        class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
+        <i class="fa-solid fa-arrow-left text-ceara-green group-hover:text-white"></i>
+        <span class="text-ceara-green group-hover:text-white font-medium">Voltar</span>
     </a>
 
     <div class="max-w-4xl mx-auto">
@@ -120,7 +123,8 @@ $select_model = new select_model();
             class="w-[200px] sm:w-[250px] md:w-[300px] mx-auto mb-8 drop-shadow-xl hover:scale-105 transition-transform duration-300"
             alt="Logo">
 
-        <div class="bg-white rounded-xl shadow-custom overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg">
+        <div
+            class="bg-white rounded-xl shadow-custom overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg">
             <div class="bg-gradient-to-r from-ceara-green to-ceara-green-dark p-6 sm:p-8">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center tracking-wide">
                     <i class="fas fa-book mr-3"></i>Cadastro de Livros
@@ -148,11 +152,14 @@ $select_model = new select_model();
                                 <label class="block text-sm font-medium text-gray-700">Literatura</label>
                                 <div class="flex flex-col space-y-2">
                                     <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                        <input type="radio" name="literatura" value="Brasileira" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green" required>
+                                        <input type="radio" name="literatura" value="Brasileira"
+                                            class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green"
+                                            required>
                                         <span class="text-sm">Brasileira</span>
                                     </label>
                                     <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                        <input type="radio" name="literatura" value="Estrangeira" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                        <input type="radio" name="literatura" value="Estrangeira"
+                                            class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
                                         <span class="text-sm">Estrangeira</span>
                                     </label>
                                 </div>
@@ -161,11 +168,14 @@ $select_model = new select_model();
                                 <label class="block text-sm font-medium text-gray-700">Tipo</label>
                                 <div class="flex flex-col space-y-2">
                                     <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                        <input type="radio" name="ficcao" value="1" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green" required>
+                                        <input type="radio" name="ficcao" value="1"
+                                            class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green"
+                                            required>
                                         <span class="text-sm">Ficção</span>
                                     </label>
                                     <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                        <input type="radio" name="ficcao" value="0" class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                        <input type="radio" name="ficcao" value="0"
+                                            class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
                                         <span class="text-sm">Não Ficção</span>
                                     </label>
                                 </div>
@@ -176,20 +186,23 @@ $select_model = new select_model();
                         <div class="space-y-2">
                             <label for="nomesubGenero" class="block text-sm font-medium text-gray-700">Subgênero</label>
                             <div class="relative">
-                                <select id="nomesubGenero" name="nomesubGenero" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
+                                <select id="nomesubGenero" name="nomesubGenero"
+                                    class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
+                                    required>
                                     <option value="" disabled selected>Selecione o Subgênero</option>
                                     <?php
                                     $generos = $select_model->select_genero();
 
                                     foreach ($generos as $genero) {
                                         $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
-                                    ?>
+                                        ?>
                                         <optgroup label="<?= $genero['generos'] ?>"></optgroup>
                                         <?php
                                         foreach ($subgeneros as $subgenero) {
-                                        ?>
+                                            ?>
 
-                                            <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?></option>
+                                            <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?>
+                                            </option>
                                         <?php } ?>
                                         </optgroup>
                                     <?php } ?>
@@ -198,7 +211,8 @@ $select_model = new select_model();
                                     <i class="fas fa-chevron-down text-gray-400"></i>
                                 </div>
                             </div>
-                            <button type="button" id="revertSubgenero" class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
+                            <button type="button" id="revertSubgenero"
+                                class="hidden mt-2 text-ceara-green hover:text-ceara-green-dark text-sm">
                                 <i class="fas fa-undo mr-1"></i> Reverter e mostrar Gênero
                             </button>
                         </div>
@@ -209,12 +223,17 @@ $select_model = new select_model();
                             <div class="author-row space-y-4" data-index="1">
                                 <div class="flex items-center space-x-4">
                                     <div class="flex-grow">
-                                        <input type="text" id="nome1" name="nome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Nome do Autor" required>
+                                        <input type="text" id="nome1" name="nome[]"
+                                            class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                            placeholder="Nome do Autor" required>
                                     </div>
                                     <div class="flex-grow">
-                                        <input type="text" id="sobrenome1" name="sobrenome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Sobrenome" required>
+                                        <input type="text" id="sobrenome1" name="sobrenome[]"
+                                            class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                            placeholder="Sobrenome" required>
                                     </div>
-                                    <button type="button" id="addAuthor" class="text-ceara-green p-2 rounded-full transition-colors duration-200">
+                                    <button type="button" id="addAuthor"
+                                        class="text-ceara-green p-2 rounded-full transition-colors duration-200">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
@@ -225,43 +244,67 @@ $select_model = new select_model();
                         <div class="space-y-4">
                             <div>
                                 <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
-                                <input type="text" id="titulo" name="titulo" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Título do livro" required>
+                                <input type="text" id="titulo" name="titulo"
+                                    class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                    placeholder="Título do livro" required>
                             </div>
 
                             <div>
-                                <label for="editora" class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
-                                <input type="text" id="editora" name="editora" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Nome da editora" required>
+                                <label for="editora"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
+                                <input type="text" id="editora" name="editora"
+                                    class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                    placeholder="Nome da editora" required>
                             </div>
 
                             <div>
                                 <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
-                                <input type="text" id="edicao" name="edicao" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Número da edição">
+                                <input type="text" id="edicao" name="edicao"
+                                    class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                    placeholder="Número da edição"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <div class="mt-2">
+                                    <input type="checkbox" id="semEdicao" name="semEdicao"
+                                        class="mr-2 h-4 w-4 text-ceara-green focus:ring-ceara-green border-gray-300 rounded accent-ceara-green"
+                                        onchange="document.getElementById('edicao').disabled = this.checked; document.getElementById('edicao').value = this.checked ? '' : document.getElementById('edicao').value;">
+                                    <label for="semEdicao" class="text-sm text-gray-600">Não existe edição</label>
+                                </div>
                             </div>
+
+                            <style>
+                                input[type="checkbox"] {
+                                    accent-color: #007A33;
+                                }
+                            </style>
                         </div>
 
                         <?php if (isset($_GET['true'])): ?>
-                            <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md" role="alert">
+                            <div class="flex items-center p-4 mb-4 text-green-800 border-l-4 border-green-500 bg-green-50 rounded-md"
+                                role="alert">
                                 <i class="fas fa-check-circle text-xl mr-3"></i>
                                 <span class="text-sm font-medium">Livro cadastrado com sucesso!</span>
                             </div>
                         <?php endif; ?>
 
                         <?php if (isset($_GET['false'])): ?>
-                            <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md" role="alert">
+                            <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md"
+                                role="alert">
                                 <i class="fas fa-exclamation-circle text-xl mr-3"></i>
                                 <span class="text-sm font-medium">ERRO ao cadastrar livro!</span>
                             </div>
                         <?php endif; ?>
 
                         <?php if (isset($_GET['ja_cadastrado'])): ?>
-                            <div class="flex items-center p-4 mb-4 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50 rounded-md" role="alert">
+                            <div class="flex items-center p-4 mb-4 text-yellow-800 border-l-4 border-yellow-500 bg-yellow-50 rounded-md"
+                                role="alert">
                                 <i class="fas fa-exclamation-triangle text-xl mr-3"></i>
                                 <span class="text-sm font-medium">Livro já cadastrado!</span>
                             </div>
                         <?php endif; ?>
 
                         <div class="mt-8">
-                            <button type="button" id="nextButton" class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                            <button type="button" id="nextButton"
+                                class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                                 <i class="fas fa-arrow-right mr-3"></i>
                                 Avançar
                             </button>
@@ -271,15 +314,19 @@ $select_model = new select_model();
 
                 <div id="location" class="tab-content space-y-6 hidden">
                     <div>
-                        <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de entrada</label>
-                        <input type="text" id="data" name="data" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="DD/MM/AAAA" required>
+                        <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de criação</label>
+                        <input type="text" id="data" name="data"
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                            placeholder="DD/MM/AAAA" required>
                         <span id="dataError" class="text-red-500 text-xs hidden mt-1">Data inválida</span>
                     </div>
 
                     <div>
                         <label for="corredor" class="block text-sm font-medium text-gray-700 mb-1">Corredor</label>
                         <div class="relative">
-                            <select id="corredor" name="corredor" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
+                            <select id="corredor" name="corredor"
+                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
+                                required>
                                 <option value="" disabled selected>Selecione o Corredor</option>
                                 <option value="A">Corredor A</option>
                                 <option value="B">Corredor B</option>
@@ -294,13 +341,17 @@ $select_model = new select_model();
 
                     <div>
                         <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
-                        <input type="number" id="quantidade" name="quantidade" min="1" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Quantidade de livros" required>
+                        <input type="number" id="quantidade" name="quantidade" min="1"
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                            placeholder="Quantidade de livros" required>
                     </div>
 
                     <div>
                         <label for="estante" class="block text-sm font-medium text-gray-700 mb-1">Estante</label>
                         <div class="relative">
-                            <select id="estante" name="estante" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
+                            <select id="estante" name="estante"
+                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
+                                required>
                                 <option value="" disabled selected>Selecione a Estante</option>
                                 <?php for ($i = 1; $i <= 32; $i++) { ?>
                                     <option value="<?= $i ?>">Estante <?= $i ?></option>
@@ -315,7 +366,9 @@ $select_model = new select_model();
                     <div>
                         <label for="prateleira" class="block text-sm font-medium text-gray-700 mb-1">Prateleira</label>
                         <div class="relative">
-                            <select id="prateleira" name="prateleira" class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer" required>
+                            <select id="prateleira" name="prateleira"
+                                class="w-full pl-3 pr-10 py-3 text-base border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none appearance-none bg-white hover:border-gray-300 text-gray-600 transition-all duration-200 cursor-pointer"
+                                required>
                                 <option value="" disabled selected>Selecione a Prateleira</option>
                                 <?php for ($i = 1; $i <= 5; $i++): ?>
                                     <option value="P<?= $i ?>">Prateleira <?= $i ?></option>
@@ -328,12 +381,14 @@ $select_model = new select_model();
                     </div>
 
                     <div class="mt-8 space-y-4">
-                        <button type="button" id="backButton" class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                        <button type="button" id="backButton"
+                            class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-arrow-left mr-3"></i>
                             Voltar
                         </button>
 
-                        <button type="submit" class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-paper-plane mr-3"></i>
                             Cadastrar Livro
                         </button>
@@ -344,7 +399,7 @@ $select_model = new select_model();
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Autores
             const authorFields = document.getElementById('authorFields');
             const addAuthorBtn = document.getElementById('addAuthor');
@@ -370,7 +425,7 @@ $select_model = new select_model();
                 `;
                 authorFields.appendChild(newAuthorRow);
 
-                newAuthorRow.querySelector('.remove-author').addEventListener('click', function(e) {
+                newAuthorRow.querySelector('.remove-author').addEventListener('click', function (e) {
                     e.preventDefault();
                     newAuthorRow.remove();
                     authorCount--;
@@ -390,7 +445,7 @@ $select_model = new select_model();
                 });
             }
 
-            addAuthorBtn.addEventListener('click', function(e) {
+            addAuthorBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 addAuthor();
             });
@@ -432,7 +487,7 @@ $select_model = new select_model();
                 });
             }
 
-            nextButton.addEventListener('click', function() {
+            nextButton.addEventListener('click', function () {
                 const requiredFields = document.querySelectorAll('#book-info [required]');
                 const literatura = document.querySelector('input[name="literatura"]:checked');
                 const ficcao = document.querySelector('input[name="ficcao"]:checked');
@@ -490,7 +545,7 @@ $select_model = new select_model();
                 }
             });
 
-            backButton.addEventListener('click', function() {
+            backButton.addEventListener('click', function () {
                 switchTab('book-info');
                 validationMessage.classList.add('hidden');
             });
@@ -513,7 +568,7 @@ $select_model = new select_model();
             const dataInput = document.getElementById('data');
             const dataError = document.getElementById('dataError');
 
-            dataInput.addEventListener('input', function(e) {
+            dataInput.addEventListener('input', function (e) {
                 let value = e.target.value.replace(/\D/g, '');
                 value = value.slice(0, 8);
 

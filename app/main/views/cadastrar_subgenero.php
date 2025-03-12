@@ -39,8 +39,10 @@ $select_model = new select_model();
 <body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
 
-    <a href="decisão.php" class="fixed top-5 left-5 z-50 cursor-pointer hover:scale-110 transition-transform duration-300">
-        <i class="fa-solid fa-arrow-left text-2xl text-ceara-green hover:text-ceara-orange"></i>
+  
+    <a href="decisão.php" class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
+        <i class="fa-solid fa-arrow-left text-ceara-green group-hover:text-white"></i>
+        <span class="text-ceara-green group-hover:text-white font-medium">Voltar</span>
     </a>
 
     <div class="flex flex-col items-center">

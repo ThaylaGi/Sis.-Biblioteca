@@ -1,13 +1,15 @@
 <?php
 require_once('../models/main_model.php');
-print_r($_POST);
+print_r($_POST); // Para debug, pode remover depois
+
+// Ajustando a condição para tornar 'edicao' opcional
 if (
-    isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero'])&&
+    isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) &&
     isset($_POST['nome']) && !empty($_POST['nome']) &&
     isset($_POST['sobrenome']) && !empty($_POST['sobrenome']) &&
     isset($_POST['titulo']) && !empty($_POST['titulo']) &&
     isset($_POST['editora']) && !empty($_POST['editora']) &&
-    isset($_POST['edicao']) && !empty($_POST['edicao']) &&
+    // Removendo a obrigatoriedade de 'edicao' estar preenchido
     isset($_POST['data']) && !empty($_POST['data']) &&
     isset($_POST['corredor']) && !empty($_POST['corredor']) &&
     isset($_POST['quantidade']) && !empty($_POST['quantidade']) &&
@@ -19,13 +21,14 @@ if (
     $titulo = $_POST['titulo'];
     $data = $_POST['data'];
     $editora = $_POST['editora'];
-    $edicao = $_POST['edicao'];
+    // Definindo "EDIÇÃO NÃO INFORMADA" se edicao estiver vazio ou não informado
+    $edicao = (!isset($_POST['edicao']) || empty($_POST['edicao'])) ? "EDIÇÃO NÃO INFORMADA" : $_POST['edicao'];
     $quantidade = $_POST['quantidade'];
     $corredor = $_POST['corredor'];
     $estante = $_POST['estante'];
     $prateleira = $_POST['prateleira'];
     $subgenero = $_POST['nomesubGenero'];
-    $literatura = $_POST['literatura'];
+    $literatura = $_POST['literatura'] == 0 ? "Brasileira" : "Estrangeira";
     $ficcao = $_POST['ficcao'] ?? 0;
 
     $model = new main_model();
@@ -46,15 +49,13 @@ if (
             exit();
     }
 } else if (isset($_POST['genero']) && !empty($_POST['genero']) && isset($_POST['subgenero']) && !empty($_POST['subgenero'])) {
-
-    echo $genero = $_POST['genero'];
-    echo $subgenero = $_POST['subgenero'];
+    $genero = $_POST['genero'];
+    $subgenero = $_POST['subgenero'];
 
     $model = new main_model();
     $result = $model->cadastrar_subgenero($genero, $subgenero);
 
     switch ($result) {
-
         case 1:
             header('location:../views/cadastrar_subgenero.php?true');
             break;
@@ -69,13 +70,11 @@ if (
             exit();
     }
 } else if (isset($_POST['novo_genero']) && !empty($_POST['novo_genero'])) {
-
     $novo_genero = $_POST['novo_genero'];
     $model = new main_model();
     $result = $model->cadastrar_genero($novo_genero);
 
     switch ($result) {
-
         case 1:
             header('location:../views/cadastrar_genero.php?true');
             break;
@@ -89,8 +88,9 @@ if (
             header('location:../index.php');
             exit();
     }
-} /*else {
-
+} /* else {
     header('location:../index.php');
     exit();
-}*/
+}
+    */
+?>

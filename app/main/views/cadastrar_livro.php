@@ -225,7 +225,7 @@ $select_model = new select_model();
                                     <div class="flex-grow">
                                         <input type="text" id="nome1" name="nome[]"
                                             class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                            placeholder="Nome do Autor" required>
+                                            placeholder="Autor" required>
                                     </div>
                                     <div class="flex-grow">
                                         <input type="text" id="sobrenome1" name="sobrenome[]"
@@ -413,7 +413,7 @@ $select_model = new select_model();
                 newAuthorRow.innerHTML = `
                     <div class="flex items-center space-x-4">
                         <div class="flex-grow">
-                            <input type="text" id="nome${authorCount}" name="nome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Nome do Autor" required>
+                            <input type="text" id="nome${authorCount}" name="nome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Autor" required>
                         </div>
                         <div class="flex-grow">
                             <input type="text" id="sobrenome${authorCount}" name="sobrenome[]" class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200" placeholder="Sobrenome" required>

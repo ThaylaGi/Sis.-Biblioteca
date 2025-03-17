@@ -21,8 +21,8 @@ if (
     $titulo = $_POST['titulo'];
     $data = $_POST['data'];
     $editora = $_POST['editora'];
-    // Definindo "EDIÇÃO NÃO INFORMADA" se edicao estiver vazio ou não informado
-    $edicao = (!isset($_POST['edicao']) || empty($_POST['edicao'])) ? "EDIÇÃO NÃO INFORMADA" : $_POST['edicao'];
+    // Definindo "ENI" se edicao estiver vazio ou não informado (ajustado de "EDIÇÃO NÃO INFORMADA" para "ENI")
+    $edicao = (!isset($_POST['edicao']) || empty($_POST['edicao'])) ? "ENI" : $_POST['edicao'];
     $quantidade = $_POST['quantidade'];
     $corredor = $_POST['corredor'];
     $estante = $_POST['estante'];

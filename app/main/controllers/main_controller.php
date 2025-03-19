@@ -1,6 +1,5 @@
 <?php
 require_once('../models/main_model.php');
-print_r($_POST); // Para debug, pode remover depois
 
 // Ajustando a condição para tornar 'edicao' opcional
 if (

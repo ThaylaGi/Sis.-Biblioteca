@@ -5,31 +5,34 @@ class PDF extends FPDF
 {
     function Header()
     {
-        $this->Image('../../assets/img/logo.png', 20, 14, 50);
-        $this->Ln(20);
+        // Only show the title on the first page
+        if ($this->PageNo() == 1) {
+            $this->Image('../../assets/img/logo.png', 20, 14, 50);
+            $this->Ln(20);
 
-        $this->SetX(20);
-        $this->SetFont('Arial', 'B', 20);
-        $this->SetTextColor(0, 122, 51);
-        $this->Cell($this->GetPageWidth() - 40, 20, utf8_decode('RELATÓRIO GERAL DE ACERVO'), 0, 1, 'C');
+            $this->SetX(20);
+            $this->SetFont('Arial', 'B', 20);
+            $this->SetTextColor(0, 122, 51);
+            $this->Cell($this->GetPageWidth() - 40, 20, utf8_decode('RELATÓRIO GERAL DE ACERVO'), 0, 1, 'C');
 
-        $this->SetX(20);
-        $this->SetFont('Arial', 'B', 14);
-        $this->SetTextColor(255, 165, 0);
-        $this->Cell($this->GetPageWidth() - 40, 20, "BIBLIOTECA STGM", 0, 1, 'C');
+            $this->SetX(20);
+            $this->SetFont('Arial', 'B', 14);
+            $this->SetTextColor(255, 165, 0);
+            $this->Cell($this->GetPageWidth() - 40, 20, "BIBLIOTECA STGM", 0, 1, 'C');
 
-        $pageWidth = $this->GetPageWidth() - 160;
-        $texto = utf8_decode('*ENI: Edição Não Informada');
-        $textoLargura = $this->GetStringWidth($texto);
-        $colunaQtdLargura = $pageWidth * 0.08;
-        $posX = $pageWidth - $colunaQtdLargura;
+            $pageWidth = $this->GetPageWidth() - 160;
+            $texto = utf8_decode('*ENI: Edição Não Informada');
+            $textoLargura = $this->GetStringWidth($texto);
+            $colunaQtdLargura = $pageWidth * 0.08;
+            $posX = $pageWidth - $colunaQtdLargura;
 
-        $this->SetX($posX);
-        $this->SetFont('Arial', 'B', 10);
-        $this->SetTextColor(0, 122, 51);
-        $this->Cell($textoLargura, 10, $texto, 0, 1, 'R');
+            $this->SetX($posX);
+            $this->SetFont('Arial', 'B', 10);
+            $this->SetTextColor(0, 122, 51);
+            $this->Cell($textoLargura, 10, $texto, 0, 1, 'R');
 
-        $this->Ln(10);
+            $this->Ln(10);
+        }
     }
 
     function Footer()
@@ -153,13 +156,13 @@ foreach ($livros as $i => $livro) {
         $pdf->SetXY($xAntesAutor + $colunas[1]['largura'], $yAntesAutor);
     }
 
-    // Continuar com as outras colunas
+   
     $pdf->Cell($colunas[2]['largura'], $alturaTotal, $genero, 1, 0, 'L', true);
     $pdf->Cell($colunas[3]['largura'], $alturaTotal, $subgenero, 1, 0, 'L', true);
     $pdf->Cell($colunas[4]['largura'], $alturaTotal, $edicao, 1, 0, 'C', true);
     $pdf->Cell($colunas[5]['largura'], $alturaTotal, $quantidade, 1, 1, 'C', true);
 
-    // Adiciona a quantidade do livro à soma total (apenas uma vez por livro)
+
     $totalLivros += (int)$quantidade;
 }
 

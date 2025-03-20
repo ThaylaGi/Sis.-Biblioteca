@@ -1,5 +1,6 @@
 <?php
 require_once('../models/main_model.php');
+print_r($_POST); // Para debug, pode remover depois
 
 // Ajustando a condição para tornar 'edicao' opcional
 if (
@@ -21,7 +22,7 @@ if (
     $data = $_POST['data'];
     $editora = $_POST['editora'];
     // Definindo "ENI" se edicao estiver vazio ou não informado (ajustado de "EDIÇÃO NÃO INFORMADA" para "ENI")
-    $edicao = (!isset($_POST['edicao']) || empty($_POST['edicao'])) ? "ENI" : $_POST['edicao'];
+    $edicao = (!isset($_POST['edicao']) || empty($_POST['edicao'])) ? "ENI*" : $_POST['edicao'];
     $quantidade = $_POST['quantidade'];
     $corredor = $_POST['corredor'];
     $estante = $_POST['estante'];

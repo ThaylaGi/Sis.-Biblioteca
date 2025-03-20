@@ -85,7 +85,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="./relatorio_acervo.php" method="get" class="space-y-5">
+        <form action="../../controllers/main_controller.php" method="post" class="space-y-5">
             <div class="relative">
                 <select id="relatorioSelect" name="relatorio" 
                     class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ceara-green focus:border-ceara-green appearance-none bg-white text-gray-700 cursor-pointer shadow-sm transition-all duration-300">

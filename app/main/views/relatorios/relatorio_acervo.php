@@ -48,6 +48,7 @@ $pdf->AddPage();
 /*$pdo = new PDO("mysql:host=localhost;dbname=u750204740_sistBiblioteca;charset=utf8", "u750204740_sistBiblioteca", "paoComOvo123!@##");*/
 $pdo = new PDO("mysql:host=localhost;dbname=sist_biblioteca;charset=utf8", "root", "");
 $acervo = $pdo->prepare("SELECT 
+    c.id,
     c.titulo_livro, 
     a.nome_autor,
     a.sobrenome_autor,
@@ -70,6 +71,7 @@ foreach ($result as $row) {
     $titulo = $row['titulo_livro'];
     if (!isset($livros[$titulo])) {
         $livros[$titulo] = [
+            'id' => $row['id'],
             'titulo_livro' => $row['titulo_livro'],
             'edicao' => $row['edicao'],
             'quantidade' => $row['quantidade'],
@@ -109,10 +111,9 @@ $totalLivros = 0;
 $pdf->SetFont('Arial', '', 9);
 foreach ($livros as $i => $livro) {
     $pdf->SetX(20);
-
-
-    //$cor = count($livro) % 2 == 0 ? 255 : 240;
-    $pdf->SetFillColor(240, 240, 240);
+    $cor = $livro['id'] % 2 == 0 ? 255 : 240;
+    // Alterna as cores: branco para linhas pares, cinza para linhas ímpares
+    $pdf->SetFillColor($cor, $cor, $cor);
     $pdf->SetTextColor(0, 0, 0);
 
     $titulo = utf8_decode(mb_strtoupper($livro['titulo_livro'], 'UTF-8'));
@@ -158,7 +159,8 @@ foreach ($livros as $i => $livro) {
     $pdf->Cell($colunas[4]['largura'], $alturaTotal, $edicao, 1, 0, 'C', true);
     $pdf->Cell($colunas[5]['largura'], $alturaTotal, $quantidade, 1, 1, 'C', true);
 
-    $totalLivros += $quantidade;
+    // Adiciona a quantidade do livro à soma total (apenas uma vez por livro)
+    $totalLivros += (int)$quantidade;
 }
 
 $pdf->Ln(20);

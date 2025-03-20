@@ -24,11 +24,9 @@ class main_model extends connect
     public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $literatura, $ficcao)
     {
         /** Prepara uma query para verificar se o livro já existe com base em título, editora e edição */
-        $sql_check = $this->connect->prepare("SELECT * FROM catalogo WHERE titulo_livro = :titulo AND editora = :editora AND edicao = :edicao");
+        $sql_check = $this->connect->prepare("SELECT * FROM catalogo WHERE titulo_livro = :titulo AND edicao = :edicao");
         /** Associa o valor do parâmetro $titulo ao placeholder :titulo */
         $sql_check->bindValue(':titulo', $titulo);
-        /** Associa o valor do parâmetro $editora ao placeholder :editora */
-        $sql_check->bindValue(':editora', $editora);
         /** Associa o valor do parâmetro $edicao ao placeholder :edicao */
         $sql_check->bindValue(':edicao', $edicao);
         /** Executa a query preparada */

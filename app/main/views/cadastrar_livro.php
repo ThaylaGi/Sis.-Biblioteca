@@ -199,6 +199,14 @@ $select_model = new select_model();
                             </button>
                         </div>
 
+                        <!-- Título -->
+                        <div>
+                            <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                            <input type="text" id="titulo" name="titulo"
+                                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                placeholder="Título do livro" required>
+                        </div>
+
                         <!-- Autores -->
                         <div id="authorFields" class="space-y-4">
                             <label class="block text-sm font-medium text-gray-700">Autores</label>
@@ -215,52 +223,54 @@ $select_model = new select_model();
                                             placeholder="Sobrenome" required>
                                     </div>
                                     <button type="button" id="addAuthor"
-                                        class="text-ceara-green p-2 rounded-full transition-colors duration-200">
+                                        class="text-ceara-green p-2 relative rounded-full transition-colors duration-200 px-">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Título, Editora e Edição/Quantidade -->
-                        <div class="space-y-4">
-                            <div>
-                                <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
-                                <input type="text" id="titulo" name="titulo"
-                                    class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                    placeholder="Título do livro" required>
-                            </div>
-
-                            <div>
-                                <label for="editora" class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
-                                <input type="text" id="editora" name="editora"
-                                    class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                    placeholder="Nome da editora" required>
-                            </div>
-
-                            <!-- Edição e Quantidade lado a lado (trocados) -->
-                            <div>
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-grow">
-                                        <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
-                                        <input type="text" id="edicao" name="edicao"
-                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                            placeholder="Edição"
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                    </div>
-                                    <div class="flex-grow">
-                                        <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
-                                        <input type="number" id="quantidade" name="quantidade" min="1"
-                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                            placeholder="Quantidade" required>
-                                    </div>
+                        <!-- Editora e Data de Criação -->
+                        <div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-grow">
+                                    <label for="editora" class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
+                                    <input type="text" id="editora" name="editora"
+                                        class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                        placeholder="Nome da editora" required>
                                 </div>
-                                <div class="mt-2">
-                                    <input type="checkbox" id="semEdicao" name="semEdicao"
-                                        class="mr-2 h-4 w-4 text-ceara-green focus:ring-ceara-green border-gray-300 rounded accent-ceara-green"
-                                        onchange="document.getElementById('edicao').disabled = this.checked; document.getElementById('edicao').value = this.checked ? '' : document.getElementById('edicao').value;">
-                                    <label for="semEdicao" class="text-sm text-gray-600">Não existe edição</label>
+                                <div class="flex-grow">
+                                    <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de criação</label>
+                                    <input type="text" id="data" name="data"
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                        placeholder="DD/MM/AAAA" required>
+                                    <span id="dataError" class="text-red-500 text-xs hidden mt-1">Data inválida</span>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Edição e Quantidade -->
+                        <div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-grow">
+                                    <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
+                                    <input type="text" id="edicao" name="edicao"
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                        placeholder="Edição"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                </div>
+                                <div class="flex-grow">
+                                    <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
+                                    <input type="number" id="quantidade" name="quantidade" min="1"
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                        placeholder="Quantidade" required>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <input type="checkbox" id="semEdicao" name="semEdicao"
+                                    class="mr-2 h-4 w-4 text-ceara-green focus:ring-ceara-green border-gray-300 rounded accent-ceara-green"
+                                    onchange="document.getElementById('edicao').disabled = this.checked; document.getElementById('edicao').value = this.checked ? '' : document.getElementById('edicao').value;">
+                                <label for="semEdicao" class="text-sm text-gray-600">Não existe edição</label>
                             </div>
                         </div>
 
@@ -299,14 +309,6 @@ $select_model = new select_model();
                 </div>
 
                 <div id="location" class="tab-content space-y-6 hidden">
-                    <div>
-                        <label for="data" class="block text-sm font-medium text-gray-700 mb-1">Data de criação</label>
-                        <input type="text" id="data" name="data"
-                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                            placeholder="DD/MM/AAAA" required>
-                        <span id="dataError" class="text-red-500 text-xs hidden mt-1">Data inválida</span>
-                    </div>
-
                     <div>
                         <label for="corredor" class="block text-sm font-medium text-gray-700 mb-1">Corredor</label>
                         <div class="relative">

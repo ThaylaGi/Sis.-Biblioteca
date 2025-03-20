@@ -8,11 +8,8 @@ $select_model = new select_model();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <?php
-    // Verifica se algum dos parâmetros está presente
     if (isset($_GET['true']) || isset($_GET['erro']) || isset($_GET['ja_cadastrado'])) {
-        // Redireciona após 3 segundos
         echo '<meta http-equiv="refresh" content="3; url=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/decisão.php">';
     }
     ?>
@@ -43,12 +40,10 @@ $select_model = new select_model();
             background-color: #007A33 !important;
             border-color: #007A33 !important;
         }
-
         input[type="checkbox"]:checked:focus,
         input[type="radio"]:checked:focus {
             --tw-ring-color: rgba(0, 122, 51, 0.2);
         }
-
         input[type="radio"] {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -60,22 +55,18 @@ $select_model = new select_model();
             outline: none;
             transition: all 0.2s ease-in-out;
         }
-
         input[type="radio"]:checked {
             border-color: #007A33;
             background-color: #007A33;
             box-shadow: inset 0 0 0 4px #fff;
         }
-
         input[type="radio"]:focus {
             box-shadow: 0 0 0 3px rgba(0, 122, 51, 0.2);
         }
-
         .tab-button.active {
             color: #007A33 !important;
             border-bottom: 2px solid #007A33 !important;
         }
-
         .radio-option {
             display: flex;
             align-items: center;
@@ -84,34 +75,30 @@ $select_model = new select_model();
             background: none;
             transition: all 0.2s ease-in-out;
         }
-
         .radio-option:hover {
             background-color: #f1f5f9;
             transform: translateY(-1px);
         }
-
         .radio-option input:checked+span {
             color: #007A33;
             font-weight: 600;
         }
-
-        /* Garantir que todos os campos tenham o mesmo alinhamento */
-        .space-y-6>div {
+        .space-y-6 > div {
             margin-left: 0;
             padding-left: 0;
         }
-
         #subgeneroContainer select {
             width: 100%;
             margin-left: 0;
+        }
+        input[type="checkbox"] {
+            accent-color: #007A33;
         }
     </style>
 </head>
 
 <body class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-4 sm:p-6 md:p-8 lg:p-12 select-none"
     style="background-image: url('../assets/img/layout.png'); background-size: cover; background-attachment: fixed;">
-
-
     <a href="decisão.php"
         class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
         <i class="fa-solid fa-arrow-left text-ceara-green group-hover:text-white"></i>
@@ -122,9 +109,7 @@ $select_model = new select_model();
         <img src="../assets/img/logo1.png"
             class="w-[200px] sm:w-[250px] md:w-[300px] mx-auto mb-8 drop-shadow-xl hover:scale-105 transition-transform duration-300"
             alt="Logo">
-
-        <div
-            class="bg-white rounded-xl shadow-custom overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg">
+        <div class="bg-white rounded-xl shadow-custom overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg">
             <div class="bg-gradient-to-r from-ceara-green to-ceara-green-dark p-6 sm:p-8">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center tracking-wide">
                     <i class="fas fa-book mr-3"></i>Cadastro de Livros
@@ -192,7 +177,6 @@ $select_model = new select_model();
                                     <option value="" disabled selected>Selecione o Subgênero</option>
                                     <?php
                                     $generos = $select_model->select_genero();
-
                                     foreach ($generos as $genero) {
                                         $subgeneros = $select_model->select_subgenero(genero: $genero['generos']);
                                         ?>
@@ -200,9 +184,7 @@ $select_model = new select_model();
                                         <?php
                                         foreach ($subgeneros as $subgenero) {
                                             ?>
-
-                                            <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?>
-                                            </option>
+                                            <option value="<?= $subgenero['subgenero'] ?>"><?= $subgenero['subgenero'] ?></option>
                                         <?php } ?>
                                         </optgroup>
                                     <?php } ?>
@@ -240,7 +222,7 @@ $select_model = new select_model();
                             </div>
                         </div>
 
-                        <!-- Título, Editora e Edição -->
+                        <!-- Título, Editora e Edição/Quantidade -->
                         <div class="space-y-4">
                             <div>
                                 <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
@@ -250,19 +232,29 @@ $select_model = new select_model();
                             </div>
 
                             <div>
-                                <label for="editora"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
+                                <label for="editora" class="block text-sm font-medium text-gray-700 mb-1">Editora</label>
                                 <input type="text" id="editora" name="editora"
                                     class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
                                     placeholder="Nome da editora" required>
                             </div>
 
+                            <!-- Edição e Quantidade lado a lado (trocados) -->
                             <div>
-                                <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
-                                <input type="text" id="edicao" name="edicao"
-                                    class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                                    placeholder="Número da edição"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex-grow">
+                                        <label for="edicao" class="block text-sm font-medium text-gray-700 mb-1">Edição</label>
+                                        <input type="text" id="edicao" name="edicao"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                            placeholder="Edição"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                    </div>
+                                    <div class="flex-grow">
+                                        <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
+                                        <input type="number" id="quantidade" name="quantidade" min="1"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
+                                            placeholder="Quantidade" required>
+                                    </div>
+                                </div>
                                 <div class="mt-2">
                                     <input type="checkbox" id="semEdicao" name="semEdicao"
                                         class="mr-2 h-4 w-4 text-ceara-green focus:ring-ceara-green border-gray-300 rounded accent-ceara-green"
@@ -270,12 +262,6 @@ $select_model = new select_model();
                                     <label for="semEdicao" class="text-sm text-gray-600">Não existe edição</label>
                                 </div>
                             </div>
-
-                            <style>
-                                input[type="checkbox"] {
-                                    accent-color: #007A33;
-                                }
-                            </style>
                         </div>
 
                         <?php if (isset($_GET['true'])): ?>
@@ -340,13 +326,6 @@ $select_model = new select_model();
                     </div>
 
                     <div>
-                        <label for="quantidade" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
-                        <input type="number" id="quantidade" name="quantidade" min="1"
-                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-ceara-green focus:ring-2 focus:ring-ceara-green/20 focus:outline-none hover:border-gray-300 text-gray-600 placeholder-gray-400 transition-all duration-200"
-                            placeholder="Quantidade de livros" required>
-                    </div>
-
-                    <div>
                         <label for="estante" class="block text-sm font-medium text-gray-700 mb-1">Estante</label>
                         <div class="relative">
                             <select id="estante" name="estante"
@@ -386,7 +365,6 @@ $select_model = new select_model();
                             <i class="fas fa-arrow-left mr-3"></i>
                             Voltar
                         </button>
-
                         <button type="submit"
                             class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-paper-plane mr-3"></i>
@@ -597,5 +575,4 @@ $select_model = new select_model();
         });
     </script>
 </body>
-
 </html>

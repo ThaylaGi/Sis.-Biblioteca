@@ -2,6 +2,25 @@
 require_once('../models/main_model.php');
 print_r($_POST); // Para debug, pode remover depois
 
+if (isset($_POST['relatorio'])) {
+    $relatorio = $_POST['relatorio'];
+
+    switch ($relatorio) {
+        case 'acervo':
+         
+            header('Location: ../views/relatorios/relatorio_acervo.php');
+            exit;
+        case '':
+           
+            header('Location: ../views/relatorios/relatorios.php?erro=1');
+            exit;
+        default:
+
+            header('Location: ../views/relatorios/relatorios.php?erro=2');
+            exit;
+    }
+}
+
 // Ajustando a condição para tornar 'edicao' opcional
 if (
     isset($_POST['nomesubGenero']) && !empty($_POST['nomesubGenero']) &&

@@ -107,9 +107,17 @@ if (
             header('location:../index.php');
             exit();
     }
-} /* else {
+} else if(isset($_POST['estante']) && isset($_POST['prateleira']) && !empty($_POST['estante']) && !empty($_POST['prateleira'])){
+
+    $estante = $_POST['estante'];
+    $prateleira = $_POST['prateleira'];
+
+    header('location:../views/QRCode/QRCodes.php?estante='.$estante.'&prateleira='.$prateleira);
+    exit();
+
+}else {
     header('location:../index.php');
     exit();
 }
-    */
+
 ?>

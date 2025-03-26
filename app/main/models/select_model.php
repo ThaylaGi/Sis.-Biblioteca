@@ -24,7 +24,6 @@ class select_model extends connect
 
         return $nome_subgenero;
     }
-
     public function select_genero()
     {
         $sql_genero = $this->connect->query("SELECT generos FROM genero");
@@ -32,19 +31,12 @@ class select_model extends connect
 
         return $generos;
     }
-    public function select_livros()
-    {
+    public function select_qrcode($prateleira, $estante){
 
-        $sql_livro = $this->connect->query("SELECT * FROM catalogo");
-        $livros = $sql_livro->fetchAll(PDO::FETCH_ASSOC);
-        return $livros;
-    }
-    public function select_autores($id_livro)
-    {
-        //$sql_autor_livro = $this->connect->query("SELECT nome_autor, sobrenome_autor FROM autores WHERE id_livro = 21 ORDER BY id_livro;");
-        $sql_autor_livro = $this->connect->query("SELECT nome_autor, sobrenome_autor FROM autores WHERE id_livro = '$id_livro'");
-        $nome_sobrenome = $sql_autor_livro->fetch(PDO::FETCH_ASSOC);
+        $sql_acervo = $this->connect->query("SELECT * FROM catologo WHERE pratileira = '$prateleira' AND estante = '$estante'");
+        $acervo = $sql_acervo->fetchAll(PDO::FETCH_ASSOC);
 
-        return $nome_sobrenome;
+        return $acervo;
+        
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,12 @@
         .card-hover {
             transition: all 0.2s ease-in-out;
         }
+
         .card-hover:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .gradient-text {
             background: linear-gradient(45deg, #008C45, #FFA500);
             -webkit-background-clip: text;
@@ -37,9 +40,10 @@
         }
     }
 </script>
-<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none" 
+
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
     style="background-image: url('../assets/img/layout.png'); background-opacity: 0.3;">
-    
+
     <a href="../index.php" class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
         <i class="fa-solid fa-arrow-left text-ceara-green group-hover:text-white"></i>
         <span class="text-ceara-green group-hover:text-white font-medium">Voltar</span>
@@ -52,17 +56,17 @@
         </div>
 
         <div class="space-y-5">
-            <a href="cadastrar_genero.php" 
-            class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
+            <a href="cadastrar_genero.php"
+                class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
                 <span class="flex items-center">
                     <i class="fas fa-tags mr-4 text-xl text-ceara-green"></i>
                     <span class="text-lg">Cadastrar Gênero Literário</span>
                 </span>
                 <i class="fas fa-chevron-right text-gray-400"></i>
             </a>
-            
-            <a href="cadastrar_subgenero.php" 
-            class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
+
+            <a href="cadastrar_subgenero.php"
+                class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
                 <span class="flex items-center">
                     <i class="fas fa-tags mr-4 text-xl text-ceara-orange"></i>
                     <span class="text-lg">Cadastrar Subgênero</span>
@@ -70,11 +74,20 @@
                 <i class="fas fa-chevron-right text-gray-400"></i>
             </a>
 
-            <a href="cadastrar_livro.php" 
-            class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
+            <a href="cadastrar_livro.php"
+                class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
                 <span class="flex items-center">
                     <i class="fas fa-book mr-4 text-xl text-primary"></i>
                     <span class="text-lg">Cadastrar Livro</span>
+                </span>
+                <i class="fas fa-chevron-right text-gray-400"></i>
+            </a>
+
+            <a href="QRCode/geradorQR.php"
+                class="card-hover block w-full bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-between hover:bg-gray-100">
+                <span class="flex items-center">
+                    <i class="fas fa-book mr-4 text-xl text-primary"></i>
+                    <span class="text-lg">Gerar QRCode</span>
                 </span>
                 <i class="fas fa-chevron-right text-gray-400"></i>
             </a>
@@ -86,4 +99,5 @@
     </div>
 
 </body>
+
 </html>

@@ -56,15 +56,15 @@
     }
 </script>
 
-<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-6 sm:p-8 md:p-12 select-none"
     style="background-image: url('../../assets/img/layout.png');">
 
-    <a href="../index.php" class=" fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
+    <a href="../decisão.php" class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
         <i class="fa-solid fa-arrow-left text-ceara-green group-hover:text-white"></i>
         <span class="text-ceara-green group-hover:text-white font-medium">Voltar</span>
     </a>
 
-    <div class="glass-effect rounded-2xl shadow-2xl p-8 w-full max-w-lg transform transition-all duration-300 card-hover">
+    <div class="glass-effect rounded-2xl shadow-2xl p-10 w-full max-w-lg transform transition-all duration-300 card-hover">
         <div class="text-center mb-10">
             <div class="mb-6">
                 <i class="fas fa-book-reader text-5xl gradient-text"></i>
@@ -92,24 +92,34 @@
             </div>
         <?php endif; ?>
 
-        <form action="../../controllers/main_controller.php" method="post" class="space-y-5">
-            <div class="relative">
-                <select id="relatorioSelect" name="estante"
-                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ceara-green focus:border-ceara-green appearance-none bg-white text-gray-700 cursor-pointer shadow-sm transition-all duration-300" required>
-                    <option value="" disabled selected>Selecione a Estante</option>
-                    <?php for ($i = 1; $i <= 32; $i++) { ?>
-                        <option value="<?= $i ?>">Estante <?= $i ?></option>
-                    <?php } ?>
-                </select>
-                <select id="relatorioSelect" name="prateleira"
-                    class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ceara-green focus:border-ceara-green appearance-none bg-white text-gray-700 cursor-pointer shadow-sm transition-all duration-300" required>
-                    <option value="" disabled selected>Selecione a prateleira</option>
-                    <?php for ($i = 1; $i <= 5; $i++) { ?>
-                        <option value="<?= $i ?>">Prateleira <?= $i ?></option>
-                    <?php } ?>
-                </select>
-                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                    <i class="fas fa-chevron-down text-gray-400"></i>
+        <form action="../../controllers/main_controller.php" method="post" class="space-y-6">
+            <div class="space-y-4">
+                <!-- Select para Estante com ícone -->
+                <div class="relative">
+                    <select id="relatorioSelect" name="estante"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ceara-green focus:border-ceara-green appearance-none bg-white text-gray-700 cursor-pointer shadow-sm transition-all duration-300 text-base" required>
+                        <option value="" disabled selected>Selecione a Estante</option>
+                        <?php for ($i = 1; $i <= 32; $i++) { ?>
+                            <option value="<?= $i ?>">Estante <?= $i ?></option>
+                        <?php } ?>
+                    </select>
+                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Select para Prateleira com ícone -->
+                <div class="relative">
+                    <select id="relatorioSelect" name="prateleira"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ceara-green focus:border-ceara-green appearance-none bg-white text-gray-700 cursor-pointer shadow-sm transition-all duration-300 text-base" required>
+                        <option value="" disabled selected>Selecione a prateleira</option>
+                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                            <option value="<?= $i ?>">Prateleira <?= $i ?></option>
+                        <?php } ?>
+                    </select>
+                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </div>
                 </div>
             </div>
 

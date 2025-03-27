@@ -59,7 +59,7 @@
 <body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-6 sm:p-8 md:p-12 select-none"
     style="background-image: url('../../assets/img/layout.png');">
 
-    <a href="../decisão.php" class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
+    <a href="../../index.php" class="fixed top-5 left-5 z-50 group flex items-center space-x-2 bg-white/80 rounded-full px-4 py-2 shadow-lg hover:bg-ceara-green transition-all duration-300">
         <i class="fa-solid fa-arrow-left text-ceara-green group-hover:text-white"></i>
         <span class="text-ceara-green group-hover:text-white font-medium">Voltar</span>
     </a>

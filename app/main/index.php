@@ -117,7 +117,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12 md:mb-16">
       <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-ceara-green/90 mb-3">Recursos Principais</h3>
-      <div class="w-16 h-0.5 bg-ceara-orange/70 mx-auto rounded-full"></div>
+   
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -142,7 +142,7 @@
       <div class="group h-full">
         <div class="bg-white rounded-xl shadow-sm hover:shadow-md overflow-hidden transition-all duration-300 h-full flex flex-col border border-gray-100 hover:border-ceara-orange/20">
           <div class="h-1.5 bg-gradient-to-r from-ceara-orange to-ceara-orange/70"></div>
-          <a href="./views/emprestimos/emprestimos.php" class="block p-6 flex-grow">
+          <a href="" class="block p-6 flex-grow">
             <div class="flex flex-col items-center text-center h-full">
               <div class="w-16 h-16 flex items-center justify-center bg-ceara-orange/5 rounded-2xl mb-5 group-hover:bg-ceara-orange/10 transition-all duration-300">
                 <i class="fas fa-users text-ceara-orange text-2xl"></i>

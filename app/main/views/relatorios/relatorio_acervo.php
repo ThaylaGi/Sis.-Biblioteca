@@ -5,7 +5,6 @@ class PDF extends FPDF
 {
     function Header()
     {
-        // Only show the title on the first page
         if ($this->PageNo() == 1) {
             $this->Image('../../assets/img/logo.png', 20, 14, 50);
             $this->Ln(20);
@@ -48,7 +47,6 @@ $pdf = new PDF("L", "pt", "A4");
 $pdf->AliasNbPages();
 $pdf->AddPage();
 
-/*$pdo = new PDO("mysql:host=localhost;dbname=u750204740_sistBiblioteca;charset=utf8", "u750204740_sistBiblioteca", "paoComOvo123!@##");*/
 $pdo = new PDO("mysql:host=localhost;dbname=sist_biblioteca;charset=utf8", "root", "");
 $acervo = $pdo->prepare("SELECT 
     c.id,
@@ -56,6 +54,7 @@ $acervo = $pdo->prepare("SELECT
     a.nome_autor,
     a.sobrenome_autor,
     c.edicao,
+    c.editora,  -- Mantido para diferenciação
     c.quantidade,
     g.generos,
     sg.subgenero
@@ -64,32 +63,35 @@ $acervo = $pdo->prepare("SELECT
     INNER JOIN autores a ON l.id_autor = a.id
     LEFT JOIN genero g ON c.id_genero = g.id
     LEFT JOIN subgenero sg ON c.id_subgenero = sg.id
-    ORDER BY c.titulo_livro");
+    ORDER BY c.titulo_livro, c.edicao");
 $acervo->execute();
 $result = $acervo->fetchAll(PDO::FETCH_ASSOC);
 
-// Agrupar os dados por livro, consolidando os autores
+// Agrupar os dados por livro, edição e editora, consolidando os autores
 $livros = [];
 foreach ($result as $row) {
-    $titulo = $row['titulo_livro'];
-    if (!isset($livros[$titulo])) {
-        $livros[$titulo] = [
+    // Criar uma chave única combinando título, edição e editora (mas editora não será exibida)
+    $chave = $row['titulo_livro'] . '|' . ($row['edicao'] ?? 'ENI*') . '|' . ($row['editora'] ?? 'N/A');
+    if (!isset($livros[$chave])) {
+        $livros[$chave] = [
             'id' => $row['id'],
             'titulo_livro' => $row['titulo_livro'],
             'edicao' => $row['edicao'],
+            'editora' => $row['editora'], // Mantido apenas para controle interno
             'quantidade' => $row['quantidade'],
             'generos' => $row['generos'],
             'subgenero' => $row['subgenero'],
             'autores' => []
         ];
     }
-    $livros[$titulo]['autores'][] = [
+    $livros[$chave]['autores'][] = [
         'nome_autor' => $row['nome_autor'],
         'sobrenome_autor' => $row['sobrenome_autor']
     ];
 }
 
 $pageWidth = $pdf->GetPageWidth() - 40;
+// Voltar às colunas originais, sem "EDITORA"
 $colunas = array(
     array('largura' => $pageWidth * 0.34, 'texto' => utf8_decode('TÍTULO')),
     array('largura' => $pageWidth * 0.28, 'texto' => 'AUTOR'),
@@ -115,7 +117,6 @@ $pdf->SetFont('Arial', '', 9);
 foreach ($livros as $i => $livro) {
     $pdf->SetX(20);
     $cor = $livro['id'] % 2 == 0 ? 255 : 240;
-    // Alterna as cores: branco para linhas pares, cinza para linhas ímpares
     $pdf->SetFillColor($cor, $cor, $cor);
     $pdf->SetTextColor(0, 0, 0);
 
@@ -125,10 +126,8 @@ foreach ($livros as $i => $livro) {
     $edicao = empty($livro['edicao']) ? utf8_decode('ENI*') : utf8_decode(mb_strtoupper($livro['edicao'], 'UTF-8'));
     $quantidade = $livro['quantidade'] ?? 1;
 
-    // Altura padrão da linha
     $alturaLinha = 20;
 
-    // Preparar a lista de autores
     $autores = [];
     foreach ($livro['autores'] as $autor) {
         $nomeAutor = utf8_decode(mb_strtoupper($autor['nome_autor'] ?? 'N/A', 'UTF-8'));
@@ -136,32 +135,25 @@ foreach ($livros as $i => $livro) {
         $autores[] = $nomeAutor . " " . $sobrenome;
     }
 
-    // Calcular a altura necessária para o MultiCell (se mais de um autor)
     $numAutores = count($autores);
     $alturaTotal = $numAutores > 1 ? $alturaLinha * $numAutores : $alturaLinha;
 
-    // Desenhar as células fixas primeiro
     $pdf->Cell($colunas[0]['largura'], $alturaTotal, $titulo, 1, 0, 'L', true);
     
-    // Salvar a posição atual para alinhar as próximas células
     $xAntesAutor = $pdf->GetX();
     $yAntesAutor = $pdf->GetY();
 
-    // Se houver apenas um autor, usa Cell; se mais de um, usa MultiCell
     if ($numAutores == 1) {
         $pdf->Cell($colunas[1]['largura'], $alturaLinha, $autores[0], 1, 0, 'L', true);
     } else {
         $pdf->MultiCell($colunas[1]['largura'], $alturaLinha, implode("\n", $autores), 1, 'L', true);
-        // Ajustar a posição Y após o MultiCell
         $pdf->SetXY($xAntesAutor + $colunas[1]['largura'], $yAntesAutor);
     }
 
-   
     $pdf->Cell($colunas[2]['largura'], $alturaTotal, $genero, 1, 0, 'L', true);
     $pdf->Cell($colunas[3]['largura'], $alturaTotal, $subgenero, 1, 0, 'L', true);
     $pdf->Cell($colunas[4]['largura'], $alturaTotal, $edicao, 1, 0, 'C', true);
     $pdf->Cell($colunas[5]['largura'], $alturaTotal, $quantidade, 1, 1, 'C', true);
-
 
     $totalLivros += (int)$quantidade;
 }

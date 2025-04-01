@@ -142,7 +142,7 @@
       <div class="group h-full">
         <div class="bg-white rounded-xl shadow-sm hover:shadow-md overflow-hidden transition-all duration-300 h-full flex flex-col border border-gray-100 hover:border-ceara-orange/20">
           <div class="h-1.5 bg-gradient-to-r from-ceara-orange to-ceara-orange/70"></div>
-          <a href="" class="block p-6 flex-grow">
+          <a href="./views/emprestimo/decisao.php" class="block p-6 flex-grow">
             <div class="flex flex-col items-center text-center h-full">
               <div class="w-16 h-16 flex items-center justify-center bg-ceara-orange/5 rounded-2xl mb-5 group-hover:bg-ceara-orange/10 transition-all duration-300">
                 <i class="fas fa-users text-ceara-orange text-2xl"></i>

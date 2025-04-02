@@ -17,15 +17,17 @@ class QRCode extends connect
         $pdf->AddPage();
 
         // Cabeçalho
+
+        $pdf->Image('../../assets/img/logo_incolor.jpg', 8, 8, 60, 60, 'JPG');
         $pdf->SetX(20);
         $pdf->SetFont('Arial', 'B', 20);
-        $pdf->SetTextColor(0, 122, 51);
-        $pdf->Cell($pdf->GetPageWidth() - 40, 20, utf8_decode('QRCodes'), 0, 1, 'C');
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Cell($pdf->GetPageWidth() - 40, 20, utf8_decode('Sistema Biblioteca STGM'), 0, 1, 'C');
 
         $pdf->SetX(20);
         $pdf->SetFont('Arial', 'B', 14);
-        $pdf->SetTextColor(255, 165, 0);
-        $pdf->Cell($pdf->GetPageWidth() - 40, 20, "PRATELEIRA " . $_GET['prateleira'] . " E ESTANTE " . $_GET['estante'], 0, 1, 'C');
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Cell($pdf->GetPageWidth() - 40, 20, "ESTANTE " . $_GET['estante'] ."  |  PRATELEIRA " . $_GET['prateleira'], 0, 1, 'C');
 
         $prateleira = $_GET['prateleira'];
         $estante = $_GET['estante'];
@@ -55,7 +57,7 @@ class QRCode extends connect
                 $pdf->Image($img_temp, $current_x, $current_y, $qr_size, $qr_size);
 
                 // Configurar fonte e cor preta para o título
-                $pdf->SetFont('Arial', 'B', 8);
+                $pdf->SetFont('Arial', 'B', 7.5);
                 $pdf->SetTextColor(0, 0, 0); // Cor preta
 
                 // Primeira linha: Nome do livro
@@ -64,7 +66,7 @@ class QRCode extends connect
                 $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'C');
 
                 // Segunda linha: ID_Edição_Quantidade
-                $codigo = utf8_decode("Id: ".$cod_livro['id'] . "  |  Edicão: " . $edicao . "  |  Número:" . $i);
+                $codigo = utf8_decode("Id: ".$cod_livro['id'] . "  |  Edicão: " . $edicao . "  |  Número: " . $i);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 15); // 15 pontos abaixo do QR code (10 da linha anterior + 5 de espaço)
                 $pdf->Cell($qr_size, 10,$codigo, 0, 0, 'C');
 

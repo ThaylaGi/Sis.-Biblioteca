@@ -1,6 +1,5 @@
 <?php
 require_once('../models/main_model.php');
-print_r($_POST); // Para debug, pode remover depois
 
 if (isset($_POST['relatorio'])) {
     $relatorio = $_POST['relatorio'];

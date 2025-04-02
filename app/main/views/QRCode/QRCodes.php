@@ -35,18 +35,18 @@ class QRCode extends connect
 
         // Configurações de layout
         $qr_size = 80; // Tamanho do QR code em pontos (80x80)
-        $space_between = 40; // Aumentado de 20 para 40 para mais espaço entre QR codes
-        $max_per_line = 4; // Máximo de QR codes por linha (ajustável)
+        $space_between = 60; // Espaço entre QR codes
+        $max_per_line = 4; // Máximo de QR codes por linha
         $start_x = 30; // Posição X inicial
         $start_y = 100; // Posição Y inicial (após o cabeçalho)
         $current_x = $start_x;
         $current_y = $start_y;
 
         foreach ($id_livros as $cod_livro) {
-            for ($i = 0; $i < $cod_livro['quantidade']; $i++) {
-                // Determinar a edição para a URL e o título
-                $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '' : $cod_livro['edicao'];
-                $url = "https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/index.php?cod=" . $cod_livro['id'] . $edicao = $cod_livro['edicao'] == 'ENI*' ? '' : $cod_livro['edicao'] . $i;
+            for ($i = 1; $i <= $cod_livro['quantidade']; $i++) {
+                // Determinar a edição para a URL
+                $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '0' : $cod_livro['edicao'];
+                $url = "https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php?cod=" . $cod_livro['id'] . "_" . $edicao . "_" . $i;
 
                 $img_temp = tempnam(sys_get_temp_dir(), 'qr_') . '.png';
                 file_put_contents($img_temp, file_get_contents($url));
@@ -54,12 +54,19 @@ class QRCode extends connect
                 // Colocar o QR code na posição atual
                 $pdf->Image($img_temp, $current_x, $current_y, $qr_size, $qr_size);
 
-                // Colocar o título abaixo do QR code
+                // Configurar fonte e cor preta para o título
                 $pdf->SetFont('Arial', 'B', 8);
-                $pdf->SetTextColor(255, 165, 0);
-                $titulo = utf8_decode($cod_livro['id'] ."_". $edicao = $cod_livro['edicao'] == 'ENI*' ? '' : $cod_livro['edicao'] ."_". $i);
-                $pdf->SetXY($current_x, $current_y + $qr_size + 5); // 5 pontos de espaço entre QR e título
-                $pdf->Cell($qr_size, 10, $titulo, 0, 0, 'C');
+                $pdf->SetTextColor(0, 0, 0); // Cor preta
+
+                // Primeira linha: Nome do livro
+                $nome_livro = utf8_decode($cod_livro['titulo_livro']);
+                $pdf->SetXY($current_x, $current_y + $qr_size + 5); // 5 pontos abaixo do QR code
+                $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'C');
+
+                // Segunda linha: ID_Edição_Quantidade
+                $codigo = utf8_decode("Id: ".$cod_livro['id'] . "  |  Edicão: " . $edicao . "  |  Número:" . $i);
+                $pdf->SetXY($current_x, $current_y + $qr_size + 15); // 15 pontos abaixo do QR code (10 da linha anterior + 5 de espaço)
+                $pdf->Cell($qr_size, 10,$codigo, 0, 0, 'C');
 
                 // Remover o arquivo temporário
                 unlink($img_temp);

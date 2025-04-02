@@ -46,7 +46,7 @@ class PDF extends FPDF
 $pdf = new PDF("L", "pt", "A4");
 $pdf->AliasNbPages();
 $pdf->AddPage();
-
+/*$pdo = new PDO("mysql:host=localhost;dbname=u750204740_sistBiblioteca;charset=utf8", "u750204740_sistBiblioteca", "paoComOvo123!@##");*/
 $pdo = new PDO("mysql:host=localhost;dbname=sist_biblioteca;charset=utf8", "root", "");
 $acervo = $pdo->prepare("SELECT 
     c.id,

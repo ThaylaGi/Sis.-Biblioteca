@@ -48,7 +48,7 @@ class QRCode extends connect
             for ($i = 1; $i <= $cod_livro['quantidade']; $i++) {
                 // Determinar a edição para a URL
                 $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '0' : $cod_livro['edicao'];
-                $url = "https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php?cod=" . $cod_livro['id'] . "_" . $edicao . "_" . $i;
+                $url = "https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php?cod=" . $cod_livro['id'] . "_" . $edicao . "_" . $i . $estante . "_" . $prateleira ;
 
                 $img_temp = tempnam(sys_get_temp_dir(), 'qr_') . '.png';
                 file_put_contents($img_temp, file_get_contents($url));
@@ -66,7 +66,7 @@ class QRCode extends connect
                 $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'C');
 
                 // Segunda linha: ID_Edição_Quantidade
-                $codigo = utf8_decode("Id: ".$cod_livro['id'] . "  |  Edicão: " . $edicao . "  |  Número: " . $i);
+                $codigo = utf8_decode("Id: ".$cod_livro['id'] . "  |  Edicão: " . $edicao . "  |  Estante: ". $estante. "  |  Prateleira: ". $prateleira. "  |  Número: " . $i);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 15); // 15 pontos abaixo do QR code (10 da linha anterior + 5 de espaço)
                 $pdf->Cell($qr_size, 10,$codigo, 0, 0, 'C');
 

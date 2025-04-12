@@ -3,7 +3,7 @@ require_once('../../assets/fpdf/fpdf.php');
 require_once('../../config/connect.php');
 require_once('../../assets/phpqrcode/qrlib.php');
 
-class qrcod extends connect
+class qrCode1 extends connect
 {
     function __construct()
     {
@@ -109,17 +109,13 @@ class qrcod extends connect
             }
         }
 
-        $pdf->Output('relatorio_acervo.pdf', 'I');
-    }
-    public function test()
-    {
-        $prateleira = $_GET['prateleira'];
-        $estante = $_GET['estante'];
-        $select_id_livro = $this->connect->query("SELECT id, titulo_livro, edicao, quantidade FROM catalogo WHERE prateleiras = 'p$prateleira' AND estantes = '$estante'");
-        $id_livros = $select_id_livro->fetchAll(PDO::FETCH_ASSOC);
-        echo "<pre>";
-        print_r($id_livros);
-        echo "</pre>";
+        $pdf->Output('I','relatorio_acervo.pdf');
     }
 }
-$qrcode = new qrcod;
+if(isset($_GET['estante']) || isset($_GET['prateleira'])){
+
+    $qrcode = new qrcode1;
+}else{
+    header('location:geradorQR.php');
+    exit();
+}

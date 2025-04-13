@@ -72,7 +72,7 @@ class qrCode1 extends connect
                 $pdf->SetTextColor(0, 0, 0); // Cor preta
 
                 // Primeira linha: Nome do livro
-                $nome_livro = utf8_decode($cod_livro['titulo_livro']);
+                $nome_livro = substr(utf8_decode($cod_livro['titulo_livro']), 0, 25);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 5); // 5 pontos abaixo do QR code
                 $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'C');
 
@@ -109,13 +109,13 @@ class qrCode1 extends connect
             }
         }
 
-        $pdf->Output('I','relatorio_acervo.pdf');
+        $pdf->Output('I', 'relatorio_acervo.pdf');
     }
 }
-if(isset($_GET['estante']) || isset($_GET['prateleira'])){
+if (isset($_GET['estante']) && isset($_GET['prateleira']) && !empty($_GET['estante']) && !empty($_GET['prateleira'])) {
 
     $qrcode = new qrcode1;
-}else{
+} else {
     header('location:geradorQR.php');
     exit();
 }

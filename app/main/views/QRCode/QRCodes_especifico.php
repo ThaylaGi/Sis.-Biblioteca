@@ -28,7 +28,13 @@ class qrCode1 extends connect
         $pdf->SetX(20);
         $pdf->SetFont('Arial', 'B', 14);
         $pdf->SetTextColor(0, 0, 0);
-        $pdf->Cell($pdf->GetPageWidth() - 40, 20, "ESTANTE " . $_GET['estante'] . "  |  PRATELEIRA " . $_GET['prateleira'], 0, 1, 'C');
+
+        $titulos = $_GET['titulo_livro'];
+        foreach ($titulos as $titulo) {
+
+            $select_estante_prateleira = $this->connect->query("SELECT estantes, prateleiras FROM catalogo WHERE titulo_livro = '$titulo'");
+            $estante_prateleira = $select_estante_prateleira->fetchAll(PDO::FETCH_ASSOC);
+        }
 
         $prateleira = $_GET['prateleira'];
         $estante = $_GET['estante'];
@@ -112,10 +118,10 @@ class qrCode1 extends connect
         $pdf->Output('I', 'relatorio_acervo.pdf');
     }
 }
-if (isset($_GET['estante']) && isset($_GET['prateleira']) && !empty($_GET['estante']) && !empty($_GET['prateleira'])) {
+if (isset($_GET['titulo_livro']) && isset($_GET['quantidade']) && !empty($_GET['titulo_livro']) && !empty($_GET['quantidade'])) {
 
     $qrcode = new qrcode1;
 } else {
-    header('location:geradorQR.php');
+    header('location:geradorQR_especifico.php');
     exit();
 }

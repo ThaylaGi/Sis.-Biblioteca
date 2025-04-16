@@ -114,12 +114,12 @@ if (
     header('location:../views/QRCode/QRCodes.php?estante='.$estante.'&prateleira='.$prateleira);
     exit();
 
-}else if(isset($_POST['titulo']) && isset($_POST['quatidade']) && !empty($_POST['titulo']) && !empty($_POST['quatidade'])){
+}else if(isset($_POST['titulo']) && isset($_POST['quantidade']) && !empty($_POST['titulo']) && !empty($_POST['quantidade'])){
 
-    $tiutlo = $_POST['titulo'];
-    $quantidade = $_POST['quatidade'];
+    $titulo = $_POST['titulo'];
+    $quantidade = $_POST['quantidade'];
     
-    header('location:../views/QRCode/QRCodes_especifico.php?estante='.$estante.'&prateleira='.$prateleira);
+    header('location:../views/QRCode/QRCodes_especifico.php?titulo_livro='.$titulo.'&quantidade='.$quantidade);
     exit();
 }else{
 

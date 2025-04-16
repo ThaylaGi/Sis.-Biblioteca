@@ -1,6 +1,11 @@
 <?php
+$caminho = "../config/connect.php";
+if (file_exists($caminho)) {
+    require_once('../config/connect.php');
+} else {
+    require_once('../../config/connect.php');
+}
 
-require_once('../config/connect.php');
 
 class select_model extends connect
 {
@@ -31,12 +36,19 @@ class select_model extends connect
 
         return $generos;
     }
-    public function select_qrcode($prateleira, $estante){
+    public function select_qrcode($prateleira, $estante)
+    {
 
-        $sql_acervo = $this->connect->query("SELECT * FROM catologo WHERE pratileira = '$prateleira' AND estante = '$estante'");
+        $sql_acervo = $this->connect->query("SELECT * FROM catalogo WHERE pratileira = '$prateleira' AND estante = '$estante'");
         $acervo = $sql_acervo->fetchAll(PDO::FETCH_ASSOC);
 
         return $acervo;
-        
+    }
+    public function select_nome_livro()
+    {
+        $sql_nome_livro = $this->connect->query("SELECT titulo_livro FROM catalogo");
+        $nome = $sql_nome_livro->fetchAll(PDO::FETCH_ASSOC);
+
+        return $nome;
     }
 }

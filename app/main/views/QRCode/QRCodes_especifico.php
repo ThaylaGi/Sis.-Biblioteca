@@ -1,0 +1,121 @@
+<?php
+require_once('../../assets/fpdf/fpdf.php');
+require_once('../../config/connect.php');
+require_once('../../assets/phpqrcode/qrlib.php');
+
+class qrCode1 extends connect
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->pdf();
+        // $this->test(); // Descomente para testar a consulta
+    }
+    public function pdf()
+    {
+        $pdf = new FPDF("P", "pt", "A4");
+        $pdf->AliasNbPages();
+        $pdf->AddPage();
+
+        // Cabeçalho
+        $pdf->Image('../../assets/img/logo_incolor.jpg', 8, 5, 60, 60, 'JPG');
+        $pdf->SetY(15);
+        $pdf->SetX(20);
+        $pdf->SetFont('Arial', 'B', 20);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Cell($pdf->GetPageWidth() - 40, 20, utf8_decode('Sistema Biblioteca STGM'), 0, 1, 'C');
+        $pdf->SetY(35);
+        $pdf->SetX(20);
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->SetTextColor(0, 0, 0);
+        $pdf->Cell($pdf->GetPageWidth() - 40, 20, "ESTANTE " . $_GET['estante'] . "  |  PRATELEIRA " . $_GET['prateleira'], 0, 1, 'C');
+
+        $prateleira = $_GET['prateleira'];
+        $estante = $_GET['estante'];
+
+        $select_id_livro = $this->connect->query("SELECT id, titulo_livro, edicao, quantidade FROM catalogo WHERE prateleiras = 'p$prateleira' AND estantes = '$estante'");
+        $id_livros = $select_id_livro->fetchAll(PDO::FETCH_ASSOC);
+
+        // Configurações de layout
+        $qr_size = 80; // Tamanho do QR code em pontos (80x80)
+        $space_between = 60; // Espaço entre QR codes
+        $max_per_line = 4; // Máximo de QR codes por linha
+        $start_x = 30; // Posição X inicial
+        $start_y = 70; // Posição Y inicial (após o cabeçalho)
+        $current_x = $start_x;
+        $current_y = $start_y;
+
+        foreach ($id_livros as $cod_livro) {
+            for ($i = 1; $i <= $cod_livro['quantidade']; $i++) {
+                // Determinar a edição para a URL
+                $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '0' : $cod_livro['edicao'];
+
+                // Dados do QR Code
+                $dados = "https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php" . $cod_livro['id'] . "_" . $edicao . "_" . $i . "_" . $estante . "_" . $prateleira;
+
+                // Usar um nome de arquivo único para cada QR Code
+                $arquivo_qrcode = __DIR__ . "/qrcode_" . $cod_livro['id'] . "_" . $i . ".png";
+
+                // Gerar o QR Code
+                QRcode::png($dados, $arquivo_qrcode, QR_ECLEVEL_M, 4);
+
+                // Verificar se o arquivo foi criado
+                if (!file_exists($arquivo_qrcode) || !getimagesize($arquivo_qrcode)) {
+                    die("Erro: QR Code não gerado para $dados");
+                }
+
+                // Colocar o QR code na posição atual
+                $pdf->Image($arquivo_qrcode, $current_x, $current_y, $qr_size, $qr_size);
+
+                // Configurar fonte e cor preta para o título
+                $pdf->SetFont('Arial', 'B', 7.5);
+                $pdf->SetTextColor(0, 0, 0); // Cor preta
+
+                // Primeira linha: Nome do livro
+                $nome_livro = substr(utf8_decode($cod_livro['titulo_livro']), 0, 25);
+                $pdf->SetXY($current_x, $current_y + $qr_size + 5); // 5 pontos abaixo do QR code
+                $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'C');
+
+                // Segunda linha: ID, Edição, Número
+                $codigo = utf8_decode("Id: " . $cod_livro['id'] . " | Edição: " . $edicao . " | Número: " . $i);
+                $pdf->SetXY($current_x, $current_y + $qr_size + 15); // 15 pontos abaixo do QR code
+                $pdf->Cell($qr_size, 10, $codigo, 0, 0, 'C');
+
+                // Terceira linha: Estante, Prateleira
+                $localizacao = utf8_decode("Estante: " . $estante . " | Prateleira: " . $prateleira);
+                $pdf->SetXY($current_x, $current_y + $qr_size + 25); // 25 pontos abaixo do QR code
+                $pdf->Cell($qr_size, 10, $localizacao, 0, 0, 'C');
+
+                // Remover o arquivo temporário
+                if (file_exists($arquivo_qrcode)) {
+                    unlink($arquivo_qrcode);
+                }
+
+                // Atualizar a posição X para o próximo QR code
+                $current_x += $qr_size + $space_between;
+
+                // Verificar se atingiu o limite da linha
+                if ($current_x + $qr_size > $pdf->GetPageWidth() - 20) {
+                    $current_x = $start_x;
+                    $current_y += $qr_size + 40; // Aumentado para acomodar a nova linha
+                }
+
+                // Verificar se precisa de nova página
+                if ($current_y + $qr_size + 40 > $pdf->GetPageHeight() - 20) {
+                    $pdf->AddPage();
+                    $current_x = $start_x;
+                    $current_y = 20; // Posição Y inicial na nova página
+                }
+            }
+        }
+
+        $pdf->Output('I', 'relatorio_acervo.pdf');
+    }
+}
+if (isset($_GET['estante']) && isset($_GET['prateleira']) && !empty($_GET['estante']) && !empty($_GET['prateleira'])) {
+
+    $qrcode = new qrcode1;
+} else {
+    header('location:geradorQR.php');
+    exit();
+}

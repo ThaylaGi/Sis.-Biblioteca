@@ -114,9 +114,16 @@ if (
     header('location:../views/QRCode/QRCodes.php?estante='.$estante.'&prateleira='.$prateleira);
     exit();
 
-}else {
+}else if(isset($_POST['titulo']) && isset($_POST['quatidade']) && !empty($_POST['titulo']) && !empty($_POST['quatidade'])){
+
+    $tiutlo = $_POST['titulo'];
+    $quantidade = $_POST['quatidade'];
+    
+    header('location:../views/QRCode/QRCodes_especifico.php?estante='.$estante.'&prateleira='.$prateleira);
+    exit();
+}else{
+
     header('location:../index.php');
     exit();
 }
-
 ?>

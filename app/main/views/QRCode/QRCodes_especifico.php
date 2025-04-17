@@ -2,7 +2,11 @@
 require_once('../../assets/fpdf/fpdf.php');
 require_once('../../config/connect.php');
 require_once('../../assets/phpqrcode/qrlib.php');
+echo "<pre>";
 
+    print_r($_GET);
+
+echo "</pre>";
 class qrCode1 extends connect
 {
     function __construct()
@@ -30,17 +34,11 @@ class qrCode1 extends connect
         $pdf->SetTextColor(0, 0, 0);
 
         $titulos = $_GET['titulo_livro'];
+
         foreach ($titulos as $titulo) {
-
-            $select_estante_prateleira = $this->connect->query("SELECT estantes, prateleiras FROM catalogo WHERE titulo_livro = '$titulo'");
-            $estante_prateleira = $select_estante_prateleira->fetchAll(PDO::FETCH_ASSOC);
+            $select_dados_livro = $this->connect->query("SELECT id, edicao, estantes, prateleiras FROM catalogo WHERE titulo_livro = '$titulo'");
+            $dados_livros = $select_dados_livro->fetchAll(PDO::FETCH_ASSOC);
         }
-
-        $prateleira = $_GET['prateleira'];
-        $estante = $_GET['estante'];
-
-        $select_id_livro = $this->connect->query("SELECT id, titulo_livro, edicao, quantidade FROM catalogo WHERE prateleiras = 'p$prateleira' AND estantes = '$estante'");
-        $id_livros = $select_id_livro->fetchAll(PDO::FETCH_ASSOC);
 
         // Configurações de layout
         $qr_size = 80; // Tamanho do QR code em pontos (80x80)
@@ -51,7 +49,7 @@ class qrCode1 extends connect
         $current_x = $start_x;
         $current_y = $start_y;
 
-        foreach ($id_livros as $cod_livro) {
+        foreach ($dados_livros as $cod_livro) {
             for ($i = 1; $i <= $cod_livro['quantidade']; $i++) {
                 // Determinar a edição para a URL
                 $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '0' : $cod_livro['edicao'];
@@ -121,7 +119,7 @@ class qrCode1 extends connect
 if (isset($_GET['titulo_livro']) && isset($_GET['quantidade']) && !empty($_GET['titulo_livro']) && !empty($_GET['quantidade'])) {
 
     $qrcode = new qrcode1;
-} else {
+} /*else {
     header('location:geradorQR_especifico.php');
     exit();
-}
+}*/

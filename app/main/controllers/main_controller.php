@@ -119,7 +119,13 @@ if (
     $titulo = $_POST['titulo'];
     $quantidade = $_POST['quantidade'];
     
-    header('location:../views/QRCode/QRCodes_especifico.php?titulo_livro='.$titulo.'&quantidade='.$quantidade);
+    $dados = [
+        'titulo_livro' => $titulo,
+        'quantidade' => $quantidade
+    ];
+
+    $http = http_build_query($dados);
+    header('location:../views/QRCode/QRCodes_especifico.php?'.$http);
     exit();
 }else{
 

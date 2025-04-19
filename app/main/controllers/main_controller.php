@@ -6,11 +6,11 @@ if (isset($_POST['relatorio'])) {
 
     switch ($relatorio) {
         case 'acervo':
-         
+
             header('Location: ../views/relatorios/relatorio_acervo.php');
             exit;
         case '':
-           
+
             header('Location: ../views/relatorios/relatorios.php?erro=1');
             exit;
         default:
@@ -106,30 +106,25 @@ if (
             header('location:../index.php');
             exit();
     }
-} else if(isset($_POST['estante']) && isset($_POST['prateleira']) && !empty($_POST['estante']) && !empty($_POST['prateleira'])){
+} else if (isset($_POST['estante']) && isset($_POST['prateleira']) && !empty($_POST['estante']) && !empty($_POST['prateleira'])) {
 
     $estante = $_POST['estante'];
     $prateleira = $_POST['prateleira'];
 
-    header('location:../views/QRCode/QRCodes.php?estante='.$estante.'&prateleira='.$prateleira);
+    header('location:../views/QRCode/QRCodes.php?estante=' . $estante . '&prateleira=' . $prateleira);
     exit();
-
-}else if(isset($_POST['titulo']) && isset($_POST['quantidade']) && !empty($_POST['titulo']) && !empty($_POST['quantidade'])){
+} else if (isset($_POST['titulo']) && !empty($_POST['titulo'])) {
 
     $titulo = $_POST['titulo'];
-    $quantidade = $_POST['quantidade'];
-    
     $dados = [
-        'titulo_livro' => $titulo,
-        'quantidade' => $quantidade
+        'titulo_livro' => $titulo
     ];
 
     $http = http_build_query($dados);
-    header('location:../views/QRCode/QRCodes_especifico.php?'.$http);
+    header('location:../views/QRCode/QRCodes_especifico.php?' . $http);
     exit();
-}else{
+} else {
 
     header('location:../index.php');
     exit();
 }
-?>

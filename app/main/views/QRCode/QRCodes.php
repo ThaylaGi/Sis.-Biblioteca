@@ -51,7 +51,7 @@ class qrCode1 extends connect
                 $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '0' : $cod_livro['edicao'];
 
                 // Dados do QR Code
-                $dados = "https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php" . $cod_livro['id'] . "_" . $edicao . "_" . $i . "_" . $estante . "_" . $prateleira;
+                $dados = "https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php?" . $cod_livro['id'] . "_" . $edicao . "_" . $i . "_" . $estante . "_" . $prateleira;
 
                 // Usar um nome de arquivo único para cada QR Code
                 $arquivo_qrcode = __DIR__ . "/qrcode_" . $cod_livro['id'] . "_" . $i . ".png";
@@ -74,17 +74,17 @@ class qrCode1 extends connect
                 // Primeira linha: Nome do livro
                 $nome_livro = substr(utf8_decode($cod_livro['titulo_livro']), 0, 25);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 5); // 5 pontos abaixo do QR code
-                $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'C');
+                $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'L');
 
                 // Segunda linha: ID, Edição, Número
                 $codigo = utf8_decode("Id: " . $cod_livro['id'] . " | Edição: " . $edicao . " | Número: " . $i);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 15); // 15 pontos abaixo do QR code
-                $pdf->Cell($qr_size, 10, $codigo, 0, 0, 'C');
+                $pdf->Cell($qr_size, 10, $codigo, 0, 0, 'L');
 
                 // Terceira linha: Estante, Prateleira
                 $localizacao = utf8_decode("Estante: " . $estante . " | Prateleira: " . $prateleira);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 25); // 25 pontos abaixo do QR code
-                $pdf->Cell($qr_size, 10, $localizacao, 0, 0, 'C');
+                $pdf->Cell($qr_size, 10, $localizacao, 0, 0, 'L');
 
                 // Remover o arquivo temporário
                 if (file_exists($arquivo_qrcode)) {

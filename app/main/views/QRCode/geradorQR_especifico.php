@@ -45,6 +45,83 @@ $select = new select_model;
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 140, 69, 0.3);
         }
+
+        /* Estilização do Select2 */
+        .select2-container--default .select2-selection--multiple {
+            width: 100%;
+            padding: 0.75rem; /* p-3 */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #ffffff; /* bg-white */
+            color: #374151; /* text-gray-700 */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+            transition: all 0.3s ease; /* transition-all duration-300 */
+            cursor: pointer;
+            font-size: 1rem; /* text-base */
+            min-height: 44px; /* Garante espaço para tags */
+        }
+
+        .select2-container--default .select2-selection--multiple:focus {
+            outline: none;
+            border-color: #008C45; /* focus:border-ceara-green */
+            box-shadow: 0 0 0 2px rgba(0, 140, 69, 0.2); /* focus:ring-2 focus:ring-ceara-green */
+        }
+
+        /* Estilizar as tags (itens selecionados) */
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background: linear-gradient(45deg, #008C45, #FFA500); /* btn-gradient */
+            color: #ffffff; /* text-white */
+            border: none;
+            border-radius: 0.25rem; /* rounded */
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem; /* text-sm */
+            max-width: 90%; /* Evita que tags muito longas quebrem o layout */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: #ffffff; /* text-white */
+            margin-right: 0.25rem;
+        }
+
+        /* Ícone de chevron-down */
+        .select2-container--default .select2-selection--multiple::after {
+            content: '\f078'; /* FontAwesome chevron-down */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #9ca3af; /* text-gray-400 */
+            position: absolute;
+            right: 1rem; /* right-4 */
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Ajustar o dropdown do Select2 */
+        .select2-container--default .select2-dropdown {
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #ffffff; /* bg-white */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+        }
+
+        .select2-container--default .select2-results__option {
+            padding: 0.5rem 1rem;
+            color: #374151; /* text-gray-700 */
+            white-space: normal; /* Permite quebra de linha para textos longos */
+        }
+
+        .select2-container--default .select2-results__option--highlighted {
+            background: linear-gradient(45deg, #008C45, #FFA500); /* btn-gradient */
+            color: #ffffff; /* text-white */
+        }
+
+        /* Ajustar o container do Select2 para textos longos */
+        .select2-container {
+            width: 100% !important;
+        }
     </style>
 </head>
 <script>
@@ -86,16 +163,16 @@ $select = new select_model;
 
         <form action="../../controllers/main_controller.php" method="post" class="space-y-6">
             <div class="space-y-4">
-                <!-- Select para Estante com ícone -->
+                <!-- Select para Títulos com ícone -->
                 <div class="relative">
-                    <select class="js-example-basic-multiple" name="titulo[]" multiple="multiple">
+                    <select id="titulos" class="js-example-basic-multiple" name="titulo[]" multiple="multiple">
                         <?php
                         $titulos = $select->select_nome_livro();
-
                         foreach ($titulos as $titulo) {
                         ?>
-                            <option value="<?= $titulo['titulo_livro'] ?>_<?= $titulo['editora'] ?>"><?= $titulo['titulo_livro'] ?> | <?= $titulo['editora'] ?></option>
-
+                            <option value="<?= htmlspecialchars($titulo['titulo_livro'] . '_' . $titulo['editora']) ?>">
+                                <?= htmlspecialchars($titulo['titulo_livro'] . ' | ' . $titulo['editora']) ?>
+                            </option>
                         <?php } ?>
                     </select>
                 </div>
@@ -110,7 +187,11 @@ $select = new select_model;
     </div>
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Selecione os títulos dos livros",
+                allowClear: true,
+                width: '100%'
+            });
         });
     </script>
 </body>

@@ -30,6 +30,10 @@ $select_model = new select_model();
                     boxShadow: {
                         'custom': '0 10px 25px -5px rgba(0, 122, 51, 0.1), 0 8px 10px -6px rgba(0, 122, 51, 0.1)',
                     },
+                    backgroundImage: {
+                        'gradient-ceara': 'linear-gradient(to right, #007A33, #005F27)',
+                        'gradient-orange': 'linear-gradient(to right, #FFA500, #FF8C00)',
+                    }
                 }
             }
         }
@@ -67,30 +71,6 @@ $select_model = new select_model();
             color: #007A33 !important;
             border-bottom: 2px solid #007A33 !important;
         }
-        .radio-option {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem;
-            border: none;
-            background: none;
-            transition: all 0.2s ease-in-out;
-        }
-        .radio-option:hover {
-            background-color: #f1f5f9;
-            transform: translateY(-1px);
-        }
-        .radio-option input:checked+span {
-            color: #007A33;
-            font-weight: 600;
-        }
-        .space-y-6 > div {
-            margin-left: 0;
-            padding-left: 0;
-        }
-        #subgeneroContainer select {
-            width: 100%;
-            margin-left: 0;
-        }
         input[type="checkbox"] {
             accent-color: #007A33;
         }
@@ -110,7 +90,7 @@ $select_model = new select_model();
             class="w-[200px] sm:w-[250px] md:w-[300px] mx-auto mb-8 drop-shadow-xl hover:scale-105 transition-transform duration-300"
             alt="Logo">
         <div class="bg-white rounded-xl shadow-custom overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-lg">
-            <div class="bg-gradient-to-r from-ceara-green to-ceara-green-dark p-6 sm:p-8">
+            <div class="bg-gradient-ceara p-6 sm:p-8">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center tracking-wide">
                     <i class="fas fa-book mr-3"></i>Cadastro de Livros
                 </h2>
@@ -131,8 +111,8 @@ $select_model = new select_model();
 
                 <div id="book-info" class="tab-content space-y-6">
                     <div class="space-y-6">
-                        <!-- Origem e Tipo -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Origem, Tipo e Empréstimo -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Literatura</label>
                                 <div class="flex flex-col space-y-2">
@@ -166,10 +146,10 @@ $select_model = new select_model();
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Tipo</label>
+                                <label class="block text-sm font-medium text-gray-700">Empréstimo</label>
                                 <div class="flex flex-col space-y-2">
                                     <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
-                                        <input type="checkbox" name="cativo" value="1"
+                                        <input type="radio" name="cativo" value="1"
                                             class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
                                         <span class="text-sm">Cativo</span>
                                     </label>
@@ -233,7 +213,7 @@ $select_model = new select_model();
                                             placeholder="Sobrenome" required>
                                     </div>
                                     <button type="button" id="addAuthor"
-                                        class="text-ceara-green p-2 relative rounded-full transition-colors duration-200 px-">
+                                        class="text-ceara-green p-2 rounded-full transition-colors duration-200">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
@@ -310,7 +290,7 @@ $select_model = new select_model();
 
                         <div class="mt-8">
                             <button type="button" id="nextButton"
-                                class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                                class="w-full bg-gradient-ceara text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                                 <i class="fas fa-arrow-right mr-3"></i>
                                 Avançar
                             </button>
@@ -373,12 +353,12 @@ $select_model = new select_model();
 
                     <div class="mt-8 space-y-4">
                         <button type="button" id="backButton"
-                            class="w-full bg-gradient-to-r from-ceara-green to-ceara-green-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                            class="w-full bg-gradient-ceara text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-arrow-left mr-3"></i>
                             Voltar
                         </button>
                         <button type="submit"
-                            class="w-full bg-gradient-to-r from-ceara-orange to-ceara-orange-dark text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-lg flex items-center justify-center text-lg shadow-md">
+                            class="w-full bg-gradient-orange text-white font-medium py-4 px-6 rounded-lg transition duration-300 ease-in-out hover:shadow-lg flex items-center justify-center text-lg shadow-md">
                             <i class="fas fa-paper-plane mr-3"></i>
                             Cadastrar Livro
                         </button>

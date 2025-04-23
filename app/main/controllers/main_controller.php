@@ -48,9 +48,11 @@ if (
     $subgenero = $_POST['nomesubGenero'];
     $literatura = $_POST['literatura'] == 0 ? "Brasileira" : "Estrangeira";
     $ficcao = $_POST['ficcao'] ?? 0;
+    $cativo = $_POST['cativo'] ?? 0;
+
 
     $model = new main_model();
-    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $literatura, $ficcao);
+    $result = $model->cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $literatura, $ficcao, $cativo);
 
     switch ($result) {
         case 1:

@@ -21,7 +21,7 @@ class main_model extends connect
     }
 
     /** Método público para cadastrar livros no banco, recebendo informações do livro e autores */
-    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $literatura, $ficcao)
+    public function cadastrar_livros($nome, $sobrenome, $titulo, $data, $editora, $edicao, $quantidade, $corredor, $estante, $prateleira, $subgenero, $literatura, $ficcao, $cativo)
     {
         /** Prepara uma query para verificar se o livro já existe com base em título, editora e edição */
         $sql_check = $this->connect->prepare("SELECT * FROM catalogo WHERE titulo_livro = :titulo AND edicao = :edicao");
@@ -43,7 +43,7 @@ class main_model extends connect
             $id = $sql_id->fetch(PDO::FETCH_ASSOC);
 
             /** Prepara uma query para inserir um novo livro na tabela catalogo */
-            $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :edicao, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero, :ficcao, :literatura)");
+            $cadastro_livro = $this->connect->prepare("INSERT INTO $this->catalogo VALUES (null, :titulo_livro, :ano_publicacao, :editora, :edicao, :quantidade, :corredor, :estante, :prateleira, :genero, :subgenero, :ficcao, :literatura, :cativo)");
 
             /** Associa os valores dos parâmetros aos placeholders da query de inserção */
             $cadastro_livro->bindValue(':titulo_livro', $titulo);
@@ -58,6 +58,7 @@ class main_model extends connect
             $cadastro_livro->bindValue(':subgenero', $id['id']);
             $cadastro_livro->bindValue(':ficcao', $ficcao);
             $cadastro_livro->bindValue(':literatura', $literatura);
+            $cadastro_livro->bindValue(':cativo', $cativo);
 
             /** Executa a query para inserir o livro */
             $cadastro_livro->execute();

@@ -165,6 +165,16 @@ $select_model = new select_model();
                                     </label>
                                 </div>
                             </div>
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Tipo</label>
+                                <div class="flex flex-col space-y-2">
+                                    <label class="flex items-center space-x-2 text-gray-600 cursor-pointer">
+                                        <input type="checkbox" name="cativo" value="1"
+                                            class="h-5 w-5 text-ceara-green border-gray-300 focus:ring-ceara-green">
+                                        <span class="text-sm">Cativo</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Subgênero -->

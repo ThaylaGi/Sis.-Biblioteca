@@ -51,7 +51,7 @@ class qrCode1 extends connect
                 $edicao = ($cod_livro['edicao'] == 'ENI*' || empty($cod_livro['edicao'])) ? '0' : $cod_livro['edicao'];
 
                 // Dados do QR Code
-                $dados = "https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php?" . $cod_livro['id'] . "_" . $edicao . "_" . $i . "_" . $estante . "_" . $prateleira;
+                $dados = "https://salaberga.com/salaberga/portalsalaberga/app/subsystems/biblioteca/app/main/views/emprestimo/decisao.php?" . $cod_livro['id'] . "_" . $edicao . "_" . $i . "_" . $estante . "_p" . $prateleira;
 
                 // Usar um nome de arquivo único para cada QR Code
                 $arquivo_qrcode = __DIR__ . "/qrcode_" . $cod_livro['id'] . "_" . $i . ".png";
@@ -82,7 +82,7 @@ class qrCode1 extends connect
                 $pdf->Cell($qr_size, 10, $codigo, 0, 0, 'L');
 
                 // Terceira linha: Estante, Prateleira
-                $localizacao = utf8_decode("Estante: " . $estante . " | Prateleira: " . $prateleira);
+                $localizacao = utf8_decode("Estante: " . $estante . " | Prateleira: p" . $prateleira);
                 $pdf->SetXY($current_x, $current_y + $qr_size + 18); // 25 pontos abaixo do QR code
                 $pdf->Cell($qr_size, 10, $localizacao, 0, 0, 'L');
 

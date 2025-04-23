@@ -44,7 +44,7 @@ class qrCode1 extends connect
         foreach ($titulos as $titulo) {
             $titulo_array = explode("_", $titulo);
             // Usar prepared statement para evitar SQL Injection
-            $select_dados_livro = $this->connect->prepare("SELECT id, titulo_livro, edicao, estantes, prateleiras, quantidade FROM catalogo WHERE titulo_livro = ? AND editora = ?");
+            $select_dados_livro = $this->connect->prepare("SELECT id, titulo_livro, edicao, estantes, prateleiras, quantidade, cativo FROM catalogo WHERE titulo_livro = ? AND editora = ?");
             $select_dados_livro->execute([$titulo_array[0], $titulo_array[1]]);
 
             $dados_livros = $select_dados_livro->fetchAll(PDO::FETCH_ASSOC);
@@ -76,22 +76,27 @@ class qrCode1 extends connect
 
                     // Configurar fonte e cor preta para o título
                     $pdf->SetFont('Arial', 'B', 7.5);
-                    $pdf->SetTextColor(0, 0, 0);
+                    $pdf->SetTextColor(0, 0, 0); // Cor preta
 
                     // Primeira linha: Nome do livro
                     $nome_livro = substr(utf8_decode($cod_livro['titulo_livro']), 0, 25);
-                    $pdf->SetXY($current_x, $current_y + $qr_size + 5);
+                    $pdf->SetXY($current_x, $current_y + $qr_size + 2); // 5 pontos abaixo do QR code
                     $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'L');
 
                     // Segunda linha: ID, Edição, Número
-                    $codigo = utf8_decode("Id: " . $cod_livro['id'] . " | Edição: " . $edicao . " | Número: " . $i);
-                    $pdf->SetXY($current_x, $current_y + $qr_size + 15);
+                    $codigo = utf8_decode("Id: " . $cod_livro['id'] . " | Edição: " . $edicao . " | Livro: " . $i);
+                    $pdf->SetXY($current_x, $current_y + $qr_size + 10); // 15 pontos abaixo do QR code
                     $pdf->Cell($qr_size, 10, $codigo, 0, 0, 'L');
 
                     // Terceira linha: Estante, Prateleira
                     $localizacao = utf8_decode("Estante: " . $estante . " | Prateleira: " . $prateleira);
-                    $pdf->SetXY($current_x, $current_y + $qr_size + 25);
+                    $pdf->SetXY($current_x, $current_y + $qr_size + 18); // 25 pontos abaixo do QR code
                     $pdf->Cell($qr_size, 10, $localizacao, 0, 0, 'L');
+
+                    // Quarta linha: Cativo/Não cativo (ajustada para evitar sobreposição)
+                    $cativo_texto = ($cod_livro['cativo'] == 0) ? utf8_decode("Não cativo") : utf8_decode("Cativo");
+                    $pdf->SetXY($current_x, $current_y + $qr_size + 25); // Aumentado para 35 pontos abaixo do QR code
+                    $pdf->Cell($qr_size, 10, $cativo_texto, 0, 0, 'L');
 
                     // Remover o arquivo temporário
                     if (file_exists($arquivo_qrcode)) {
@@ -104,18 +109,17 @@ class qrCode1 extends connect
                     // Verificar se atingiu o limite da linha
                     if ($current_x + $qr_size > $pdf->GetPageWidth() - 20) {
                         $current_x = $start_x;
-                        $current_y += $qr_size + 40; // Avança para a próxima linha
+                        $current_y += $qr_size + 50; // Aumentado para 50 para acomodar a nova linha de texto
                     }
 
                     // Verificar se precisa de nova página
-                    if ($current_y + $qr_size + 40 > $pdf->GetPageHeight() - 20) {
+                    if ($current_y + $qr_size + 50 > $pdf->GetPageHeight() - 20) {
                         $pdf->AddPage();
                         $current_x = $start_x;
                         $current_y = 20; // Posição Y inicial na nova página
                     }
                 }
             }
-            // Não reiniciamos $current_y aqui, permitindo que o próximo título continue na mesma linha, se houver espaço
         }
 
         ob_end_clean(); // Limpa o buffer

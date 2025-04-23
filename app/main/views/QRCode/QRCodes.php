@@ -9,8 +9,8 @@ class qrCode1 extends connect
     {
         parent::__construct();
         $this->pdf();
-        // $this->test(); // Descomente para testar a consulta
     }
+
     public function pdf()
     {
         $pdf = new FPDF("P", "pt", "A4");
@@ -33,7 +33,7 @@ class qrCode1 extends connect
         $prateleira = $_GET['prateleira'];
         $estante = $_GET['estante'];
 
-        $select_id_livro = $this->connect->query("SELECT id, titulo_livro, edicao, quantidade FROM catalogo WHERE prateleiras = 'p$prateleira' AND estantes = '$estante'");
+        $select_id_livro = $this->connect->query("SELECT id, titulo_livro, edicao, quantidade, cativo FROM catalogo WHERE prateleiras = 'p$prateleira' AND estantes = '$estante'");
         $id_livros = $select_id_livro->fetchAll(PDO::FETCH_ASSOC);
 
         // Configurações de layout
@@ -73,18 +73,23 @@ class qrCode1 extends connect
 
                 // Primeira linha: Nome do livro
                 $nome_livro = substr(utf8_decode($cod_livro['titulo_livro']), 0, 25);
-                $pdf->SetXY($current_x, $current_y + $qr_size + 5); // 5 pontos abaixo do QR code
+                $pdf->SetXY($current_x, $current_y + $qr_size + 2); // 5 pontos abaixo do QR code
                 $pdf->Cell($qr_size, 10, $nome_livro, 0, 0, 'L');
 
                 // Segunda linha: ID, Edição, Número
-                $codigo = utf8_decode("Id: " . $cod_livro['id'] . " | Edição: " . $edicao . " | Número: " . $i);
-                $pdf->SetXY($current_x, $current_y + $qr_size + 15); // 15 pontos abaixo do QR code
+                $codigo = utf8_decode("Id: " . $cod_livro['id'] . " | Edição: " . $edicao . " | Livro: " . $i);
+                $pdf->SetXY($current_x, $current_y + $qr_size + 10); // 15 pontos abaixo do QR code
                 $pdf->Cell($qr_size, 10, $codigo, 0, 0, 'L');
 
                 // Terceira linha: Estante, Prateleira
                 $localizacao = utf8_decode("Estante: " . $estante . " | Prateleira: " . $prateleira);
-                $pdf->SetXY($current_x, $current_y + $qr_size + 25); // 25 pontos abaixo do QR code
+                $pdf->SetXY($current_x, $current_y + $qr_size + 18); // 25 pontos abaixo do QR code
                 $pdf->Cell($qr_size, 10, $localizacao, 0, 0, 'L');
+
+                // Quarta linha: Cativo/Não cativo (ajustada para evitar sobreposição)
+                $cativo_texto = ($cod_livro['cativo'] == 0) ? utf8_decode("Não cativo") : utf8_decode("Cativo");
+                $pdf->SetXY($current_x, $current_y + $qr_size + 25); // Aumentado para 35 pontos abaixo do QR code
+                $pdf->Cell($qr_size, 10, $cativo_texto, 0, 0, 'L');
 
                 // Remover o arquivo temporário
                 if (file_exists($arquivo_qrcode)) {
@@ -97,11 +102,11 @@ class qrCode1 extends connect
                 // Verificar se atingiu o limite da linha
                 if ($current_x + $qr_size > $pdf->GetPageWidth() - 20) {
                     $current_x = $start_x;
-                    $current_y += $qr_size + 40; // Aumentado para acomodar a nova linha
+                    $current_y += $qr_size + 50; // Aumentado para 50 para acomodar a nova linha de texto
                 }
 
                 // Verificar se precisa de nova página
-                if ($current_y + $qr_size + 40 > $pdf->GetPageHeight() - 20) {
+                if ($current_y + $qr_size + 50 > $pdf->GetPageHeight() - 20) {
                     $pdf->AddPage();
                     $current_x = $start_x;
                     $current_y = 20; // Posição Y inicial na nova página
@@ -112,9 +117,9 @@ class qrCode1 extends connect
         $pdf->Output('I', 'relatorio_acervo.pdf');
     }
 }
-if (isset($_GET['estante']) && isset($_GET['prateleira']) && !empty($_GET['estante']) && !empty($_GET['prateleira'])) {
 
-    $qrcode = new qrcode1;
+if (isset($_GET['estante']) && isset($_GET['prateleira']) && !empty($_GET['estante']) && !empty($_GET['prateleira'])) {
+    $qrcode = new qrCode1;
 } else {
     header('location:geradorQR.php');
     exit();

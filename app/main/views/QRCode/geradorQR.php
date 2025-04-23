@@ -77,21 +77,6 @@
             </p>
         </div>
 
-        <!-- Mensagens de erro -->
-        <?php if (isset($_GET['erro']) && $_GET['erro'] == 1): ?>
-            <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md" role="alert">
-                <i class="fas fa-exclamation-circle text-xl mr-3"></i>
-                <span class="text-sm font-medium">Por favor, selecione um tipo de relatório!</span>
-            </div>
-        <?php endif; ?>
-
-        <?php if (isset($_GET['erro']) && $_GET['erro'] == 2): ?>
-            <div class="flex items-center p-4 mb-4 text-red-800 border-l-4 border-red-500 bg-red-50 rounded-md" role="alert">
-                <i class="fas fa-exclamation-circle text-xl mr-3"></i>
-                <span class="text-sm font-medium">Tipo de relatório inválido!</span>
-            </div>
-        <?php endif; ?>
-
         <form action="../../controllers/main_controller.php" method="post" class="space-y-6">
             <div class="space-y-4">
                 <!-- Select para Estante com ícone -->

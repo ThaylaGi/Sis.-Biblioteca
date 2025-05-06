@@ -104,7 +104,7 @@ $colunas = array(
 $pdf->SetX(20);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->SetFillColor(0, 122, 51);
-$pdf->SetTextColor(255, 255, 255);
+$pdf->SetTextColor(255, 255, 255);                                                       
 
 foreach ($colunas as $coluna) {
     $pdf->Cell($coluna['largura'], 20, $coluna['texto'], 1, 0, 'C', true);
